@@ -123,30 +123,52 @@ select, input
 	position: relative;float: left;top: 60%;left: 50%;transform: translate(-50%, -40%);
 }
 
-.fab {
-   width: 70px;
-   height: 70px;
-   background-color: #008080;
-   border-radius: 50%;
-   box-shadow: 0 6px 10px 0 #666;
-   transition: all 0.1s ease-in-out;
- 
-   font-size: 50px;
-   color: white !important;
-   text-align: center;
-   line-height: 70px;
- 
-   position: fixed;
-   right: 50px;
-   bottom: 50px;
-   text-decoration:none !important;
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #008080;
 }
- 
-.fab:hover {
-   box-shadow: 0 6px 14px 0 #666;
-   transform: scale(1.05);
-   cursor:pointer;
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
 }
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+  
+  animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
 .fab-profile {
    width: 70px;
    height: 70px;
@@ -170,26 +192,4 @@ select, input
    box-shadow: 0 6px 14px 0 #666;
    transform: scale(1.05);
    cursor:pointer;
-}
-
-
-a {
-  /* Disabled link styles */
-}
-
-
-@media (max-width:768px)
-{
-    
-.fb-profile-text>h1{
-    font-weight: 700;
-    font-size:16px;
-}
-
-.fb-image-profile
-{
-    margin: -45px 10px 0px 25px;
-    z-index: 9;
-    width: 20%; 
-}
 }
