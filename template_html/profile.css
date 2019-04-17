@@ -157,7 +157,7 @@ select, input
 .tabcontent {
   display: none;
   padding: 6px 12px;
-  border: 1px solid #ccc;
+  /*border: 1px solid #ccc;*/
   border-top: none;
   
   animation: fadeEffect 1s; /* Fading effect takes 1 second */
@@ -183,7 +183,7 @@ select, input
    line-height: 70px;
  
    position: fixed;
-   right: 50px;
+   right: 45px;
    bottom: 85%;
    text-decoration:none !important;
 }
@@ -192,4 +192,58 @@ select, input
    box-shadow: 0 6px 14px 0 #666;
    transform: scale(1.05);
    cursor:pointer;
+}
+
+ol {
+    counter-reset: li; /* Initiate a counter */
+    list-style: none; /* Remove default numbering */
+    *list-style: decimal; /* Keep using default numbering for IE6/7 */
+    font: 15px 'trebuchet MS', 'lucida sans';
+    padding: 0;
+	margin-left:10px;
+    /*margin-bottom: 4em;*/
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+
+ol ol {
+    margin: 0 0 0 2em; /* Add some left margin for inner lists */
+}
+
+.rounded-list li{
+    position: relative;
+    display: block;
+    padding: .4em .4em .4em 2em;
+    *padding: .4em;
+    margin: .5em 0;
+    background: #ddd;
+    color: #444;
+    text-decoration: none;
+    border-radius: .3em;
+    transition: all .3s ease-out;   
+}
+
+.rounded-list li:hover{
+    background: #eee;
+}
+
+.rounded-list li:hover:before{
+    transform: rotate(360deg);  
+}
+
+.rounded-list li:before{
+    content: counter(li);
+    counter-increment: li;
+    position: absolute; 
+    left: -1.3em;
+    top: 50%;
+    margin-top: -1.3em;
+    background: #87ceeb;
+    height: 2.5em;
+    width: 2em;
+    line-height: 2em;
+    border: .3em solid #fff;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 2em;
+    transition: all .3s ease-out;
 }
