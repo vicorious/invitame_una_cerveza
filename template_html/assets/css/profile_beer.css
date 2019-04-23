@@ -1,0 +1,195 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+   
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+body
+{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.fb-profile img.fb-image-lg{
+    z-index: 0;
+    width: 100%;  
+    margin-bottom: 10px;
+}
+
+.fb-image-profile
+{
+    margin: -90px 10px 0px 50px;
+    z-index: 9;
+    width: 20%; 
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 100%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Clear floats after the columns */
+.last-row {
+  margin-top:15%;
+}
+
+.color_tittle
+{
+	color:#008080;
+}
+.letra
+{
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+.negrita
+{
+	font-weight: bold;
+}
+
+.letra_blanca
+{
+	color: white;
+}
+
+.letra_tittle
+{
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+hr
+{
+	background:#44AB47;
+}
+
+select, input 
+{
+	font-family: Verdana, Geneva, sans-serif;
+	font-style: italic;
+}
+
+.center
+{
+	text-align: center;
+}
+
+
+
+.soflow-color {
+   -webkit-appearance: button;
+   -webkit-border-radius: 2px;
+   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+   -webkit-padding-end: 20px;
+   -webkit-padding-start: 2px;
+   -webkit-user-select: none;
+   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+   background-position: 97% center;
+   background-repeat: no-repeat;
+   border: 1px solid #AAA;
+   color: #555;
+   font-size: inherit;
+   margin: 20px;
+   overflow: hidden;
+   padding: 5px 10px;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   width: 300px;
+}
+
+.soflow-color {
+   color: #fff;
+   background-image: url('../images/selects.png'), -webkit-linear-gradient(#008080, #008080 40%, #008080);
+   background-color: #008080;
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+   padding-left: 15px;
+   text-decoration:none !important;
+}
+
+.footer
+{
+	position: relative;float: left;top: 60%;left: 50%;transform: translate(-50%, -40%);
+}
+
+.fab {
+   width: 70px;
+   height: 70px;
+   background-color: #008080;
+   border-radius: 50%;
+   box-shadow: 0 6px 10px 0 #666;
+   transition: all 0.1s ease-in-out;
+ 
+   font-size: 50px;
+   color: white !important;
+   text-align: center;
+   line-height: 70px;
+ 
+   position: fixed;
+   right: 45px;
+   bottom: 50px;
+   text-decoration:none !important;
+}
+ 
+.fab:hover {
+   box-shadow: 0 6px 14px 0 #666;
+   transform: scale(1.05);
+   cursor:pointer;
+}
+.fab-profile {
+   width: 70px;
+   height: 70px;
+   background-color: #008080;
+   border-radius: 50%;
+   box-shadow: 0 6px 10px 0 #666;
+   transition: all 0.1s ease-in-out;
+ 
+   font-size: 50px;
+   color: white !important;
+   text-align: center;
+   line-height: 70px;
+ 
+   position: fixed;
+   right: 45px;
+   bottom: 85%;
+   text-decoration:none !important;
+}
+ 
+.fab-profile:hover {
+   box-shadow: 0 6px 14px 0 #666;
+   transform: scale(1.05);
+   cursor:pointer;
+}
+
+
+a {
+  /* Disabled link styles */
+}
+
+
+@media (max-width:768px)
+{
+    
+.fb-profile-text>h1{
+    font-weight: 700;
+    font-size:16px;
+}
+
+.fb-image-profile
+{
+    margin: -45px 10px 0px 25px;
+    z-index: 9;
+    width: 20%; 
+}
+}
