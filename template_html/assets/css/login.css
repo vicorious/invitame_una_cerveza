@@ -7,20 +7,21 @@
 }
 
 .form {
-  height: 18.75em;
-  width: 25em;
+  height: 100%;
+  width: 100%;
   background: #fff;
   position: absolute;
-  top: 50%;
+  /*top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);*/
   text-transform: uppercase;
   font-family: "Bebas Neue", Arial;
   color: #fff;
+  text-align: center;
 }
 
 .form > div {
-  height: 6.25em;
+  height: 12.25em;
   width: 100%;
 }
 
@@ -76,15 +77,18 @@ input {
   width: 8.125em;
   font-size: 2em;
   text-align:center;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
   border: 0;
   outline: 0;
   color: #fff;
   background: transparent;
-  border:0.033em #fff solid;
-  margin-left: 2.1875em;
+  border:0.033em #fff solid;  
   margin-top: 1em;
   font-family: "Bebas Neue", Arial;
 }
+
 
 ::placeholder {
   color: #fff;
