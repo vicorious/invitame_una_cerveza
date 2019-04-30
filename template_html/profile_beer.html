@@ -117,16 +117,3 @@
 	<a class="fab fa fa-save" href="codigo.html"/>
 	<a class="fab-profile fa fa-user" href="profile.html"/>
 
-
-<script>
-var slider = document.getElementById("myRange");
-var output = document.getElementById("demo");
-var output2 = document.getElementById("demo2");
-output.innerHTML = slider.value;
-slider.oninput = function() 
-{
-  output.innerHTML = this.value;
-  output2.innerHTML = parseInt(output2.innerHTML) - this.value;
-}
-</script>
-
