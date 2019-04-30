@@ -1,8 +1,11 @@
 <link href="assets/css/bootstrap.css" rel="stylesheet" id="bootstrap-css">
 <script src="assets/js/bootstrap.js"></script>
 <script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/profile_beer.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 <link href="assets/css/profile_beer.css" rel="stylesheet">
+
+
 
 <link href='assets/css/fonts.google.css' rel='stylesheet' type='text/css'>
 <div class="container">
@@ -72,7 +75,14 @@
 
 				<br></br>
 				<p class="color_tittle"><strong><em>CVV</em></strong></p>
-				<input type="text" id="txtCVV" placeholder="000" text-align="middle"/>					
+				<input type="text" id="txtCVV" placeholder="000" text-align="middle"/>	
+
+				<br></br>
+				<p class="color_tittle"><strong><em>Creditos</em></strong></p>
+				<input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+				<br></br>				
+				<p class="color_tittle center"><strong><em>Creditos a gastar: <span id="demo"></span></strong></em></p>		
+				<p class="color_tittle center"><strong><em>Disponible <span class="color_tittle center" id="demo2">52000</span></strong></em></p>						
 				
 				<br></br>
 				<p class="color_tittle"><strong><em>Numero cuotas</em></strong></p>
@@ -83,10 +93,7 @@
 					<option>4</option>
 					<option>5</option>					
 				</select>
-
-				<br></br>
-				<p class="color_tittle"><strong><em>Creditos</em></strong></p>
-				<input type="text" id="txtCreditos" placeholder="000" text-align="middle"/>					
+						
 				<br></br>	
 			<hr></hr>
 		<div style="width:100%;height:30%;background-color:#008080">
@@ -111,5 +118,15 @@
 	<a class="fab-profile fa fa-user" href="profile.html"/>
 
 
-
+<script>
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+var output2 = document.getElementById("demo2");
+output.innerHTML = slider.value;
+slider.oninput = function() 
+{
+  output.innerHTML = this.value;
+  output2.innerHTML = parseInt(output2.innerHTML) - this.value;
+}
+</script>
 
