@@ -6,6 +6,11 @@
    
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
+.img-circle
+{
+	width: 120px;height: 120px;border-radius: 50%;
+}
+
 body
 {
     font-family: 'Open Sans', sans-serif;
