@@ -1,5 +1,3 @@
-# invitame_una_cerveza
-
 # Invitame una cerveza
 
 ### Front:
