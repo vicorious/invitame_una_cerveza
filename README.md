@@ -15,10 +15,13 @@
 
 ### Primer flujo:
 
-> ![SPL Pruebas](/raw/gifs/primer_flujo.gif)
+> ![Invitame una cerveza](/raw/gifs/primer_flujo.gif)
 
+### Reclamar codigo QR
+
+> ![Invitame una cerveza](/raw/gifs/qr.gif)
 
 ### Segundo flujo
 
-> ![SPL Pruebas](/raw/gifs/segundo_flujo.gif)
+> ![Invitame una cerveza](/raw/gifs/segundo_flujo.gif)
 
