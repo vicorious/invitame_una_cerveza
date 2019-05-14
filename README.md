@@ -1,5 +1,7 @@
 # Invitame una cerveza
 
+Puedes comprar una cerveza y cuando estes en el sitio ya esta lista. O invitasela a alguien que te esta esperando. 
+
 ### Front:
 
 * Angular 6 (Front)
