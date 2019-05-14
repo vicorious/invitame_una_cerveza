@@ -5,12 +5,12 @@
 * Angular 6 (Front)
 * Typescript
 * Native Javascript
-* CSS3
+* CSS3 (Responsive design)
 * HTML5
 
 ### Back
 
-* Python 3.5.1
+* Python 3.5.1 (Flask==0.12.3, requests==2.20.0, beautifulSoup4==4.5.3, psycopg2==2.7.4, PyGreSQL==5.0.4, Flask-RESTful==0.3.6,Flask-API==0.6.2)
 * PostgreSQL 9.6
 
 ### Primer flujo:
