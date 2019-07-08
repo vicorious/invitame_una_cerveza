@@ -1,5 +1,9 @@
 $(document).ready(function() 
-{				
+{
+	$("#btnNinja").on('click', function()
+	{
+		alert('Aqui llamamos al cabron que quieras');
+	});		
 	$("#scan").on('click', function() 
 	{
 		$("code").html('Scaneado...');
