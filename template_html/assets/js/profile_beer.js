@@ -22,10 +22,10 @@ document.addEventListener("DOMContentLoaded", function(event)
 		if(valor === "PSE")
 		{
 			tarjeta.style.display = 'none';
-			pse.fadeIn(1000);
+			pse.style.display = 'block';
 		}else
 		{
-			tarjetafadeIn(1000);
+			tarjeta.style.display = 'block';
 			pse.style.display = 'none';
 		}
 	};
