@@ -12,4 +12,22 @@ document.addEventListener("DOMContentLoaded", function(event)
 		output.innerHTML = this.value;
 		output2.innerHTML = parseInt(output2.innerHTML) - this.value;
 	}
+	
+	var select_pago = document.getElementById("selectPago");
+	var tarjeta = document.getElementById("divTarjetaCredito");
+	var pse = document.getElementById("divPSE");
+	select_pago.onchange = function()
+	{
+		var valor = this.value;
+		if(valor === "PSE")
+		{
+			tarjeta.style.display = 'none';
+			pse.fadeIn(1000);
+		}else
+		{
+			tarjetafadeIn(1000);
+			pse.style.display = 'none';
+		}
+	};
+	
 });
