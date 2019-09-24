@@ -14,6 +14,60 @@
 	margin: 56.2.1em;
 }
 
+ol {
+    counter-reset: li; /* Initiate a counter */
+    list-style: none; /* Remove default numbering */
+    *list-style: decimal; /* Keep using default numbering for IE6/7 */
+    font: 15px 'trebuchet MS', 'lucida sans';
+    padding: 0;
+	margin-left:10px;
+    /*margin-bottom: 4em;*/
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+
+ol ol {
+    margin: 0 0 0 2em; /* Add some left margin for inner lists */
+}
+
+.rounded-list li{
+    position: relative;
+    display: block;
+    padding: .4em .4em .4em 2em;
+    *padding: .4em;
+    margin: .5em 0;
+    background: #ddd;
+    color: #444;
+    text-decoration: none;
+    border-radius: .3em;
+    transition: all .3s ease-out;   
+}
+
+.rounded-list li:hover{
+    background: #eee;
+}
+
+.rounded-list li:hover:before{
+    transform: rotate(360deg);  
+}
+
+.rounded-list li:before{
+    content: counter(li);
+    counter-increment: li;
+    position: absolute; 
+    left: -1.3em;
+    top: 50%;
+    margin-top: -1.3em;
+    background: #87ceeb;
+    height: 2.5em;
+    width: 2em;
+    line-height: 2em;
+    border: .3em solid #fff;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 2em;
+    transition: all .3s ease-out;
+}
+
 </style>
 
 <div style="padding-bottom:3rem;">
@@ -98,22 +152,36 @@
 		<div class="row">
 			<div class="column" >
 				<p class="color_tittle"><strong><em>Presentacion</em></strong></p>
-				<select class="soflow-color">
-					<option>Vaso 330 ML</option>
-					<option>Pinta 500 ML</option>
-					<option>Jarra 1.5 LTS</option>
-					<option>Jirafa 3.0 LTS</option>					
+				<select class="soflow-color" id="slPresentacion">
+					<option value="10500">Vaso 330 ML</option>
+					<option value="15000"> Pinta 500 ML</option>
+					<option value="40000">Jarra 1.5 LTS</option>
+					<option value="75000">Jirafa 3.0 LTS</option>					
 				</select>
 				<br></br>				
 				<p class="color_tittle"><strong><em>Cantidad</em></strong></p>
-				<select class="soflow-color">
+				<select class="soflow-color" id="slCantidad">
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>
 					<option>4</option>
 					<option>5</option>	
-				</select>
+				</select>				
+				<br></br>				
+				<button id="btnSumProduct" style="width:300px;margin:0 auto; ">+</button>
 				<br></br>
+				<div id="historial" class="tabcontent" style="display:block; text-align: center">				
+				<hr></hr>			
+				<ol class="rounded-list" id="olProductos">
+					<p id="pDefault" class="letra negrita">No records found...</p>				
+				</ol>				
+				
+					<hr></hr>
+					<h3 class="letra negrita">Total:</h3>
+					<h2 class="letra negrita" style="color:#008080" id="H2total"> 0 </h2>					
+				</div>
+				<br></br>
+				
 				<hr> <p class="letra color_tittle negrita center">Tipo de pago</p></hr>
 							
 				<p class="color_tittle"><strong><em>Producto</em></strong></p>

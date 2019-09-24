@@ -409,7 +409,7 @@
 .container_wid {
   /*min-height: 34vh;*/
   font-size: calc(.5em + 1vmin);
-  display: flex;
+  /*display: flex;*/
   align-items: center;
   /*justify-content: space-around;*/
   flex-flow: row wrap;
