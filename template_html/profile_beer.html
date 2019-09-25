@@ -153,10 +153,10 @@ ol ol {
 			<div class="column" >
 				<p class="color_tittle"><strong><em>Presentacion</em></strong></p>
 				<select class="soflow-color" id="slPresentacion">
-					<option value="10500">Vaso 330 ML</option>
-					<option value="15000"> Pinta 500 ML</option>
-					<option value="40000">Jarra 1.5 LTS</option>
-					<option value="75000">Jirafa 3.0 LTS</option>					
+					<option value="10,500">Vaso 330 ML</option>
+					<option value="15,000"> Pinta 500 ML</option>
+					<option value="40,000">Jarra 1.5 LTS</option>
+					<option value="75,000">Jirafa 3.0 LTS</option>					
 				</select>
 				<br></br>				
 				<p class="color_tittle"><strong><em>Cantidad</em></strong></p>
@@ -167,8 +167,10 @@ ol ol {
 					<option>4</option>
 					<option>5</option>	
 				</select>				
-				<br></br>				
-				<button id="btnSumProduct" style="width:300px;margin:0 auto; ">+</button>
+				<br></br>
+				<div style="text-align: center">
+					<button id="btnSumProduct" style="width:300px; background-color: #008080; border: 1px solid #AAA; color: white"><em>!Agregala!</em></button>
+				</div>
 				<br></br>
 				<div id="historial" class="tabcontent" style="display:block; text-align: center">				
 				<hr></hr>			
@@ -178,7 +180,7 @@ ol ol {
 				
 					<hr></hr>
 					<h3 class="letra negrita">Total:</h3>
-					<h2 class="letra negrita" style="color:#008080" id="H2total"> 0 </h2>					
+					<h2 class="letra negrita" style="color:#008080" id="H2total"> 0 </h2>
 				</div>
 				<br></br>
 				
@@ -201,14 +203,7 @@ ol ol {
 
 				<br></br>
 				<p class="color_tittle"><strong><em>CVV</em></strong></p>
-				<input type="text" id="txtCVV" placeholder="000" text-align="middle"/>	
-
-				<br></br>
-				<p class="color_tittle"><strong><em>Creditos</em></strong></p>
-				<input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-				<br></br>				
-				<p class="color_tittle center"><strong><em>Creditos a gastar: <span id="demo"></span></strong></em></p>		
-				<p class="color_tittle center"><strong><em>Disponible <span class="color_tittle center" id="demo2">52000</span></strong></em></p>						
+				<input type="text" id="txtCVV" placeholder="000" text-align="middle"/>						
 				
 				<br></br>
 				<p class="color_tittle"><strong><em>Numero cuotas</em></strong></p>
@@ -232,6 +227,14 @@ ol ol {
 						<option>Banco de Bogotá</option>					
 					</select>										
 				</div>
+				
+				
+				<br></br>
+				<p class="color_tittle"><strong><em>Creditos</em></strong></p>
+				<input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+				<br></br>				
+				<p class="color_tittle center"><strong><em>Creditos a gastar: <span id="demo"></span></strong></em></p>		
+				<p class="color_tittle center"><strong><em>Disponible <span class="color_tittle center" id="demo2">52000</span></strong></em></p>	
 				
 			<hr></hr>
 		<div style="width:100%;height:30%;background-color:#008080">
