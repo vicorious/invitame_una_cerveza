@@ -1,0 +1,144 @@
+
+<!-- Weather component -->
+<app-weather-component></app-weather-component>
+<!-- /////// -->
+
+<!-- Container component -->
+<div class="container">
+    <div class="fb-profile">
+        <img align="left" class="fb-image-lg" src="assets/images/fondo_perfil_pola.jpg" alt="Profile image example"/>
+        <img align="left" class="fb-image-profile thumbnail" src="assets/images/beer/melas/atomic_ipa.jpg" alt="Profile image example"/>
+        <div class="fb-profile-text">
+            <h1 class="color_tittle"><strong>Atomic IPA</strong></h1>			
+            		
+        </div>
+		<div class="fb-profile-text">         
+            <p class="letra negrita" style="font-size: 0.85rem"> Nuestra ATOMIC IIPA no lleva su nombre en vano, sin duda es una de las IPA más fuertes que hay y por eso es digna de tener un pre-nombre Imperial, con 85 IBU (international bitterness units) y con su volumen de alcohol marcando 9,3% no es ninguna cerveza para tomar en chiste. Contiene un bombardeo de lúpulos Cascade y Columbus añadidos en diferentes tiempos e incluso después de la fermentación lo que le da un fuerte aroma y sabor floral balanceado con una cantidad extrema de malta que dejará en la boca un sabor especial. Esta no es una cerveza para principiantes*, pero si es una cerveza que encantará a quien sepa disfrutarla.</p>
+			<p class="letra color_tittle negrita center">Descripcion</p>			
+			<hr/>
+			<ul>
+				<li class="letra negrita"> AVB <strong class="color_tittle"><em><sub>9,3% (Porcentaje alcohol)</sub></em></strong> </li>
+				<li class="letra negrita"> Estilo <strong class="color_tittle"><em><sub>Indian Pale Ale</sub></em></strong> </li>
+				<li class="letra negrita"> IBU <strong class="color_tittle"><em><sub>85%</sub></em></strong></li>				
+			</ul>	
+			<p class="letra color_tittle negrita center">Acompañalas con: </p>
+			<hr/>			
+		<p class="center">
+			<sub class="color_tittle letra negrita">Alitas: </sub>
+			<img class="img-fluid backcardImg img-circle"src="assets/images/alitas.jpg" alt="card image"> 
+			<sub class="color_tittle letra negrita">Empanada: </sub>
+			<img class="img-fluid backcardImg img-circle"src="assets/images/empanada.jpg" alt="card image"> 
+			<sub class="color_tittle letra negrita">Cerdo:</sub> <img class="img-fluid backcardImg img-circle"src="assets/images/cerdo_asado.jpg" alt="card image">			
+		</p>  					 
+		<p class="letra color_tittle negrita center">¿Como quieres tu cerveza?</p>
+		<hr/>
+        </div>		
+		<div class="fb-profile-text">  
+		
+					
+		<!-- Columnas -->
+		<div class="row">
+			<div class="column" >
+				<p class="color_tittle"><strong><em>Presentacion</em></strong></p>
+				<select class="soflow-color" id="slPresentacion">
+					<option value="10,500">Vaso 330 ML</option>
+					<option value="15,000"> Pinta 500 ML</option>
+					<option value="40,000">Jarra 1.5 LTS</option>
+					<option value="75,000">Jirafa 3.0 LTS</option>					
+				</select>
+				<br/>				
+				<p class="color_tittle"><strong><em>Cantidad</em></strong></p>
+				<select class="soflow-color" id="slCantidad">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>	
+				</select>				
+				<br/>
+				<div style="text-align: center">
+					<button id="btnSumProduct" style="width:300px; background-color: #008080; border: 1px solid #AAA; color: white"><em>!Agregala!</em></button>
+				</div>
+				<br/>
+				<div id="historial" class="tabcontent" style="display:block; text-align: center">				
+				<hr/>			
+				<ol class="rounded-list" id="olProductos">
+					<p id="pDefault" class="letra negrita">No records found...</p>				
+				</ol>				
+				
+					<hr/>
+					<h3 class="letra negrita">Total:</h3>
+					<h2 class="letra negrita" style="color:#008080" id="H2total"> 0 </h2>
+				</div>
+				<br/>
+				<p class="letra color_tittle negrita center">Tipo de pago</p>				
+				<hr/>						
+				<p class="color_tittle"><strong><em>Producto</em></strong></p>
+				<select class="soflow-color" id="selectPago">
+					<option>Tarjeta credito</option>
+					<option>PSE</option>					
+				</select>
+				
+				<div id="divTarjetaCredito">
+				<br/>
+				<p class="color_tittle"><strong><em>Numero producto</em></strong></p>
+				<input type="text" id="txtNumeroTarjeta" placeholder="# 4444-55556666-7777" text-align="middle"/>
+				
+				<br/>
+				<p class="color_tittle"><strong><em>Fecha vencimiento</em></strong></p>
+				<input type="date" id="txtFechaVencimiento" placeholder="2019-08-12" text-align="middle"/>	
+
+				<br/>
+				<p class="color_tittle"><strong><em>CVV</em></strong></p>
+				<input type="text" id="txtCVV" placeholder="000" text-align="middle"/>						
+				
+				<br/>
+				<p class="color_tittle"><strong><em>Numero cuotas</em></strong></p>
+				<select class="soflow-color">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>					
+				</select>
+						
+				<br/>
+				</div>
+				<div id="divPSE" style="display:none">
+					<p class="color_tittle"><strong><em>Bancos</em></strong></p>
+					<select class="soflow-color">
+						<option>Banco BBVA</option>
+						<option>Bancolombia</option>
+						<option>Pichincha</option>
+						<option>Bnaco Popular</option>
+						<option>Banco de Bogotá</option>					
+					</select>										
+				</div>
+								
+				<br/>
+				<p class="color_tittle"><strong><em>Creditos</em></strong></p>
+				<input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+				<br/>			
+				<p class="color_tittle center"><strong><em>Creditos a gastar: <span id="demo"></span></em></strong></p>		
+				<p class="color_tittle center"><strong><em>Disponible <span class="color_tittle center" id="demo2">52000</span></em></strong></p>	
+				
+			<hr/>
+		<div style="width:100%;height:30%;background-color:#008080">
+			<div class="footer">
+				<p class="letra negrita letra_blanca">Todos los derechos reservados</p>
+			</div>			
+		</div>
+				<br/>		
+			</div>
+		
+		  </div>
+		
+		</div>	
+    </div>
+	
+</div>
+
+	<a class="fab fa fa-save" href="codigo.html"></a>
+	<a class="fab-profile fa fa-user" href="profile.html"></a>
+<!-- ///////////// --> 
+
