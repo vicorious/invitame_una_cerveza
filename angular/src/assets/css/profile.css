@@ -1,0 +1,250 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+   
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+
+body
+{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.fb-profile img.fb-image-lg{
+    z-index: 0;
+    width: 100%;  
+    margin-bottom: 10px;
+}
+
+.fb-image-profile
+{
+    margin: -90px 10px 0px 50px;
+    z-index: 9;
+    width: 20%; 
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 100%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Clear floats after the columns */
+.last-row {
+  margin-top:15%;
+}
+
+.color_tittle
+{
+	color:#008080;
+}
+.letra
+{
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+.negrita
+{
+	font-weight: bold;
+}
+
+.letra_blanca
+{
+	color: white;
+}
+
+.letra_tittle
+{
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+hr
+{
+	background:#44AB47;
+}
+
+select, input 
+{
+	font-family: Verdana, Geneva, sans-serif;
+	font-style: italic;
+}
+
+.center
+{
+	text-align: center;
+}
+
+
+
+.soflow-color {
+   -webkit-appearance: button;
+   -webkit-border-radius: 2px;
+   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+   -webkit-padding-end: 20px;
+   -webkit-padding-start: 2px;
+   -webkit-user-select: none;
+   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+   background-position: 97% center;
+   background-repeat: no-repeat;
+   border: 1px solid #AAA;
+   color: #555;
+   font-size: inherit;
+   margin: 20px;
+   overflow: hidden;
+   padding: 5px 10px;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   width: 300px;
+}
+
+.soflow-color {
+   color: #fff;
+   background-image: url('assets/images/selects.png'), -webkit-linear-gradient(#008080, #008080 40%, #008080);
+   background-color: #008080;
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+   padding-left: 15px;
+   text-decoration:none !important;
+}
+
+.footer
+{
+	position: relative;float: left;top: 60%;left: 50%;transform: translate(-50%, -40%);
+}
+
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #008080;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  /*border: 1px solid #ccc;*/
+  border-top: none;
+  
+  animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.fab-profile {
+   width: 70px;
+   height: 70px;
+   background-color: #008080;
+   border-radius: 50%;
+   box-shadow: 0 6px 10px 0 #666;
+   transition: all 0.1s ease-in-out;
+ 
+   font-size: 50px;
+   color: white !important;
+   text-align: center;
+   line-height: 70px;
+ 
+   position: fixed;
+   right: 45px;
+   bottom: 85%;
+   text-decoration:none !important;
+}
+ 
+.fab-profile:hover {
+   box-shadow: 0 6px 14px 0 #666;
+   transform: scale(1.05);
+   cursor:pointer;
+}
+
+ol {
+    counter-reset: li; /* Initiate a counter */
+    list-style: none; /* Remove default numbering */
+    *list-style: decimal; /* Keep using default numbering for IE6/7 */
+    font: 15px 'trebuchet MS', 'lucida sans';
+    padding: 0;
+	margin-left:10px;
+    /*margin-bottom: 4em;*/
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+
+ol ol {
+    margin: 0 0 0 2em; /* Add some left margin for inner lists */
+}
+
+.rounded-list li{
+    position: relative;
+    display: block;
+    padding: .4em .4em .4em 2em;
+    *padding: .4em;
+    margin: .5em 0;
+    background: #ddd;
+    color: #444;
+    text-decoration: none;
+    border-radius: .3em;
+    transition: all .3s ease-out;   
+}
+
+.rounded-list li:hover{
+    background: #eee;
+}
+
+.rounded-list li:hover:before{
+    transform: rotate(360deg);  
+}
+
+.rounded-list li:before{
+    content: counter(li);
+    counter-increment: li;
+    position: absolute; 
+    left: -1.3em;
+    top: 50%;
+    margin-top: -1.3em;
+    background: #87ceeb;
+    height: 2.5em;
+    width: 2em;
+    line-height: 2em;
+    border: .3em solid #fff;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 2em;
+    transition: all .3s ease-out;
+}
