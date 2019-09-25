@@ -1,18 +1,49 @@
 document.addEventListener("DOMContentLoaded", function(event) 
 {
+	
+	sliderFunction();
+
+	paymentType();
+	
+	priceMarketWork();
+			
+	
+});
+
+
+function sliderFunction()
+{
 	var slider = document.getElementById("myRange");
 	var output = document.getElementById("demo");
 	var output2 = document.getElementById("demo2");
-	let value_input = 52000;
+	let value_input = 100;
 	output.innerHTML = slider.value;
 	output2.innerHTML = value_input;
-	let before_value = 0;
+	var before_value = slider.value;
+	var new_value = 0;
 	slider.oninput = function() 
-	{
-		output.innerHTML = this.value;
-		output2.innerHTML = parseInt(output2.innerHTML) - this.value;
+	{			
+		if(before_value > this.value)
+		{
+			output.innerHTML = this.value;
+			output2.innerHTML = parseInt(output2.innerHTML) - ( parseInt(before_value) - parseInt(this.value));
+			
+		}else if (before_value < this.value)
+		{
+			output.innerHTML = this.value;
+			output2.innerHTML = parseInt(output2.innerHTML) + (parseInt(this.value) - parseInt(before_value));			
+			
+		}		
+		new_value = this.value;		
+		before_value = new_value;
+		
 	}
 	
+}
+
+
+function paymentType()
+{
 	var select_pago = document.getElementById("selectPago");
 	var tarjeta = document.getElementById("divTarjetaCredito");
 	var pse = document.getElementById("divPSE");
@@ -29,7 +60,25 @@ document.addEventListener("DOMContentLoaded", function(event)
 			pse.style.display = 'none';
 		}
 	};
-	
+}
+
+function formatMoney(number, decPlaces, decSep, thouSep) 
+{
+	decPlaces = isNaN(decPlaces = Math.abs(decPlaces)) ? 2 : decPlaces,
+	decSep = typeof decSep === "undefined" ? "." : decSep;
+	thouSep = typeof thouSep === "undefined" ? "," : thouSep;
+	var sign = number < 0 ? "-" : "";
+	var i = String(parseInt(number = Math.abs(Number(number) || 0).toFixed(decPlaces)));
+	var j = (j = i.length) > 3 ? j % 3 : 0;
+
+	return sign +
+		(j ? i.substr(0, j) + thouSep : "") +
+		i.substr(j).replace(/(\decSep{3})(?=\decSep)/g, "$1" + thouSep) +
+		(decPlaces ? decSep + Math.abs(number - i).toFixed(decPlaces).slice(2) : "");
+}
+
+function priceMarketWork()
+{
 	var buttonAdd = document.getElementById("btnSumProduct");
 	
 	buttonAdd.addEventListener('click', function (event) 
@@ -45,14 +94,12 @@ document.addEventListener("DOMContentLoaded", function(event)
 		{
 			defaultP.remove();
 		}
-		
-		console.log(olProductos.childElementCount)
-
+				
 		for(var i = 0; i < parseInt(cantidad.value); i++) 
 		{
 			var total = 0;
 			var il = document.createElement("li");
-			var totalNumerico = presentacion.value 
+			var totalNumerico = parseInt(presentacion.value.replace(",",""))
 			il.setAttribute("precio", totalNumerico);
 			total += parseInt(totalNumerico)
 			var buttonErase = document.createElement("button");
@@ -60,8 +107,6 @@ document.addEventListener("DOMContentLoaded", function(event)
 			buttonErase.setAttribute("aria-hidden", true);
 			buttonErase.addEventListener('click', function () 
 			{			
-				console.log("Borrado")			
-				console.log(olProductos.childElementCount)
 				if(olProductos.childElementCount == 1)
 				{
 					var defaultPN = document.createElement("p");
@@ -70,20 +115,20 @@ document.addEventListener("DOMContentLoaded", function(event)
 					defaultPN.className += "letra negrita";
 					olProductos.appendChild(defaultPN);
 				}
-	
+				
+				h2total.setAttribute("precio", (parseInt(h2total.getAttribute("precio")) - total))
+				h2total.innerHTML = "$" + formatMoney(parseInt(h2total.getAttribute("precio")));				
 				this.parentNode.remove();
-				h2total.innerHTML = (parseInt(h2total.innerHTML) - total)
+
 			});
 			il.className += "letra negrita liprecio";			
 
-			il.textContent += presentacion.options[presentacion.selectedIndex].text + " $ " + totalNumerico
+			il.textContent += presentacion.options[presentacion.selectedIndex].text + " $ " + formatMoney(totalNumerico);
 			il.appendChild(buttonErase);
-			olProductos.appendChild(il);		
-			//parseInt(presentacion.value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');	
-			console.log("Cosa tener es: ");
-			h2total.innerHTML =  (parseInt(h2total.innerHTML) + total)
+			olProductos.appendChild(il);	
+			h2total.setAttribute("precio", totalNumerico + parseInt(h2total.getAttribute("precio") == undefined ? "0" : h2total.getAttribute("precio")));
+			h2total.innerHTML = "$" + formatMoney(parseInt(h2total.getAttribute("precio")) == undefined ? total : parseInt(h2total.getAttribute("precio")));
 		}			
 
 	}, false);	
-	
-});
+}
