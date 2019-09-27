@@ -1,14 +1,18 @@
 document.addEventListener("DOMContentLoaded", function(event) 
 {
+	init();
 	
+});
+
+function init()
+{
 	sliderFunction();
 
 	paymentType();
 	
 	priceMarketWork();
-			
-	
-});
+					
+}
 
 
 function sliderFunction()
