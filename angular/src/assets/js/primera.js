@@ -1,3 +1,4 @@
-$(function(){
-      $("#weatherContainer").load("../clima.html"); 
-    });
+function initPrimero()
+{
+	$("#weatherContainer").load("../clima.html"); 
+}
