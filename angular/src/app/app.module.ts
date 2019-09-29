@@ -7,6 +7,7 @@ import { LoginComponentComponent } from './login-component/login-component.compo
 import { BeerComponentComponent } from './beer-component/beer-component.component';
 import { WeatherComponentComponent } from './weather-component/weather-component.component';
 import { BarComponentComponent } from './bar-component/bar-component.component';
+import { FooterComponentComponent } from './footer-component/footer-component.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { BarComponentComponent } from './bar-component/bar-component.component';
     LoginComponentComponent,
     BeerComponentComponent,
     WeatherComponentComponent,
-    BarComponentComponent
+    BarComponentComponent,
+    FooterComponentComponent
   ],
   imports: [
     BrowserModule,
