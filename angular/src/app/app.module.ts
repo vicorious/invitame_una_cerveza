@@ -6,19 +6,21 @@ import { AppComponent } from './app.component';
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { BeerComponentComponent } from './beer-component/beer-component.component';
 import { WeatherComponentComponent } from './weather-component/weather-component.component';
+import { BarComponentComponent } from './bar-component/bar-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponentComponent,
     BeerComponentComponent,
-    WeatherComponentComponent
+    WeatherComponentComponent,
+    BarComponentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [BeerComponentComponent]
+  bootstrap: [BarComponentComponent]
 })
 export class AppModule { }
