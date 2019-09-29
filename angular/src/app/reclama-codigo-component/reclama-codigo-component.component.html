@@ -1,0 +1,48 @@
+<div class="container">
+
+    <div class="fb-profile">
+        <img align="left" class="fb-image-lg" src="assets/images/fondo_perfil_codigo.jpg" alt="Profile image example"/>        
+        <div class="fb-profile-text">
+            <h1 class="color_tittle center"><strong>!SCANEA TUS CODIGOS!</strong></h1>
+			<hr/>
+			<br/>			
+            		
+        </div>
+		<div class="fb-profile-text " style="text-align: center">         
+
+		<div id="qr" style="display: inline-block; width: 600px; height: 450px; border: 1px solid silver"></div>
+		<br><br>
+
+		<div style="text-align: center">
+			<button id="scan" class="btn btn-success btn-sm letra" style="background-color:#008080 ">Empezar Scaneo</button>
+			<button id="stop" class="btn btn-warning btn-sm disabled letra">Detener Scaneo</button>
+			<button id="change" class="btn btn-warning btn-sm disabled letra">Cambiar de camara</button>
+		</div>
+		<br><br>
+		<div class="row">
+			<div class="col-md-12">
+				<code class="letra">Click "Empezar Scaneo" para <b>Empezar a scanear el codigo QR</b></code>
+				<br>
+				<span class="feedback" style="margin: 10px; display: inline-block"></span>
+				<h2 id="txtFinal"></h2>				
+			</div>
+			
+        </div>	
+			
+    </div>
+	
+	<div class="fb-profile-text " style="text-align: center"> 
+		<div id="divCanvas" style="margin-left: auto; margin-right: auto; display: none; width: 600px; height: 450px;">
+			<canvas id="canvas" width="600" height="450"></canvas>						
+		</div>
+		<button id="codeAccept" class="btn btn-success btn-sm letra" style="background-color:#008080; margin-top: 3%; margin-bottom:3%; display:none; margin-left: auto; margin-right: auto; display: none;">Acepto codigo</button>	
+			
+	</div>
+		<br/>
+	</div>
+
+</div> <!-- /container -->  
+
+<a class="fab-profile fa fa-user" href="profile.html"></a>
+<a class="fab-panic fa fa-user-ninja" id="btnNinja"></a>
+

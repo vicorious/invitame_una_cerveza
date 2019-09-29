@@ -8,6 +8,10 @@ import { BeerComponentComponent } from './beer-component/beer-component.componen
 import { WeatherComponentComponent } from './weather-component/weather-component.component';
 import { BarComponentComponent } from './bar-component/bar-component.component';
 import { FooterComponentComponent } from './footer-component/footer-component.component';
+import { BeersPluralComponentComponent } from './beers-plural-component/beers-plural-component.component';
+import { ProfileComponentComponent } from './profile-component/profile-component.component';
+import { CodigoComponentComponent } from './codigo-component/codigo-component.component';
+import { ReclamaCodigoComponentComponent } from './reclama-codigo-component/reclama-codigo-component.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +20,17 @@ import { FooterComponentComponent } from './footer-component/footer-component.co
     BeerComponentComponent,
     WeatherComponentComponent,
     BarComponentComponent,
-    FooterComponentComponent
+    FooterComponentComponent,
+    BeersPluralComponentComponent,
+    ProfileComponentComponent,
+    CodigoComponentComponent,
+    ReclamaCodigoComponentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [BarComponentComponent]
+  bootstrap: [ReclamaCodigoComponentComponent]
 })
 export class AppModule { }
