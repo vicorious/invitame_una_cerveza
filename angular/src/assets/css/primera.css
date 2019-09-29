@@ -22,7 +22,7 @@
 
 .footer
 {
-	position: relative;float: left;top: 60%;left: 50%;transform: translate(-50%, -40%);
+	position: relative;float: left;top: 60%;left: 50%;transform: translate(-50%, 20%);
 }
 
 .btn-primary {
