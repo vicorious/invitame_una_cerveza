@@ -4,7 +4,7 @@
    Author's custom styles
    ========================================================================== */
    
-@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://use.fontawesome.com/releases/v5.8.1/css/all.css');
 
 
 body
@@ -110,9 +110,9 @@ select, input
 
 .soflow-color {
    color: #fff;
-   background-image: url('assets/images/selects.png'), -webkit-linear-gradient(#008080, #008080 40%, #008080);
    background-color: #008080;
    -webkit-border-radius: 20px;
+   /*-webkit-linear-gradient(#008080, #008080 40%, #008080);*/
    -moz-border-radius: 20px;
    border-radius: 20px;
    padding-left: 15px;
