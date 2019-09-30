@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { BarService } from '../services/bar.service';
+import { Bar } from '../dto/bar'
 
 
 //#region Function "initPrimero" we could be find in "primera.js" 
@@ -17,12 +20,24 @@ declare function initPrimero() : any;
 
 export class BarComponentComponent implements OnInit 
 {
+	bares : Array<Bar>;	 
+	constructor(private router: Router, private barService: BarService) { }
 
-  constructor() { }
-
-  ngOnInit() 
-  {
-	  initPrimero();
-  }
+	ngOnInit() 
+	{
+		initPrimero();
+		this.bares = this.barService.getDummyBar();
+	}
+  
+	/**
+	*
+	* Beers
+	*
+	**/
+	goBeers()
+	{
+		//this.router.navigate(['/beers'], { queryParams: { bar : this.bar.name } });
+		this.router.navigate(['/beers']);
+	}
 
 }

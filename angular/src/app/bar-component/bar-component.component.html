@@ -10,16 +10,16 @@
 		<hr/>
         <div class="row">
             <!-- Team member -->
-            <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let bar of bares">
                 <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
                     <div class="mainflip">
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="assets/images/melas.jpg" alt="card image"></p>
-                                    <h4 class="card-title">Mela's craft beer</h4>
-                                    <p class="card-text">CRA 11B # 71-16</p>
-                                    <a href="segunda.html" class="btn btn-primary btn-sm "><i class="fa fa-home"></i></a>									
+                                    <p><img class=" img-fluid" src={{bar.imagen}} alt="card image"></p>
+                                    <h4 class="card-title">{{bar.name}}</h4>
+                                    <p class="card-text">{{bar.direccion}}</p>
+                                    <a (click)="goBeers()" class="btn btn-primary btn-sm "><i class="fa fa-home"></i></a>									
                                 </div>
                             </div>
                         </div>
@@ -27,7 +27,7 @@
                             <div class="card">
                                 <div class="card-body text-center mt-4">
                                     <h4 class="card-title">Experiencia</h4>
-                                    <p class="card-text">La mejor IPA de bogotá se encuentra aqui. ¡Y SE LLAMA ATOMIC IPA!</p>
+                                    <p class="card-text">{{bar.descripcion}}</p>
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
                                             <a class="social-icon text-xs-center" target="_blank" href="#">
@@ -51,258 +51,12 @@
                                         </li>
                                     </ul>
                                 </div>
-								<a href="segunda.html" class="btn btn-primary btn-sm"><p style="color:white; text-align:center;margin-top:4%">¡Este es!</p></a>
+								<a (click)="goBeers()" class="btn btn-primary btn-sm"><p style="color:white; text-align:center;margin-top:4%">¡Este es!</p></a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- ./Team member -->
-            <!-- Team member -->
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                    <div class="mainflip">
-                        <div class="frontside">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="assets/images/madriguera.jpg" alt="card image"></p>
-                                    <h4 class="card-title">Madriguera</h4>
-                                    <p class="card-text">CRA 10 # 70A-43</p>
-                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-home"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="backside">
-                            <div class="card">
-                                <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Experiencia</h4>
-                                    <p class="card-text">La mayor variedad de cervezas frutales y herbales hechas en casa. La encontraras en ¡Madriguera!</p>
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-instagram"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-google"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-								<a href="segunda.html" class="btn btn-primary btn-sm"><p style="color:white; text-align:center;margin-top:4%">¡Este es!</p></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ./Team member -->
-            <!-- Team member -->
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                    <div class="mainflip">
-                        <div class="frontside">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="assets/images/tierra_santa.jpg" alt="card image"></p>
-                                    <h4 class="card-title">Tierra santa</h4>
-                                    <p class="card-text">CRA 11 # 71-75</p>
-                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-home"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="backside">
-                            <div class="card">
-                                <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Experiencia</h4>
-                                    <p class="card-text">Tenemos todos los estilos de cerveza a todo tiempo y en todo lugar</p>
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-instagram"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-google"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-								<a href="segunda.html" class="btn btn-primary btn-sm"><p style="color:white; text-align:center;margin-top:4%">¡Este es!</p></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ./Team member -->
-            <!-- Team member -->
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                    <div class="mainflip">
-                        <div class="frontside">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="assets/images/central_cervecera.jpg" alt="card image"></p>
-                                    <h4 class="card-title">Central cervecera</h4>
-                                    <p class="card-text">CALLE 69 # 10-36</p>
-                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-home"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="backside">
-                            <div class="card">
-                                <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Experiencia</h4>
-                                    <p class="card-text">Todo tipo de cerveza en colombia y toda cerveza artesanal tienen sitio aca. ¡Bienvenidos! </p>
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-instagram"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-google"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-								<a href="segunda.html" class="btn btn-primary btn-sm"><p style="color:white; text-align:center;margin-top:4%">¡Este es!</p></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ./Team member -->
-            <!-- Team member -->
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                    <div class="mainflip">
-                        <div class="frontside">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="assets/images/the_pub.jpg" alt="card image"></p>
-                                    <h4 class="card-title">The pub</h4>
-                                    <p class="card-text">CALLE 71B # 10-36</p>
-                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-home"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="backside">
-                            <div class="card">
-                                <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Experiencia</h4>
-                                    <p class="card-text">¡La mejor cerveceria de bogotá con cervezas artesanales del mundo!</p>
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-instagram"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-google"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-								<a href="segunda.html" class="btn btn-primary btn-sm"><p style="color:white; text-align:center;margin-top:4%">¡Este es!</p></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ./Team member -->
-            <!-- Team member -->
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                    <div class="mainflip">
-                        <div class="frontside">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="assets/images/barbaros.png" alt="card image"></p>
-                                    <h4 class="card-title">Barbaros</h4>
-                                    <p class="card-text">CALLE 45 # 16B-36</p>
-                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-home"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="backside">
-                            <div class="card">
-                                <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Experiencia</h4>
-                                    <p class="card-text">La mayor variedad de cerveza IPA hecha en casa que puedas encontrar en un solo lugar. !Barbaros¡</p>
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-instagram"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-google"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-								<a href="segunda.html" class="btn btn-primary btn-sm"><p style="color:white; text-align:center;margin-top:4%">¡Este es!</p></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ./Team member -->
+            </div>            
 
         </div>
 		<!-- Footer component -->
