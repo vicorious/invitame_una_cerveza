@@ -12,6 +12,10 @@ import { BeersPluralComponentComponent } from './beers-plural-component/beers-pl
 import { ProfileComponentComponent } from './profile-component/profile-component.component';
 import { CodigoComponentComponent } from './codigo-component/codigo-component.component';
 import { ReclamaCodigoComponentComponent } from './reclama-codigo-component/reclama-codigo-component.component';
+import { EleccionComponentComponent } from './eleccion-component/eleccion-component.component';
+import { CuriosoComponentComponent } from './curioso-component/curioso-component.component';
+import { PromocionComponentComponent } from './promocion-component/promocion-component.component';
+import { BarService } from './services/bar.service';
 
 @NgModule({
   declarations: [
@@ -24,13 +28,16 @@ import { ReclamaCodigoComponentComponent } from './reclama-codigo-component/recl
     BeersPluralComponentComponent,
     ProfileComponentComponent,
     CodigoComponentComponent,
-    ReclamaCodigoComponentComponent
+    ReclamaCodigoComponentComponent,
+    EleccionComponentComponent,
+    CuriosoComponentComponent,
+    PromocionComponentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
-  bootstrap: [ReclamaCodigoComponentComponent]
+  providers: [BarService],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
