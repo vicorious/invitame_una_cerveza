@@ -16,10 +16,10 @@
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src={{bar.imagen}} alt="card image"></p>
+                                    <p><img class=" img-fluid" src={{bar.image}} alt="card image"></p>
                                     <h4 class="card-title">{{bar.name}}</h4>
-                                    <p class="card-text">{{bar.direccion}}</p>
-                                    <a (click)="goBeers()" class="btn btn-primary btn-sm "><i class="fa fa-home"></i></a>									
+                                    <p class="card-text">{{bar.direction}}</p>
+                                    <a (click)="goBeers(bar.name)" class="btn btn-primary btn-sm "><i class="fa fa-home"></i></a>									
                                 </div>
                             </div>
                         </div>
@@ -27,7 +27,7 @@
                             <div class="card">
                                 <div class="card-body text-center mt-4">
                                     <h4 class="card-title">Experiencia</h4>
-                                    <p class="card-text">{{bar.descripcion}}</p>
+                                    <p class="card-text">{{bar.description}}</p>
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
                                             <a class="social-icon text-xs-center" target="_blank" href="#">
@@ -51,7 +51,7 @@
                                         </li>
                                     </ul>
                                 </div>
-								<a (click)="goBeers()" class="btn btn-primary btn-sm"><p style="color:white; text-align:center;margin-top:4%">¡Este es!</p></a>
+								<a (click)="goBeers(bar.name)" class="btn btn-primary btn-sm"><p style="color:white; text-align:center;margin-top:4%">¡Este es!</p></a>
                             </div>
                         </div>
                     </div>

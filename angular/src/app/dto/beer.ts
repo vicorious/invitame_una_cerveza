@@ -1,15 +1,15 @@
-export class Bar
+export class Beer
 {
 	name: string;
 	image: string;
-	direction: string;
+	abv: string;
 	description: string;
 	
-	constructor(name: string, image: string, direction: string, description: string)
+	constructor(name: string, image: string, description: string, abv: string)
 	{
 		this.name = name;
 		this.image = image;
-		this.direction = direction;
+		this.abv = abv;
 		this.description = description;
 	}
 	
@@ -23,13 +23,13 @@ export class Bar
 		return this.image;
 	}
 	
-	getDirection()
-	{
-		return this.direction;
-	}
-	
-	getdescription()
+	getDescription()
 	{
 		return this.description;
+	}
+	
+	getAbv()
+	{
+		return this.abv;
 	}
 }

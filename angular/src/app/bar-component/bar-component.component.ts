@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BarService } from '../services/bar.service';
 import { Bar } from '../dto/bar'
+	
 
 
 //#region Function "initPrimero" we could be find in "primera.js" 
@@ -34,10 +35,9 @@ export class BarComponentComponent implements OnInit
 	* Beers
 	*
 	**/
-	goBeers()
+	goBeers(bar_name: string)
 	{
-		//this.router.navigate(['/beers'], { queryParams: { bar : this.bar.name } });
-		this.router.navigate(['/beers']);
+		this.router.navigate(['/beers'], { queryParams: { bar : bar_name} });		
 	}
 
 }
