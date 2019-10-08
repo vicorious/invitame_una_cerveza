@@ -6,10 +6,10 @@
 <!-- Container component -->
 <div class="container">
     <div class="fb-profile">
-        <img align="left" class="fb-image-lg" src="assets/images/fondo_perfil_pola.jpg" alt="Profile image example"/>
+        <img align="left" class="fb-image-lg" src={{beer_image}} alt="Profile image example"/>
         <img align="left" class="fb-image-profile thumbnail" src="assets/images/beer/melas/atomic_ipa.jpg" alt="Profile image example"/>
         <div class="fb-profile-text">
-            <h1 class="color_tittle"><strong>Atomic IPA</strong></h1>			
+            <h1 class="color_tittle"><strong>{{beer_name}}</strong></h1>			
             		
         </div>
 		<div class="fb-profile-text">         
@@ -135,5 +135,6 @@
 	
 </div>
 
-	<a class="fab fa fa-save" href="codigo.html"></a>
-	<a class="fab-profile fa fa-user" href="profile.html"></a>	
+	<a class="fab fa fa-save" (click)="goSave()"></a>
+	<a class="fab-profile fa fa-user" href="/profile"></a>	
+	<a class="fab-panic fa fa-beer" href="/home"></a>	

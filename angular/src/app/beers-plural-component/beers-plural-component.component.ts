@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { BeersService } from '../services/beers.service';
 import { Beer } from '../dto/beer'
 
@@ -11,14 +12,23 @@ import { Beer } from '../dto/beer'
 export class BeersPluralComponentComponent implements OnInit 
 {
 
-  beers : Array<Beer>;
-  constructor(private _activate_route: ActivatedRoute, private _beers_service: BeersService) { }
+	beers : Array<Beer>;
+	constructor(private _activate_route: ActivatedRoute, private _beers_service: BeersService, private router: Router) { }
 
-  ngOnInit() 
-  {
-	  const bar = this._activate_route.snapshot.queryParamMap.get('bar');
-	  this.beers = this._beers_service.getBeersDummy(bar);
-	  
-  }
+	ngOnInit() 
+	{
+		const bar = this._activate_route.snapshot.queryParamMap.get('bar');
+		this.beers = this._beers_service.getBeersDummy(bar);	 
+	}
+  
+  	/**
+	*
+	* Beers
+	*
+	**/
+	goBeerDetail(beer: Beer)
+	{
+		this.router.navigate(['/detailbeer'], { queryParams: { beer : beer.name} });		
+	}
 
 }
