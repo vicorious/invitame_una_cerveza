@@ -19,9 +19,9 @@ import { PromocionComponentComponent } from './promocion-component/promocion-com
 const routes: Routes = 
 [
   { path: 'detailbeer', component: BeerComponentComponent },
-  { path: 'login', component: LoginComponentComponent },
+  { path: 'home', component: LoginComponentComponent },
   { path: 'climate', component: WeatherComponentComponent },
-  { path: 'home', component: BarComponentComponent },
+  { path: 'bars', component: BarComponentComponent },
   { path: 'footer', component: FooterComponentComponent },
   { path: 'beers', component: BeersPluralComponentComponent },
   { path: 'profile', component: ProfileComponentComponent },
