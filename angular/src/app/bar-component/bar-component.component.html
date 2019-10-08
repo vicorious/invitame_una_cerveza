@@ -65,6 +65,16 @@
     </div>
 </section>
 
-<a class="fab-profile fa fa-user" href="profile.html"></a>
+<a class="fab-profile fa fa-user" href="/profile"></a>
 
 <!-- Team -->
+
+<!-- Popup -->
+<div class="my-container">
+    <ng-template #customLoadingTemplate>
+    </ng-template>
+ 
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+</div>
+
+<!-- Popup -->

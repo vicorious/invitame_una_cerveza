@@ -21,6 +21,7 @@ declare function initPrimero() : any;
 
 export class BarComponentComponent implements OnInit 
 {
+	public loading = false;
 	bares : Array<Bar>;	 
 	constructor(private router: Router, private barService: BarService) { }
 
@@ -37,7 +38,10 @@ export class BarComponentComponent implements OnInit
 	**/
 	goBeers(bar_name: string)
 	{
-		this.router.navigate(['/beers'], { queryParams: { bar : bar_name} });		
+		this.loading = true;
+		setTimeout("<p>a</p>", 10000000);
+		this.router.navigate(['/beers'], { queryParams: { bar : bar_name} });	
+		this.loading = false;		
 	}
 
 }
