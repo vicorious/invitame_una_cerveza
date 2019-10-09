@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { NgxLoadingModule } from 'ngx-loading';
+import { HttpClientModule } from '@angular/common/http'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,7 +39,8 @@ import { BarService } from './services/bar.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-	NgxLoadingModule.forRoot({})
+	NgxLoadingModule.forRoot({}),
+	HttpClientModule
   ],
   providers: [BarService],
   bootstrap: [AppComponent]
