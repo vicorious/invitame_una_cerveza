@@ -27,6 +27,28 @@
                                 <div class="card-body text-center mt-4">
                                     <h4 class="card-title">Descripción</h4>
                                     <p class="card-text">{{beer.description}}</p>
+									   <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                <i class="fab fa-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                <i class="fab fa-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                <i class="fab fa-instagram"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                <i class="fab fa-google"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
 								<a (click)="goBeerDetail(beer)" class="btn btn-primary btn-sm"><p style="color:white; text-align:center;margin-top:4%">¡Quiero una!</p></a>
                             </div>
@@ -43,5 +65,5 @@
 </section>
 <!-- Team -->
 <a class="fab-profile fa fa-user" href="/profile"></a>
-<a class="fab fa fa-beer" href="/bars"></a>	
+<a class="fab_2 fa fa-beer" href="/bars"></a>	
 <router-outlet></router-outlet>
