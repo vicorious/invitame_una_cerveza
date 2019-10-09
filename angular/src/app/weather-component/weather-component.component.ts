@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ClimateService } from '../services/climate.service';
 
+//#region Function "formatDateTime" we could be find in "primera.js" 
+declare function formatDateTime() : any;
+//#endregion
+
 @Component
 (
 	{
@@ -20,7 +24,7 @@ export class WeatherComponentComponent implements OnInit
 		(
 			climate => 
 			{
-				console.log(': '+climate)
+				console.log(JSON.stringify(climate))
 			}
 		);		
 	}

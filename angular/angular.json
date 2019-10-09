@@ -39,7 +39,8 @@
 				"src/assets/js/jsqrcode-combined.js",
 				"src/assets/js/html5-qrcode.js",
 				"src/assets/js/bootstrap.js",				
-				"src/assets/js/login.js"								
+				"src/assets/js/login.js"								,
+				"src/assets/js/convertTime.js"
 			]
           },
           "configurations": {
