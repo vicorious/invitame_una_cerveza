@@ -1,7 +1,7 @@
 @import "../../assets/css/bootstrap.css";
 @import "../../assets/css/primera.css";
 @import "../../assets/css/weather.css";
-.fab {
+.fab_2 {
    width: 70px;
    height: 70px;
    background-color: #008080;
@@ -20,7 +20,7 @@
    text-decoration:none !important;
 }
  
-.fab:hover {
+.fab_2:hover {
    box-shadow: 0 6px 14px 0 #666;
    transform: scale(1.05);
    cursor:pointer;
