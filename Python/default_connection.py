@@ -1,16 +1,30 @@
-from postgre_connect    import PostgreConnect
-from constante          import Constante
+# coding=utf-8
+
+from .entities.entity import Session, engine, Base
 
 class DefaultConnection:
 
+	session = None
     def __init__(self):
         pass
 
     def postgre_connect(self):
-        usuario  = Constante.user_default
-        ip       = Constante.ip_default
-        port     = Constante.port_default
-        db       = Constante.db_default
-        password = Constante.password_default
-        postgre  = PostgreConnect(db, port, ip, usuario, password)    
-        return postgre.conectar()
+        # generate database schema
+		Base.metadata.create_all(engine)
+
+		# start session
+		self.session = Session()
+	
+
+		
+    ########## Cerrar conexion ###################
+    def commit(self):
+         self.session.commit()
+
+		
+    ########## Cerrar conexion ###################
+    def closeConnection(self):
+         self.session.close()
+		 
+	def getSession(self):
+         return self.session
