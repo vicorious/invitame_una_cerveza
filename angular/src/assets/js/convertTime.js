@@ -1,4 +1,4 @@
-<script>
+
 function formatDateTime(time)
 {
 	// Try edit message
@@ -15,5 +15,3 @@ function formatDateTime(time)
 
 	console.log(formattedTime);
 }
-
-</script>

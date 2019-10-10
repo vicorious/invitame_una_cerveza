@@ -30,17 +30,6 @@ var JSON_EXAMPLE =
 
 /**
 *
-* Ready DOM!
-*
-**/
-$(document).ready(function()
-{
-	regresion_lineal(JSON_EXAMPLE);
-	
-});
-
-/**
-*
 *
 * Regresion Lineal
 *
