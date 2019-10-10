@@ -1,4 +1,4 @@
-class Constante:
+class Constant:
 
     user_default     = 'postgres'
     ip_default       = 'localhost'
