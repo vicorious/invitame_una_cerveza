@@ -6,7 +6,7 @@ import logging
 
 class ClienteFacade:
 
-	defaultConnection = None
+    defaultConnection = None
 
     logging.basicConfig(filename="test.log", level=logging.DEBUG)
 
@@ -21,6 +21,6 @@ class ClienteFacade:
             self.defaultConnection        = DefaultConnection()         
         except Exception as e:
             logging.debug('Error obteniendo el cursor facade bares')
-            raise Exception('Error no controlado: {}'.format(e.args[0]))			
+            raise Exception('Error no controlado: {}'.format(e.args[0]))            
         finally:            
             pass  
