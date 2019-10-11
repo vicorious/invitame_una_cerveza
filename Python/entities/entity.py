@@ -1,8 +1,8 @@
-from datetime 					import datetime
-from sqlalchemy 				import create_engine, Column, String, Integer, DateTime
+from datetime                     import datetime
+from sqlalchemy                 import create_engine, Column, String, Integer, DateTime
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm 			import sessionmaker
-from constant         			import Constant
+from sqlalchemy.orm             import sessionmaker
+from constant                     import Constant
 
 db_url = Constant.ip_default + ":" + Constant.port_default
 db_name = Constant.db_default
