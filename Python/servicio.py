@@ -1,9 +1,9 @@
 from flask                  import Flask,jsonify,json, request
 from flask_api              import status
-from facade_user            import ClienteFacade
-from facade_bares           import BaresFacade
-from facade_cerveza         import CervezaFacade
-from facade_usuario_cerveza import UsuarioCervezaFacade
+from facade_user            import UserFacade
+from facade_bares           import BarFacade
+from facade_cerveza         import BeerFacade
+from facade_usuario_cerveza import UserBeerFacade
 import sys
 import logging
 
@@ -23,7 +23,7 @@ logging.basicConfig(filename="test.log", level=logging.DEBUG)
 def login():    
     try:
         _json_login = request.get_json()        
-        facade = ClienteFacade()
+        facade = UserFacade()
         logueo = facade.logueo(_json_login)
         if logueo > 0:
             return jsonify(OK)
@@ -37,7 +37,7 @@ def login():
 def registrarse():
     try:
         _json_registro = request.get_json()
-        facade   = ClienteFacade()
+        facade   = UserFacade()
         registro = facade.registrarme(_json_registro)
         if(registro):
             return jsonify(OK)
@@ -51,7 +51,7 @@ def registrarse():
 def olvido_contrasena():
     try:
         _json_olvido = request.get_json()
-        facade = ClienteFacade()
+        facade = UserFacade()
         olvido = facade.olvido_contrasena(_json_olvido)
         if(olvido):
             return jsonify(OK)
@@ -66,7 +66,7 @@ def olvido_contrasena():
 @app.route('/bares/<bar_id>/GET', methods=['GET'])
 def bares_id(bar_id):
     try:        
-        facade = BaresFacade()
+        facade = BarFacade()
         bar = facade.bares_id(bar_id)
         if bar is not None:
             return jsonify(bar)
@@ -80,7 +80,7 @@ def bares_id(bar_id):
 @app.route('/bares', methods=['GET'])
 def bares():
     try:
-        facade = BaresFacade()
+        facade = BarFacade()
         bares  = facade.bares()
         if len(bares) > 0:
             return jsonify(bares)
@@ -95,7 +95,7 @@ def bares():
 def bares_insert():
     try:
         _json_bar = request.get_json()
-        facade   = BaresFacade()
+        facade   = BarFacade()
         registro = facade.insertar_bar(_json_bar)
         if(registro):
             return jsonify(OK)
@@ -110,7 +110,7 @@ def bares_insert():
 def bares_update():
     try:
         _json_bar = request.get_json()
-        facade   = BaresFacade()
+        facade   = BarFacade()
         registro = facade.insertar_bar(_json_bar)
         if(registro):
             return jsonify(OK)
@@ -125,7 +125,7 @@ def bares_update():
 @app.route('/cervezas/<_cerveza_id>/GET', methods=['GET'])
 def cerveza_id(_cerveza_id):
     try:        
-        facade = CervezaFacade()
+        facade = BeerFacade()
         cerveza = facade.cerveza_id(_cerveza_id)
         if cerveza  is not None:
             return jsonify(cerveza)
@@ -139,7 +139,7 @@ def cerveza_id(_cerveza_id):
 @app.route('/cervezas', methods=['GET'])
 def cervezas():
     try:
-        facade = CervezaFacade()
+        facade = BeerFacade()
         cervezas  = facade.cervezas()
         if len(cervezas) > 0:
             return jsonify(cervezas)
@@ -154,7 +154,7 @@ def cervezas():
 def cerveza_insert():
     try:
         _json_cerveza = request.get_json()
-        facade   = CervezaFacade()
+        facade   = BeerFacade()
         registro = facade.insert_cerveza(_json_cerveza)
         if(registro):
             return jsonify(OK)
@@ -169,7 +169,7 @@ def cerveza_insert():
 @app.route('/usuario_visitas/<_usuario_id>/GET', methods=['GET'])
 def usuario_visitas(_usuario_id):
     try:
-        facade = UsuarioCervezaFacade()
+        facade = UserBeerFacade()
         cervezas  = facade.usuario_visitas(_usuario_id)
         if len(cervezas) > 0:
             return jsonify(cervezas)
@@ -183,7 +183,7 @@ def usuario_visitas(_usuario_id):
 @app.route('/usuario_visitas/<_usuario_id>/GET/<_cerveza_id>/GET', methods=['GET'])
 def usuario_visitas_cerveza(_usuario_id, _cerveza_id):
     try:
-        facade = UsuarioCervezaFacade()
+        facade = UserBeerFacade()
         cervezas  = facade.usuario_cerveza_visita(_usuario_id, _cerveza_id)
         if len(cervezas) > 0:
             return jsonify(cervezas)
@@ -196,7 +196,7 @@ def usuario_visitas_cerveza(_usuario_id, _cerveza_id):
 @app.route('/usuario_visitas/<_usuario_id>/GET/<_cerveza_id>/GET/<_tipo_pago_id>/GET', methods=['GET'])
 def usuario_visitas_cerveza_tipo(_usuario_id, _cerveza_id, _tipo_pago_id):
     try:
-        facade = UsuarioCervezaFacade()
+        facade = UserBeerFacade()
         cervezas  = facade.usuario_cerveza_tipo_pago_visita(_usuario_id, _cerveza_id, _tipo_pago_id)
         if len(cervezas) > 0:
             return jsonify(cervezas)
@@ -209,7 +209,7 @@ def usuario_visitas_cerveza_tipo(_usuario_id, _cerveza_id, _tipo_pago_id):
 @app.route('/usuario_visitas/<_usuario_id>/GET/<_tipo_pago_id>/GET', methods=['GET'])
 def usuario_tipo_pago(_usuario_id, _tipo_pago_id):
     try:
-        facade = UsuarioCervezaFacade()
+        facade = UserBeerFacade()
         cervezas  = facade.usuario_tipo_pago(_usuario_id, _tipo_pago_id)
         if len(cervezas) > 0:
             return jsonify(cervezas)
@@ -224,7 +224,7 @@ def usuario_tipo_pago(_usuario_id, _tipo_pago_id):
 def cerveza_usuario_insert():
     try:
         _json_cerveza = request.get_json()
-        facade   = UsuarioCervezaFacade()
+        facade   = UserBeerFacade()
         registro = facade.insert_usuario_cerveza(_json_cerveza)
         if(registro):
             return jsonify(OK)

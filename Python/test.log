@@ -35,3 +35,4 @@ DEBUG:root:La cadena de conexion es: host='localhost' dbname='invitame_una_cerve
 DEBUG:root:Conexion correcta
 INFO:werkzeug:127.0.0.1 - - [22/Mar/2019 16:15:35] "GET /usuario_visitas/12323 HTTP/1.1" 204 -
 INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
