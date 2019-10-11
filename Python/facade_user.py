@@ -4,7 +4,7 @@ import sys
 import psycopg2.extras
 import logging
 
-class ClienteFacade:
+class UserFacade:
 
     defaultConnection = None
 
