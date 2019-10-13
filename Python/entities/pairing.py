@@ -6,7 +6,7 @@ class Pairing(Entity, Base):
 
     name                     = Column(String)
     image                     = Column(String)
-    beer_id                     = Column(Integer)
+    beer_id                     = Column(Integer, ForeignKey('BEER.id'))
     
     def __init__(self, name, image, beer_id, created_by):
         Entity.__init__(self, created_by)
