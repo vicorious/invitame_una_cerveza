@@ -8,7 +8,7 @@ class Beer(Entity, Base):
     price                     = Column(Integer)
     happy_hour_price        = Column(Integer)
     bar_id                    = Column(Integer, ForeignKey('BAR.id'))
-    beer_type_id            = Column(Integer)
+    beer_type_id            = Column(Integer, ForeignKey('BEER_TYPE.id'))
     avb                        = Column(String)
     ibu                        = Column(String)
     srm                        = Column(String)
