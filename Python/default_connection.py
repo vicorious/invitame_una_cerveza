@@ -1,12 +1,12 @@
-from sqlalchemy import create_engine
+from sqlalchemy                 import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm             import sessionmaker
-from constant                     import Constant
+from constant                   import Constant
+from .dto.beer_connection       import BeerConnection
 
 class DefaultConnection:
 
-    session = None       
-    Base = None
+    beerConnection = None
     
     def __init__(self):
         pass
@@ -18,11 +18,11 @@ class DefaultConnection:
         db_user = Constant.user_default
         db_password = Constant.password_default
         engine = create_engine('postgresql://{db_user}:{db_password}@{db_url}/{db_name}')
-        self.session = sessionmaker(bind=engine)
-        self.Base = declarative_base()
-
+        session = sessionmaker(bind=engine)
+        Base = declarative_base()				
         # start session
-        self.session = Session()
+        session = Session()
+		beerConnection = BeerConnection(engine = engine, session = session, base = Base)
         
     ########## Cerrar conexion ###################
     def commit(self):
@@ -33,5 +33,5 @@ class DefaultConnection:
     def closeConnection(self):
          self.session.close()
          
-    def getSession(self):
-         return self.session
+    def getBeerConnection(self):
+        return self.beerConnection

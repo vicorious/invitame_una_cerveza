@@ -10,7 +10,7 @@ import logging
 ###### Flask Object ######################################
 app = Flask(__name__)
 
-###### Constantes ##########
+###### Constant ##########
 OK   = 'OK'
 FAIL = 'FAIL'
 
@@ -18,91 +18,69 @@ FAIL = 'FAIL'
 
 logging.basicConfig(filename="test.log", level=logging.DEBUG)
 
-#################### Usuario #############################
-@app.route('/login', methods=['POST'])
+#################### USER #############################
+@app.route('/User/login', methods=['POST'])
 def login():    
     try:
-        _json_login = request.get_json()        
-        facade = UserFacade()
-        logueo = facade.logueo(_json_login)
-        if logueo > 0:
-            return jsonify(OK)
-        else:
-            return jsonify(FAIL), status.HTTP_409_CONFLICT
+        _json_login = request.get_json()
+        UserFacade().login(_json_login)
+        return jsonify(OK)
     except Exception as e:
-        logging.debug("Error no controlado: {}".format(e))
+        logging.debug("Error: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
-@app.route('/registrarse/INSERT', methods=['POST'])
+@app.route('/User/register/INSERT', methods=['POST'])
 def registrarse():
     try:
         _json_registro = request.get_json()
-        facade   = UserFacade()
-        registro = facade.registrarme(_json_registro)
-        if(registro):
-            return jsonify(OK)
-        else:
-            return jsonify(FAIL), status.HTTP_409_CONFLICT
+        UserFacade().register(_json_registro)
+        return jsonify(OK)                    
     except Exception as e:
-        logging.debug("Error no controlado: {}".format(e))
+        logging.debug("Error: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
-@app.route('/olvido_contrasena/UPDATE', methods=['PUT'])
-def olvido_contrasena():
+@app.route('/User/forgot_password/UPDATE', methods=['PUT'])
+def forgotPassword():
     try:
         _json_olvido = request.get_json()
-        facade = UserFacade()
-        olvido = facade.olvido_contrasena(_json_olvido)
-        if(olvido):
-            return jsonify(OK)
-        else:
-            return jsonify(FAIL), status.HTTP_409_CONFLICT
+        UserFacade().forgotPassword(_json_olvido)
+        return jsonify(OK)                    
     except Exception as e:
-        logging.debug("Error no controlado: {}".format(e))
+        logging.debug("Error: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
-################## Bares #################################
+################## BAR´S #################################
 
-@app.route('/bares/<bar_id>/GET', methods=['GET'])
-def bares_id(bar_id):
+@app.route('/bar/<bar_id>/GET', methods=['GET'])
+def barForId(bar_id):
     try:        
-        facade = BarFacade()
-        bar = facade.bares_id(bar_id)
-        if bar is not None:
-            return jsonify(bar)
-        else:
-            return jsonify(bar), status.HTTP_204_NO_CONTENT
+		BarFacade().bar_id(bar_id) is None ? return jsonify(bar), status.HTTP_204_NO_CONTENT : return jsonify(bar)
     except Exception as e:
-        logging.debug("Error no controlado: {}".format(e))
+        logging.debug("Error: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 
-@app.route('/bares', methods=['GET'])
+@app.route('/bars', methods=['GET'])
 def bares():
     try:
-        facade = BarFacade()
-        bares  = facade.bares()
-        if len(bares) > 0:
-            return jsonify(bares)
-        else:
-            return jsonify(bares), status.HTTP_204_NO_CONTENT
+        len(BarFacade().bars()) > 0 ? return jsonify(bares) : return jsonify(bares), status.HTTP_204_NO_CONTENT
     except Exception as e:
-        logging.debug("Error no controlado: {}".format(e))
+        logging.debug("Error: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 
-@app.route('/bares/INSERT', methods=['POST'])
+@app.route('/bar/INSERT', methods=['POST'])
 def bares_insert():
     try:
         _json_bar = request.get_json()
         facade   = BarFacade()
-        registro = facade.insertar_bar(_json_bar)
+        registro = facade.insert_bar(_json_bar)
         if(registro):
             return jsonify(OK)
         else:
             return jsonify(FAIL), status.HTTP_409_CONFLICT
     except Exception as e:
-        logging.debug("Error no controlado: {}".format(e))
+        logging.debug("Error: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 
