@@ -27,7 +27,7 @@ class BarFacade:
     def __init__(self):
         self.getCursor()        
 
-    ############ Login ####################################################
+    ############ barId ####################################################
     def barId(self, _bar_id):
         try:
             results = self.beerConnection.session.query(Bar).filter(Bar.id == _bar_id)
@@ -58,7 +58,7 @@ class BarFacade:
         finally:            
             pass
 
-    ########### forgotPassword #################################################
+    ########### Bars #################################################
     def bars(self):
         try:            
             results = self.beerConnection.session.query(Bar)
@@ -68,7 +68,7 @@ class BarFacade:
         finally:            
             pass          
 
-    ########### forgotPassword #################################################
+    ########### Update bar #################################################
     def updateBar(self, _json):
         SQL_UPDATE_BARES          = "UPDATE BAR SET "
         SQL_WHERE_UPDATE_BARES      = "WHERE ID = {}"            
