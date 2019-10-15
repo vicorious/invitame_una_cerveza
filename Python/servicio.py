@@ -19,7 +19,7 @@ FAIL = 'FAIL'
 logging.basicConfig(filename="test.log", level=logging.DEBUG)
 
 #################### USER #############################
-@app.route('/User/login', methods=['POST'])
+@app.route('/user/login', methods=['POST'])
 def login():    
     try:
         _json_login = request.get_json()
@@ -29,8 +29,8 @@ def login():
         logging.debug("Error: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
-@app.route('/User/register/INSERT', methods=['POST'])
-def registrarse():
+@app.route('/user/register/INSERT', methods=['POST'])
+def register():
     try:
         _json_registro = request.get_json()
         UserFacade().register(_json_registro)
@@ -39,7 +39,7 @@ def registrarse():
         logging.debug("Error: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
-@app.route('/User/forgot_password/UPDATE', methods=['PUT'])
+@app.route('/user/password/UPDATE', methods=['PUT'])
 def forgotPassword():
     try:
         _json_olvido = request.get_json()
@@ -53,161 +53,131 @@ def forgotPassword():
 
 @app.route('/bar/<bar_id>/GET', methods=['GET'])
 def barForId(bar_id):
-    try:        
-		BarFacade().bar_id(bar_id) is None ? return jsonify(bar), status.HTTP_204_NO_CONTENT : return jsonify(bar)
+    try: 
+        bar = BarFacade().bar_id(bar_id)
+		bar is None ? return jsonify(bar), status.HTTP_204_NO_CONTENT : return jsonify(bar)
     except Exception as e:
         logging.debug("Error: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 
 @app.route('/bars', methods=['GET'])
-def bares():
+def bars():
     try:
-        len(BarFacade().bars()) > 0 ? return jsonify(bares) : return jsonify(bares), status.HTTP_204_NO_CONTENT
+        bars = BarFacade().bars()
+        len(bars) > 0 ? return jsonify(bars) : return jsonify(bars), status.HTTP_204_NO_CONTENT
     except Exception as e:
         logging.debug("Error: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 
 @app.route('/bar/INSERT', methods=['POST'])
-def bares_insert():
+def insertBar():
     try:
         _json_bar = request.get_json()
-        facade   = BarFacade()
-        registro = facade.insert_bar(_json_bar)
-        if(registro):
-            return jsonify(OK)
-        else:
-            return jsonify(FAIL), status.HTTP_409_CONFLICT
+        BarFacade().insertBar(_json_bar)
+        return jsonify(OK)
     except Exception as e:
         logging.debug("Error: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 
-@app.route('/bares/UPDATE', methods=['PUT'])
-def bares_update():
+@app.route('/bar/UPDATE', methods=['PUT'])
+def updateBar():
     try:
         _json_bar = request.get_json()
-        facade   = BarFacade()
-        registro = facade.insertar_bar(_json_bar)
-        if(registro):
-            return jsonify(OK)
-        else:
-            return jsonify(FAIL), status.HTTP_409_CONFLICT
+        BarFacade().updateBar(_json_bar)
+        return jsonify(OK)
     except Exception as e:
-        logging.debug("Error no controlado: {}".format(e))
+        logging.debug("Error: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 ##################### Cerveza #############################################
 
-@app.route('/cervezas/<_cerveza_id>/GET', methods=['GET'])
-def cerveza_id(_cerveza_id):
-    try:        
-        facade = BeerFacade()
-        cerveza = facade.cerveza_id(_cerveza_id)
-        if cerveza  is not None:
-            return jsonify(cerveza)
-        else:
-            return jsonify(cerveza), status.HTTP_204_NO_CONTENT
+@app.route('/beer/<_beer_id>/GET', methods=['GET'])
+def beerId(_beer_id):
+    try:
+        beer = BeerFacade().beerId(_beer_id)
+        beer is None ? return jsonify(beer), status.HTTP_204_NO_CONTENT : return jsonify(beer)
     except Exception as e:
-        logging.debug("Error no controlado: {}".format(e))
+        logging.debug("Error: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 
-@app.route('/cervezas', methods=['GET'])
-def cervezas():
+@app.route('/beers', methods=['GET'])
+def beers():
     try:
-        facade = BeerFacade()
-        cervezas  = facade.cervezas()
-        if len(cervezas) > 0:
-            return jsonify(cervezas)
-        else:
-            return jsonify(cervezas), status.HTTP_204_NO_CONTENT
+        beers  = BeerFacade().beers()
+        len(beers) > 0 ? return jsonify(beers) : return jsonify(beers), status.HTTP_204_NO_CONTENT
     except Exception as e:
-        logging.debug("Error no controlado: {}".format(e))
+        logging.debug("Error: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 
-@app.route('/cerveza/INSERT', methods=['POST'])
-def cerveza_insert():
+@app.route('/beer/INSERT', methods=['POST'])
+def insertBeer():
     try:
-        _json_cerveza = request.get_json()
-        facade   = BeerFacade()
-        registro = facade.insert_cerveza(_json_cerveza)
-        if(registro):
-            return jsonify(OK)
-        else:
-            return jsonify(FAIL), status.HTTP_409_CONFLICT
+        _json_beer = request.get_json()
+        BeerFacade().insertBeer(_json_beer) ? return jsonify(OK) : return jsonify(FAIL), status.HTTP_409_CONFLICT
+    except Exception as e:
+        logging.debug("Error: {}".format(e))
+    return jsonify(FAIL), status.HTTP_409_CONFLICT
+	
+@app.route('/beer/UPDATE', methods=['PUT'])
+def updateBeer():
+    try:
+        _json_beer = request.get_json()
+        BeerFacade().updateBeer(_json_beer)
+        return jsonify(OK)
     except Exception as e:
         logging.debug("Error no controlado: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 #################### Usuario cerveza ###########################
 
-@app.route('/usuario_visitas/<_usuario_id>/GET', methods=['GET'])
-def usuario_visitas(_usuario_id):
+@app.route('/userBeer/<_user_id>/GET', methods=['GET'])
+def userForVisit(_user_id):
     try:
-        facade = UserBeerFacade()
-        cervezas  = facade.usuario_visitas(_usuario_id)
-        if len(cervezas) > 0:
-            return jsonify(cervezas)
-        else:
-            return jsonify(cervezas), status.HTTP_204_NO_CONTENT
+        user_beer = UserBeerFacade().userForVisit(_user_id)
+        len(user_beer) > 0 ? return jsonify(user_beer) : return jsonify(user_beer), status.HTTP_204_NO_CONTENT            
     except Exception as e:
         logging.debug("Error no controlado: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
-
-@app.route('/usuario_visitas/<_usuario_id>/GET/<_cerveza_id>/GET', methods=['GET'])
-def usuario_visitas_cerveza(_usuario_id, _cerveza_id):
+@app.route('/userBeer/<_user_id>/GET/<_beer_id>/GET', methods=['GET'])
+def userBeerForVisit(_user_id, _beer_id):
     try:
-        facade = UserBeerFacade()
-        cervezas  = facade.usuario_cerveza_visita(_usuario_id, _cerveza_id)
-        if len(cervezas) > 0:
-            return jsonify(cervezas)
-        else:
-            return jsonify(cervezas), status.HTTP_204_NO_CONTENT
+        cervezas  = UserBeerFacade().userBeerForVisit(_user_id, _beer_id)
+        len(cervezas) > 0 ? return jsonify(cervezas) : return jsonify(cervezas), status.HTTP_204_NO_CONTENT
     except Exception as e:
         logging.debug("Error no controlado: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT    
 
-@app.route('/usuario_visitas/<_usuario_id>/GET/<_cerveza_id>/GET/<_tipo_pago_id>/GET', methods=['GET'])
-def usuario_visitas_cerveza_tipo(_usuario_id, _cerveza_id, _tipo_pago_id):
+@app.route('/userBeer/<_user_id>/GET/<_beer_id>/GET/<_pay_type_id>/GET', methods=['GET'])
+def userBeerPayTypeForVisit(_user_id, _beer_id, _pay_type_id):
     try:
-        facade = UserBeerFacade()
-        cervezas  = facade.usuario_cerveza_tipo_pago_visita(_usuario_id, _cerveza_id, _tipo_pago_id)
-        if len(cervezas) > 0:
-            return jsonify(cervezas)
-        else:
-            return jsonify(cervezas), status.HTTP_204_NO_CONTENT
+        cervezas  = UserBeerFacade().userBeerPayTypeForVisit(_usuario_id, _cerveza_id, _tipo_pago_id)
+        if len(cervezas) > 0 ? return jsonify(cervezas) : return jsonify(cervezas), status.HTTP_204_NO_CONTENT
     except Exception as e:
         logging.debug("Error no controlado: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT   
 
-@app.route('/usuario_visitas/<_usuario_id>/GET/<_tipo_pago_id>/GET', methods=['GET'])
-def usuario_tipo_pago(_usuario_id, _tipo_pago_id):
+@app.route('/userBeer/<_user_id>/GET/<_pay_type_id>/GET', methods=['GET'])
+def userPayTypeForVisit(_user_id, _pay_type_id):
     try:
-        facade = UserBeerFacade()
-        cervezas  = facade.usuario_tipo_pago(_usuario_id, _tipo_pago_id)
-        if len(cervezas) > 0:
-            return jsonify(cervezas)
-        else:
-            return jsonify(cervezas), status.HTTP_204_NO_CONTENT
+        cervezas  = UserBeerFacade().userPayTypeForVisit(_usuario_id, _tipo_pago_id)
+        len(cervezas) > 0 ? return jsonify(cervezas) : return jsonify(cervezas), status.HTTP_204_NO_CONTENT
     except Exception as e:
         logging.debug("Error no controlado: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT    
 
 
-@app.route('/usuario_visitas/INSERT', methods=['POST'])
-def cerveza_usuario_insert():
+@app.route('/userBeer/INSERT', methods=['POST'])
+def insertUserForVisit():
     try:
         _json_cerveza = request.get_json()
-        facade   = UserBeerFacade()
-        registro = facade.insert_usuario_cerveza(_json_cerveza)
-        if(registro):
-            return jsonify(OK)
-        else:
-            return jsonify(FAIL), status.HTTP_409_CONFLICT
+		UserBeerFacade().insert_usuario_cerveza(_json_cerveza)
+        return jsonify(OK)
     except Exception as e:
         logging.debug("Error no controlado: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
