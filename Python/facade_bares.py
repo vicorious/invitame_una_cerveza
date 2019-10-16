@@ -3,7 +3,7 @@ import json
 import sys
 import psycopg2.extras
 import logging
-from .entities.bar import Bar
+from entities.bar import Bar
 
 class BarFacade:
     defaultConnection = None
@@ -16,9 +16,10 @@ class BarFacade:
         try:
             #Conexion a postgre
             self.defaultConnection        = DefaultConnection()  
+            self.defaultConnection.postgre_connect()
             self.beerConnection = self.defaultConnection.getBeerConnection()
         except Exception as e:
-            logging.debug('Error in "UserFacade: "')
+            logging.debug('Error in "BarFacade: "')
             raise Exception('Error no controlado: {}'.format(e.args[0]))            
         finally:            
             pass
@@ -39,7 +40,7 @@ class BarFacade:
         except Exception as ex:
             logging.debug('Exception: "')
         finally:            
-            pass
+            self.beerConnection.session.close()
         return None
     ########### insert_bar #################################################
     def insertBar(self, _json):
@@ -48,7 +49,7 @@ class BarFacade:
             bar = Bar(_json_entrada["title"], _json_entrada["open_date"], _json_entrada["openinng_hour"], 
                         _json_entrada["close_hour"], _json_entrada["open_days"], _json_entrada["payment_product"], 
                         _json_entrada["description"], _json_entrada["image"], _json_entrada["address"],
-                        _json_entrada["points"], _json_entrada["facebook"], _json_entrada["twitter"]
+                        _json_entrada["points"], _json_entrada["facebook"], _json_entrada["twitter"],
                         _json_entrada["instagram"], _json_entrada["emergency_number"], _json_entrada["created_by"])
             self.beerConnection.session.add(bar)
             self.beerConnection.session.commit()
@@ -61,12 +62,12 @@ class BarFacade:
     ########### Bars #################################################
     def bars(self):
         try:            
-            results = self.beerConnection.session.query(Bar)
-			self.beerConnection.session.close()
+            results = self.beerConnection.session.query(Bar).all()
+            return results
         except Exception as ex:
             logging.debug('Exception when we try fetchy Bars: {}"'.format(ex))
         finally:            
-            pass          
+            self.beerConnection.session.close()          
 
     ########### Update bar #################################################
     def updateBar(self, _json):
@@ -86,8 +87,8 @@ class BarFacade:
             update = SQL_UPDATE_BARES.join(update).join(SQL_WHERE_UPDATE_BARES.format(json_entrada["id"]))
             self.beerConnection.session.query(Bar).from_statement(text(update))
             self.beerConnection.session.commit()
-			self.beerConnection.session.close()
+            self.beerConnection.session.close()
         except Exception as ex:
-            logging.debug('Exception when we try add User: {}"'.format(ex))
+            logging.debug('Exception when we try update bar: {}"'.format(ex))
         finally:            
-            pass                  
+            self.beerConnection.session.close()                  

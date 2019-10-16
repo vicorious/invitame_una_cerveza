@@ -1,23 +1,26 @@
-from sqlalchemy import Column, String, Integer
-from .entity import Entity, Base
+from sqlalchemy import Column, String, Integer, ForeignKey
+from entities.entity import Entity
+from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
+Base = declarative_base()
 
 class Beer(Entity, Base):
     __tablename__ = 'BEER'
 
-    name                     = Column(String)
-    price                     = Column(Integer)
-    happy_hour_price        = Column(Integer)
-    bar_id                    = Column(Integer, ForeignKey('BAR.id'))
-    beer_type_id            = Column(Integer, ForeignKey('BEER_TYPE.id'))
-    avb                        = Column(String)
-    ibu                        = Column(String)
-    srm                        = Column(String)
-    description                = Column(String)
-    image                    = Column(String)
-    pint                    = Column(String)
-    cup330                    = Column(String)
-    giraffe                    = Column(String)
-    pitcher                    = Column(String)
+    name                     = Column(String, nullable=False)
+    price                     = Column(Integer, nullable=False)
+    happy_hour_price        = Column(Integer, nullable=False)
+    bar_id                    = Column(Integer, ForeignKey('BAR.id'), nullable=False)
+    beer_type_id            = Column(Integer, ForeignKey('BEER_TYPE.id'), nullable=False)
+    avb                        = Column(String, nullable=False)
+    ibu                        = Column(String, nullable=False)
+    srm                        = Column(String, nullable=False)
+    description                = Column(String, nullable=False)
+    image                    = Column(String, nullable=False)
+    pint                    = Column(String, nullable=False)
+    cup330                    = Column(String, nullable=False)
+    giraffe                    = Column(String, nullable=False)
+    pitcher                    = Column(String, nullable=False)
 
     def __init__(self, title, price, happy_hour_price, bar_id, beer_type_id, avb, ibu, srm, description, image, pint, cup330, giraffe, pitcher, created_by):
         Entity.__init__(self, created_by)

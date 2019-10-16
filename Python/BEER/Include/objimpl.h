@@ -56,7 +56,7 @@ must use the platform malloc heap(s), or shared memory, or C++ local storage or
 operator new), you must first allocate the object with your custom allocator,
 then pass its pointer to PyObject_{Init, InitVar} for filling in its Python-
 specific fields:  reference count, type pointer, possibly others.  You should
-be aware that Python no control over these objects because they don't
+be aware that Python has no control over these objects because they don't
 cooperate with the Python memory manager.  Such objects may not be eligible
 for automatic garbage collection and you have to make sure that they are
 released accordingly whenever their destructor gets called (cf. the specific
@@ -95,17 +95,21 @@ PyObject_{New, NewVar, Del}.
    the raw memory.
 */
 PyAPI_FUNC(void *) PyObject_Malloc(size_t size);
+#if !defined(Py_LIMITED_API) || Py_LIMITED_API+0 >= 0x03050000
 PyAPI_FUNC(void *) PyObject_Calloc(size_t nelem, size_t elsize);
+#endif
 PyAPI_FUNC(void *) PyObject_Realloc(void *ptr, size_t new_size);
 PyAPI_FUNC(void) PyObject_Free(void *ptr);
 
+#ifndef Py_LIMITED_API
 /* This function returns the number of allocated memory blocks, regardless of size */
 PyAPI_FUNC(Py_ssize_t) _Py_GetAllocatedBlocks(void);
+#endif /* !Py_LIMITED_API */
 
 /* Macros */
 #ifdef WITH_PYMALLOC
 #ifndef Py_LIMITED_API
-PyAPI_FUNC(void) _PyObject_DebugMallocStats(FILE *out);
+PyAPI_FUNC(int) _PyObject_DebugMallocStats(FILE *out);
 #endif /* #ifndef Py_LIMITED_API */
 #endif
 
@@ -224,11 +228,12 @@ PyAPI_FUNC(void) PyObject_SetArenaAllocator(PyObjectArenaAllocator *allocator);
  * ==========================
  */
 
-/* C equivalent of gc.collect(). */
+/* C equivalent of gc.collect() which ignores the state of gc.enabled. */
 PyAPI_FUNC(Py_ssize_t) PyGC_Collect(void);
 
 #ifndef Py_LIMITED_API
 PyAPI_FUNC(Py_ssize_t) _PyGC_CollectNoFail(void);
+PyAPI_FUNC(Py_ssize_t) _PyGC_CollectIfEnabled(void);
 #endif
 
 /* Test if a type has a GC head */
@@ -250,7 +255,11 @@ typedef union _gc_head {
         union _gc_head *gc_prev;
         Py_ssize_t gc_refs;
     } gc;
-    double dummy;  /* force worst-case alignment */
+    long double dummy;  /* force worst-case alignment */
+    // malloc returns memory block aligned for any built-in types and
+    // long double is the largest standard C type.
+    // On amd64 linux, long double requires 16 byte alignment.
+    // See bpo-27987 for more discussion.
 } PyGC_Head;
 
 extern PyGC_Head *_PyGC_generation0;
@@ -322,8 +331,10 @@ extern PyGC_Head *_PyGC_generation0;
         (!PyTuple_CheckExact(obj) || _PyObject_GC_IS_TRACKED(obj)))
 #endif /* Py_LIMITED_API */
 
+#ifndef Py_LIMITED_API
 PyAPI_FUNC(PyObject *) _PyObject_GC_Malloc(size_t size);
 PyAPI_FUNC(PyObject *) _PyObject_GC_Calloc(size_t size);
+#endif /* !Py_LIMITED_API */
 PyAPI_FUNC(PyObject *) _PyObject_GC_New(PyTypeObject *);
 PyAPI_FUNC(PyVarObject *) _PyObject_GC_NewVar(PyTypeObject *, Py_ssize_t);
 PyAPI_FUNC(void) PyObject_GC_Track(void *);

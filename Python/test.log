@@ -1,38 +1,9 @@
-INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-INFO:werkzeug:127.0.0.1 - - [18/Mar/2019 16:43:26] "GET / HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [18/Mar/2019 16:43:26] "GET /favicon.ico HTTP/1.1" 404 -
-DEBUG:root:La cadena de conexion es: host='localhost' dbname='itrainer' user='postgres' password='*postgre123*'
-DEBUG:root:Conexion correcta
-DEBUG:root:Error consultando cervezas
-DEBUG:root:Error no controlado: Error no controlado: no existe la relación «cerveza»
-LINE 1: SELECT * FROM CERVEZA
-                      ^
+DEBUG:root:Exception when we try fetchy Bars: (psycopg2.errors.UndefinedTable) relation "BAR" does not exist
+LINE 2: FROM "BAR"
+             ^
 
-INFO:werkzeug:127.0.0.1 - - [18/Mar/2019 16:43:40] "GET /cervezas HTTP/1.1" 409 -
-DEBUG:root:La cadena de conexion es: host='localhost' dbname='itrainer' user='postgres' password='*postgre123*'
-DEBUG:root:Conexion correcta
-DEBUG:root:Error obteniendo los bares
-DEBUG:root:Error no controlado: Error no controlado: no existe la relación «bar»
-LINE 1: SELECT * FROM BAR
-                      ^
-
-INFO:werkzeug:127.0.0.1 - - [18/Mar/2019 17:08:01] "GET /bares HTTP/1.1" 409 -
-INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-DEBUG:root:La cadena de conexion es: host='localhost' dbname='invitame_una_cerveza' user='postgres' password='*postgre123*'
-DEBUG:root:Conexion correcta
-INFO:werkzeug:127.0.0.1 - - [18/Mar/2019 17:08:36] "GET /bares HTTP/1.1" 200 -
-INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-INFO:werkzeug:127.0.0.1 - - [22/Mar/2019 16:08:33] "GET /usuario_visitas HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [22/Mar/2019 16:08:34] "GET /favicon.ico HTTP/1.1" 404 -
-INFO:werkzeug:127.0.0.1 - - [22/Mar/2019 16:08:43] "GET /usuario_visitas/123 HTTP/1.1" 500 -
-INFO:werkzeug:127.0.0.1 - - [22/Mar/2019 16:09:09] "GET /usuario_visitas/12323 HTTP/1.1" 500 -
-INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-DEBUG:root:La cadena de conexion es: host='localhost' dbname='invitame_una_cerveza' user='postgres' password='*postgre123*'
-DEBUG:root:Conexion correcta
-INFO:werkzeug:127.0.0.1 - - [22/Mar/2019 16:12:21] "GET /usuario_visitas/12323 HTTP/1.1" 204 -
-DEBUG:root:La cadena de conexion es: host='localhost' dbname='invitame_una_cerveza' user='postgres' password='*postgre123*'
-DEBUG:root:Conexion correcta
-INFO:werkzeug:127.0.0.1 - - [22/Mar/2019 16:15:35] "GET /usuario_visitas/12323 HTTP/1.1" 204 -
-INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[SQL: SELECT "BAR".id AS "BAR_id", "BAR".created_at AS "BAR_created_at", "BAR".updated_at AS "BAR_updated_at", "BAR".last_updated_by AS "BAR_last_updated_by", "BAR".name AS "BAR_name", "BAR".open_date AS "BAR_open_date", "BAR".openinng_hour AS "BAR_openinng_hour", "BAR".close_hour AS "BAR_close_hour", "BAR".open_days AS "BAR_open_days", "BAR".payment_product AS "BAR_payment_product", "BAR".description AS "BAR_description", "BAR".image AS "BAR_image", "BAR".address AS "BAR_address", "BAR".points AS "BAR_points", "BAR".facebook AS "BAR_facebook", "BAR".twitter AS "BAR_twitter", "BAR".instagram AS "BAR_instagram", "BAR".emergency_number AS "BAR_emergency_number" 
+FROM "BAR"]
+(Background on this error at: http://sqlalche.me/e/f405)"
+DEBUG:root:Error: object of type 'NoneType' has no len()
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2019 15:24:53] "GET /bars HTTP/1.1" 409 -

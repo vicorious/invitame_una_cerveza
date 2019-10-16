@@ -55,7 +55,7 @@ def forgotPassword():
 def barForId(_bar_id):
     try: 
         bar = BarFacade().bar_id(_bar_id)
-		bar is None ? return jsonify(bar), status.HTTP_204_NO_CONTENT : return jsonify(bar)
+        return jsonify(bar), status.HTTP_204_NO_CONTENT if bar is None else jsonify(bar)        
     except Exception as e:
         logging.debug("Error: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
@@ -65,7 +65,7 @@ def barForId(_bar_id):
 def bars():
     try:
         bars = BarFacade().bars()
-        len(bars) > 0 ? return jsonify(bars) : return jsonify(bars), status.HTTP_204_NO_CONTENT
+        return jsonify(bars) if len(bars) > 0 else jsonify(bars), status.HTTP_204_NO_CONTENT
     except Exception as e:
         logging.debug("Error: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
@@ -98,7 +98,7 @@ def updateBar():
 def beerId(_beer_id):
     try:
         beer = BeerFacade().beerId(_beer_id)
-        beer is None ? return jsonify(beer), status.HTTP_204_NO_CONTENT : return jsonify(beer)
+        return jsonify(beer), status.HTTP_204_NO_CONTENT if beer is None else jsonify(beer)
     except Exception as e:
         logging.debug("Error: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
@@ -108,7 +108,7 @@ def beerId(_beer_id):
 def beers():
     try:
         beers  = BeerFacade().beers()
-        len(beers) > 0 ? return jsonify(beers) : return jsonify(beers), status.HTTP_204_NO_CONTENT
+        return jsonify(beers) if len(beers) > 0 else jsonify(beers), status.HTTP_204_NO_CONTENT
     except Exception as e:
         logging.debug("Error: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
@@ -118,11 +118,12 @@ def beers():
 def insertBeer():
     try:
         _json_beer = request.get_json()
-        BeerFacade().insertBeer(_json_beer) ? return jsonify(OK) : return jsonify(FAIL), status.HTTP_409_CONFLICT
+        BeerFacade().insertBeer(_json_beer)
+        return jsonify(OK)
     except Exception as e:
         logging.debug("Error: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
-	
+    
 @app.route('/beer/UPDATE', methods=['PUT'])
 def updateBeer():
     try:
@@ -139,7 +140,7 @@ def updateBeer():
 def userForVisit(_user_id):
     try:
         user_beer = UserBeerFacade().userForVisit(_user_id)
-        len(user_beer) > 0 ? return jsonify(user_beer) : return jsonify(user_beer), status.HTTP_204_NO_CONTENT            
+        return jsonify(user_beer) if len(user_beer) > 0 else jsonify(user_beer), status.HTTP_204_NO_CONTENT            
     except Exception as e:
         logging.debug("Error no controlado: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
@@ -147,8 +148,8 @@ def userForVisit(_user_id):
 @app.route('/userBeer/<_user_id>/GET/<_beer_id>/GET', methods=['GET'])
 def userBeerForVisit(_user_id, _beer_id):
     try:
-        cervezas  = UserBeerFacade().userBeerForVisit(_user_id, _beer_id)
-        len(cervezas) > 0 ? return jsonify(cervezas) : return jsonify(cervezas), status.HTTP_204_NO_CONTENT
+        beers  = UserBeerFacade().userBeerForVisit(_user_id, _beer_id)
+        return jsonify(beers) if len(beers) > 0 else jsonify(beers), status.HTTP_204_NO_CONTENT
     except Exception as e:
         logging.debug("Error no controlado: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT    
@@ -156,8 +157,8 @@ def userBeerForVisit(_user_id, _beer_id):
 @app.route('/userBeer/<_user_id>/GET/<_beer_id>/GET/<_pay_type_id>/GET', methods=['GET'])
 def userBeerPayTypeForVisit(_user_id, _beer_id, _pay_type_id):
     try:
-        cervezas  = UserBeerFacade().userBeerPayTypeForVisit(_user_id, _beer_id, _pay_type_id)
-        if len(cervezas) > 0 ? return jsonify(cervezas) : return jsonify(cervezas), status.HTTP_204_NO_CONTENT
+        beers  = UserBeerFacade().userBeerPayTypeForVisit(_user_id, _beer_id, _pay_type_id)
+        return jsonify(beers) if len(beers) > 0 else jsonify(beers), status.HTTP_204_NO_CONTENT
     except Exception as e:
         logging.debug("Error no controlado: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT   
@@ -165,8 +166,8 @@ def userBeerPayTypeForVisit(_user_id, _beer_id, _pay_type_id):
 @app.route('/userBeer/<_user_id>/GET/<_pay_type_id>/GET', methods=['GET'])
 def userPayTypeForVisit(_user_id, _pay_type_id):
     try:
-        cervezas  = UserBeerFacade().userPayTypeForVisit(_user_id, _pay_type_id)
-        len(cervezas) > 0 ? return jsonify(cervezas) : return jsonify(cervezas), status.HTTP_204_NO_CONTENT
+        beers  = UserBeerFacade().userPayTypeForVisit(_user_id, _pay_type_id)
+        return jsonify(beers) if len(beers) > 0 else jsonify(beers), status.HTTP_204_NO_CONTENT
     except Exception as e:
         logging.debug("Error no controlado: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT    
@@ -176,7 +177,7 @@ def userPayTypeForVisit(_user_id, _pay_type_id):
 def insertUserForVisit():
     try:
         _json = request.get_json()
-		UserBeerFacade().insert_usuario_cerveza(_json)
+        UserBeerFacade().insert_usuario_cerveza(_json)
         return jsonify(OK)
     except Exception as e:
         logging.debug("Error no controlado: {}".format(e))

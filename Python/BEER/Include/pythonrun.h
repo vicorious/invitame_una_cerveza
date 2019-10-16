@@ -7,22 +7,6 @@
 extern "C" {
 #endif
 
-#define PyCF_MASK (CO_FUTURE_DIVISION | CO_FUTURE_ABSOLUTE_IMPORT | \
-                   CO_FUTURE_WITH_STATEMENT | CO_FUTURE_PRINT_FUNCTION | \
-                   CO_FUTURE_UNICODE_LITERALS | CO_FUTURE_BARRY_AS_BDFL | \
-                   CO_FUTURE_GENERATOR_STOP)
-#define PyCF_MASK_OBSOLETE (CO_NESTED)
-#define PyCF_SOURCE_IS_UTF8  0x0100
-#define PyCF_DONT_IMPLY_DEDENT 0x0200
-#define PyCF_ONLY_AST 0x0400
-#define PyCF_IGNORE_COOKIE 0x0800
-
-#ifndef Py_LIMITED_API
-typedef struct {
-    int cf_flags;  /* bitmask of CO_xxx flags relevant to future */
-} PyCompilerFlags;
-#endif
-
 #ifndef Py_LIMITED_API
 PyAPI_FUNC(int) PyRun_SimpleStringFlags(const char *, PyCompilerFlags *);
 PyAPI_FUNC(int) PyRun_AnyFileFlags(FILE *, const char *, PyCompilerFlags *);
@@ -66,8 +50,8 @@ PyAPI_FUNC(struct _mod *) PyParser_ASTFromFile(
     const char *filename,       /* decoded from the filesystem encoding */
     const char* enc,
     int start,
-    char *ps1,
-    char *ps2,
+    const char *ps1,
+    const char *ps2,
     PyCompilerFlags *flags,
     int *errcode,
     PyArena *arena);
@@ -76,8 +60,8 @@ PyAPI_FUNC(struct _mod *) PyParser_ASTFromFileObject(
     PyObject *filename,
     const char* enc,
     int start,
-    char *ps1,
-    char *ps2,
+    const char *ps1,
+    const char *ps2,
     PyCompilerFlags *flags,
     int *errcode,
     PyArena *arena);
@@ -91,9 +75,11 @@ PyAPI_FUNC(struct _mod *) PyParser_ASTFromFileObject(
 #endif
 PyAPI_FUNC(struct _node *) PyParser_SimpleParseStringFlags(const char *, int,
                                                            int);
+#if !defined(Py_LIMITED_API) || Py_LIMITED_API+0 >= 0x03030000
 PyAPI_FUNC(struct _node *) PyParser_SimpleParseStringFlagsFilename(const char *,
                                                                    const char *,
                                                                    int, int);
+#endif
 PyAPI_FUNC(struct _node *) PyParser_SimpleParseFileFlags(FILE *, const char *,
                                                          int, int);
 
