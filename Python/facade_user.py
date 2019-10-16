@@ -3,7 +3,7 @@ import json
 import sys
 import psycopg2.extras
 import logging
-from .entities.user import User
+from entities.user import User
 
 class UserFacade:
 
@@ -17,7 +17,8 @@ class UserFacade:
         try:
             #Conexion a postgre
             self.defaultConnection        = DefaultConnection()  
-            self.beerConnection = self.defaultConnection.getBeerConnection()
+            self.defaultConnection.postgre_connect()
+            self.beerConnection = self.defaultConnection.getBeerConnection()   
         except Exception as e:
             logging.debug('Error in "UserFacade: "')
             raise Exception('Error no controlado: {}'.format(e.args[0]))            
@@ -62,11 +63,10 @@ class UserFacade:
     def forgotPassword(self, _json):
         try:
             _json_entrada = json.loads(_json)
-            self.beerConnection.session.execute(update(User, values={User.password_token: _json_entrada["new_password_token"]})).
-                    filter(User.name == _json_entrada["name"], User.password_token == _json_entrada["password_token"])
-			self.beerConnection.session.commit()
+            self.beerConnection.session.execute(update(User, values={User.password_token: _json_entrada["new_password_token"]})).filter(User.name == _json_entrada["name"], User.password_token == _json_entrada["password_token"])
+            self.beerConnection.session.commit()
             self.beerConnection.session.close()
         except Exception as ex:
             logging.debug('Exception when we try add User: {}"'.format(ex))
         finally:            
-            pass  			
+            pass              

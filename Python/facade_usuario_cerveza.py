@@ -5,7 +5,7 @@ import psycopg2.extras
 import datetime
 import logging
 import time
-from .entities.user_beer import UserBeer
+from entities.user_beer import UserBeer
 
 class UserBeerFacade:
     
@@ -21,25 +21,27 @@ class UserBeerFacade:
     def getCursor(self):
         try:
             #Conexion a postgre
-            self.defaultConnection        = DefaultConnection()           
+            self.defaultConnection        = DefaultConnection()  
+            self.defaultConnection.postgre_connect()
+            self.beerConnection = self.defaultConnection.getBeerConnection()   
         except Exception as e:
-            logging.debug('Error obteniendo el cursor facade bares')
+            logging.debug('Error getting "UserBeerFacade" cursor')
             raise Exception('Error no controlado: {}'.format(e.args[0]))            
         finally:            
             pass
 
- ############ Login ####################################################
+ ############ User for visit ####################################################
     def userForVisit(self, _json):
         try:
             _json_entrada = json.loads(_json)
-            results = self.beerConnection.session.query(UserBeer).filter(UserBeer.id == _json_entrada["id"])
-            self.beerConnection.session.close()
+            results = self.beerConnection.session.query(UserBeer).filter(UserBeer.id == _json_entrada["id"])            
+            return results
         except Exception as ex:
             logging.debug('Exception: "')
         finally:            
-            pass
+            self.beerConnection.session.close()
 
-    ########### Register #################################################
+    ########### Insert User for visit #################################################
     def insertUserForVisit(self, _json):
         try:
             _json_entrada = json.loads(_json)
@@ -52,50 +54,37 @@ class UserBeerFacade:
         except Exception as ex:
             logging.debug('Exception when we try add UserByVisit: {}"'.format(ex))
         finally:            
-            pass
-			
- ############ Login ####################################################
+            self.beerConnection.session.close()
+            
+ ############ Update beer for visit ####################################################
     def userBeerForVisit(self, _json):
         try:
             _json_entrada = json.loads(_json)
             results = self.beerConnection.session.query(UserBeer).filter(UserBeer.user_id == _json_entrada["user_id"], UserBeer.beer_id == _json_entrada["beer_id"])
-            self.beerConnection.session.close()
+            return results
         except Exception as ex:
             logging.debug('Exception: "')
         finally:            
-            pass
-			
- ############ Login ####################################################
+            self.beerConnection.session.close()
+            
+ ############ getUserBeerForPayment ####################################################
     def userBeerPayTypeForVisit(self, _json):
         try:
             _json_entrada = json.loads(_json)
-            results = self.beerConnection.session.query(UserBeer).filter(UserBeer.user_id == _json_entrada["user_id"], UserBeer.beer_id == _json_entrada["beer_id"], UserBeer.beer_id == _json_entrada["pay_type_id"])
-            self.beerConnection.session.close()
+            results = self.beerConnection.session.query(UserBeer).filter(UserBeer.user_id == _json_entrada["user_id"], UserBeer.beer_id == _json_entrada["beer_id"], UserBeer.pay_type_id == _json_entrada["pay_type_id"])
+            return results
         except Exception as ex:
             logging.debug('Exception: "')
         finally:            
-            pass
-			
- ############ Login ####################################################
+            self.beerConnection.session.close()
+            
+ ############ getUserPayType ####################################################
     def userPayTypeForVisit(self, _json):
         try:
             _json_entrada = json.loads(_json)
-            results = self.beerConnection.session.query(UserBeer).filter(UserBeer.user_id == _json_entrada["user_id"], UserBeer.beer_id == _json_entrada["pay_type_id"])
-            self.beerConnection.session.close()
+            results = self.beerConnection.session.query(UserBeer).filter(UserBeer.user_id == _json_entrada["user_id"], UserBeer.pay_type_id == _json_entrada["pay_type_id"])
+            return results
         except Exception as ex:
             logging.debug('Exception: "')
         finally:            
-            pass
-
-    ########### forgotPassword #################################################
-    def forgotPassword(self, _json):
-        try:
-            _json_entrada = json.loads(_json)
-            self.beerConnection.session.execute(update(User, values={User.password_token: _json_entrada["new_password_token"]})).
-                    filter(User.name == _json_entrada["name"], User.password_token == _json_entrada["password_token"])
-			self.beerConnection.session.commit()
-            self.beerConnection.session.close()
-        except Exception as ex:
-            logging.debug('Exception when we try add User: {}"'.format(ex))
-        finally:            
-            pass  			
+            self.beerConnection.session.close()        

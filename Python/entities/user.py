@@ -1,15 +1,18 @@
 from sqlalchemy import Column, String, DateTime
-from .entity import Entity, Base
+from entities.entity import Entity
+from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
+Base = declarative_base()
 
 class User(Entity, Base):
     __tablename__ = 'USER'
 
-    mail                     = Column(String)
-    borning_date             = Column(DateTime)
-    password_token            = Column(String)
-    positive_balance        = Column(String)
-    photo                    = Column(String)
-    credits                    = Column(String)    
+    mail                     = Column(String, nullable=False)
+    borning_date             = Column(DateTime, nullable=False)
+    password_token            = Column(String, nullable=False)
+    positive_balance        = Column(String, nullable=False)
+    photo                    = Column(String, nullable=False)
+    credits                    = Column(String, nullable=False)
 
     def __init__(self, mail, borning_date, password_token, positive_balance, photo, credits, created_by):
         Entity.__init__(self, created_by)

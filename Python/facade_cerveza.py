@@ -5,7 +5,7 @@ import psycopg2.extras
 import datetime
 import logging
 import time
-from .entities.beer import Beer
+from entities.beer import Beer
 
 class BeerFacade:
     defaultConnection = None
@@ -18,7 +18,8 @@ class BeerFacade:
         try:
             #Conexion a postgre
             self.defaultConnection        = DefaultConnection()  
-            self.beerConnection = self.defaultConnection.getBeerConnection()
+            self.defaultConnection.postgre_connect()
+            self.beerConnection = self.defaultConnection.getBeerConnection()   
         except Exception as e:
             logging.debug('Error in "Beer facade: "')
             raise Exception('Error no controlado: {}'.format(e.args[0]))            
@@ -41,7 +42,7 @@ class BeerFacade:
         except Exception as ex:
             logging.debug('Exception: "')
         finally:            
-            pass
+            self.beerConnection.session.close()
         return None
     ########### insert_beer #################################################
     def insertBeer(self, _json):
@@ -50,25 +51,25 @@ class BeerFacade:
             beer = Beer(_json_entrada["title"], _json_entrada["price"], _json_entrada["happy_hour_price"], 
                         _json_entrada["bar_id"], _json_entrada["beer_type_id"], _json_entrada["avb"], 
                         _json_entrada["ibu"], _json_entrada["srm"], _json_entrada["description"],
-                        _json_entrada["image"], _json_entrada["pint"], _json_entrada["cup330"]
+                        _json_entrada["image"], _json_entrada["pint"], _json_entrada["cup330"],
                         _json_entrada["giraffe"], _json_entrada["pitcher"], _json_entrada["created_by"])
             self.beerConnection.session.add(beer)
             self.beerConnection.session.commit()
             self.beerConnection.session.close()            
         except Exception as ex:
-            logging.debug('Exception when we try add Bar: {}"'.format(ex))
+            logging.debug('Exception when we try add Beer: {}"'.format(ex))
         finally:            
-            pass
+            self.beerConnection.session.close()
 
     ########### Beers #################################################
     def beers(self):
         try:            
             results = self.beerConnection.session.query(Beer)
-			self.beerConnection.session.close()
+            return results
         except Exception as ex:
             logging.debug('Exception when we try fetch Beers: {}"'.format(ex))
         finally:
-            pass          
+            self.beerConnection.session.close()          
 
     ########### Update beer #################################################
     def updateBeer(self, _json):
@@ -88,8 +89,8 @@ class BeerFacade:
             update = SQL_UPDATE_BEERS.join(update).join(SQL_WHERE_UPDATE_BEERS.format(json_entrada["id"]))
             self.beerConnection.session.query(Beer).from_statement(text(update))
             self.beerConnection.session.commit()
-			self.beerConnection.session.close()
+            self.beerConnection.session.close()
         except Exception as ex:
             logging.debug('Exception when we try update beer: {}"'.format(ex))
         finally:            
-            pass 
+            self.beerConnection.session.close() 
