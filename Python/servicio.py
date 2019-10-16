@@ -51,10 +51,10 @@ def forgotPassword():
 
 ################## BAR´S #################################
 
-@app.route('/bar/<bar_id>/GET', methods=['GET'])
-def barForId(bar_id):
+@app.route('/bar/<_bar_id>/GET', methods=['GET'])
+def barForId(_bar_id):
     try: 
-        bar = BarFacade().bar_id(bar_id)
+        bar = BarFacade().bar_id(_bar_id)
 		bar is None ? return jsonify(bar), status.HTTP_204_NO_CONTENT : return jsonify(bar)
     except Exception as e:
         logging.debug("Error: {}".format(e))
@@ -156,7 +156,7 @@ def userBeerForVisit(_user_id, _beer_id):
 @app.route('/userBeer/<_user_id>/GET/<_beer_id>/GET/<_pay_type_id>/GET', methods=['GET'])
 def userBeerPayTypeForVisit(_user_id, _beer_id, _pay_type_id):
     try:
-        cervezas  = UserBeerFacade().userBeerPayTypeForVisit(_usuario_id, _cerveza_id, _tipo_pago_id)
+        cervezas  = UserBeerFacade().userBeerPayTypeForVisit(_user_id, _beer_id, _pay_type_id)
         if len(cervezas) > 0 ? return jsonify(cervezas) : return jsonify(cervezas), status.HTTP_204_NO_CONTENT
     except Exception as e:
         logging.debug("Error no controlado: {}".format(e))
@@ -165,7 +165,7 @@ def userBeerPayTypeForVisit(_user_id, _beer_id, _pay_type_id):
 @app.route('/userBeer/<_user_id>/GET/<_pay_type_id>/GET', methods=['GET'])
 def userPayTypeForVisit(_user_id, _pay_type_id):
     try:
-        cervezas  = UserBeerFacade().userPayTypeForVisit(_usuario_id, _tipo_pago_id)
+        cervezas  = UserBeerFacade().userPayTypeForVisit(_user_id, _pay_type_id)
         len(cervezas) > 0 ? return jsonify(cervezas) : return jsonify(cervezas), status.HTTP_204_NO_CONTENT
     except Exception as e:
         logging.debug("Error no controlado: {}".format(e))
@@ -175,8 +175,8 @@ def userPayTypeForVisit(_user_id, _pay_type_id):
 @app.route('/userBeer/INSERT', methods=['POST'])
 def insertUserForVisit():
     try:
-        _json_cerveza = request.get_json()
-		UserBeerFacade().insert_usuario_cerveza(_json_cerveza)
+        _json = request.get_json()
+		UserBeerFacade().insert_usuario_cerveza(_json)
         return jsonify(OK)
     except Exception as e:
         logging.debug("Error no controlado: {}".format(e))
