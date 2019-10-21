@@ -1,10 +1,13 @@
-from sqlalchemy                 import create_engine
-from sqlalchemy import Column, String, Integer, DateTime
-from sqlalchemy.dialects.postgresql import JSON, JSONB
+from sqlalchemy import Column, String, Integer, DateTime, MetaData, Table, ForeignKey
+from sqlalchemy.dialects.postgresql import JSONB
 
 class DDL:
-    def dataDefinitionLanguage(self):
-        user = Table('USER', metadata,
+    metadata = None
+    def __init__(self):
+        self.metadata = MetaData()
+
+    def dataDefinitionLanguage(self, engine):
+        user = Table('USER', self.metadata,
     Column('id', Integer, primary_key=True),
     Column('borning_date', DateTime, nullable=False),
     Column('password_token', String, nullable=False),
@@ -15,21 +18,21 @@ class DDL:
     Column('updated_at', DateTime, nullable=False),
     Column('last_updated_by', String, nullable=False))
     #BeerType
-        beer_type = Table('BEER_TYPE', metadata,
+        beer_type = Table('BEER_TYPE', self.metadata,
     Column('id', Integer, primary_key=True),
     Column('name', String, nullable=False),
     Column('created_at', DateTime, nullable=False),
     Column('updated_at', DateTime, nullable=False),
     Column('last_updated_by', String, nullable=False))
     #PayType
-        pay_type = Table('PAY_TYPE', metadata,
+        pay_type = Table('PAY_TYPE', self.metadata,
     Column('id', Integer, primary_key=True),
     Column('name', String, nullable=False),
     Column('created_at', DateTime, nullable=False),
     Column('updated_at', DateTime, nullable=False),
     Column('last_updated_by', String, nullable=False))
     #UserBeer
-        user_beer = Table('USER_BEER', metadata,
+        user_beer = Table('USER_BEER', self.metadata,
     Column('id', Integer, primary_key=True),
     Column('beer_id', Integer, ForeignKey('BEER.id'), nullable=False),
     Column('user_id', Integer, ForeignKey('USER.id'), nullable=False),
@@ -43,7 +46,7 @@ class DDL:
     Column('updated_at', DateTime, nullable=False),
     Column('last_updated_by', String, nullable=False))
     #Beer
-        beer = Table('BEER', metadata,
+        beer = Table('BEER', self.metadata,
     Column('id', Integer, primary_key=True),
     Column('name', String, nullable=False),
     Column('price', Integer, nullable=False),
@@ -63,7 +66,7 @@ class DDL:
     Column('updated_at', DateTime, nullable=False),
     Column('last_updated_by', String, nullable=False))
     #Bar
-        bar = Table('BAR', metadata,
+        bar = Table('BAR', self.metadata,
     Column('id', Integer, primary_key=True),
     Column('name', String, nullable=False),
     Column('open_date', DateTime, nullable=False),
@@ -83,7 +86,7 @@ class DDL:
     Column('updated_at', DateTime, nullable=False),
     Column('last_updated_by', String, nullable=False))
     #Pairing
-        pairing = Table('PAIRING', metadata,
+        pairing = Table('PAIRING', self.metadata,
     Column('id', Integer, primary_key=True),
     Column('name', String, nullable=False),
     Column('image', String, nullable=False),
@@ -92,19 +95,17 @@ class DDL:
     Column('updated_at', DateTime, nullable=False),
     Column('last_updated_by', String, nullable=False))
     #Taste
-        taste = Table('TASTE', metadata,
+        taste = Table('TASTE', self.metadata,
     Column('id', Integer, primary_key=True),
     Column('name', String, nullable=False),
     Column('created_at', DateTime, nullable=False),
     Column('updated_at', DateTime, nullable=False),
     Column('last_updated_by', String, nullable=False))
     #Climate
-        climate = Table('CLIMATE', metadata,
+        climate = Table('CLIMATE', self.metadata,
     Column('id', Integer, primary_key=True),
     Column('json', JSONB, nullable=False),
     Column('created_at', DateTime, nullable=False),
     Column('updated_at', DateTime, nullable=False),
     Column('last_updated_by', String, nullable=False))
-
-    def __init__(self):
-        pass
+        self.metadata.create_all(engine)

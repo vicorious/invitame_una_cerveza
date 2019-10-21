@@ -6,10 +6,13 @@ import datetime
 import logging
 import time
 from entities.user_beer import UserBeer
+from proxy                  import ProxyConfiguration
 
 class UserBeerFacade:
     
     defaultConnection = None
+    beerConnection = None
+    proxy = ProxyConfiguration()
 
     logging.basicConfig(filename="test.log", level=logging.DEBUG)
 
@@ -21,8 +24,7 @@ class UserBeerFacade:
     def getCursor(self):
         try:
             #Conexion a postgre
-            self.defaultConnection        = DefaultConnection()  
-            self.defaultConnection.postgre_connect()
+            self.defaultConnection        = DefaultConnection(self.proxy.engine)
             self.beerConnection = self.defaultConnection.getBeerConnection()   
         except Exception as e:
             logging.debug('Error getting "UserBeerFacade" cursor')

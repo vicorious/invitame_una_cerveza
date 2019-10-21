@@ -4,10 +4,12 @@ import sys
 import psycopg2.extras
 import logging
 from entities.bar import Bar
+from proxy                  import ProxyConfiguration
 
 class BarFacade:
     defaultConnection = None
     beerConnection = None
+    proxy = ProxyConfiguration()
 
     logging.basicConfig(filename="test.log", level=logging.DEBUG)
 
@@ -15,9 +17,8 @@ class BarFacade:
     def getCursor(self):
         try:
             #Conexion a postgre
-            self.defaultConnection        = DefaultConnection()  
-            self.defaultConnection.postgre_connect()
-            self.beerConnection = self.defaultConnection.getBeerConnection()
+            self.defaultConnection        = DefaultConnection(self.proxy.engine) 
+            self.beerConnection = self.defaultConnection.getBeerConnection()            
         except Exception as e:
             logging.debug('Error in "BarFacade: "')
             raise Exception('Error no controlado: {}'.format(e.args[0]))            
