@@ -4,6 +4,7 @@ from facade_user            import UserFacade
 from facade_bares           import BarFacade
 from facade_cerveza         import BeerFacade
 from facade_usuario_cerveza import UserBeerFacade
+from proxy                  import ProxyConfiguration
 import sys
 import logging
 
@@ -17,7 +18,6 @@ FAIL = 'FAIL'
 ###### Log #################
 
 logging.basicConfig(filename="test.log", level=logging.DEBUG)
-
 #################### USER #############################
 @app.route('/user/login', methods=['POST'])
 def login():    
@@ -183,6 +183,15 @@ def insertUserForVisit():
         logging.debug("Error no controlado: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
+@app.before_request
+def proxy():
+    proxy = ProxyConfiguration()
+    if not proxy.existDataBase():
+        logging.debug("DataBase no exists!")
+        proxy.createDatabase()
+        proxy.createDDL()
+    else:
+        logging.debug("Database was already created!")
 
 ####### Main ############
 if __name__ == '__main__':

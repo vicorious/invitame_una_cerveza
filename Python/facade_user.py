@@ -4,11 +4,13 @@ import sys
 import psycopg2.extras
 import logging
 from entities.user import User
+from proxy                  import ProxyConfiguration
 
 class UserFacade:
 
     defaultConnection = None
     beerConnection = None
+    proxy = ProxyConfiguration()
 
     logging.basicConfig(filename="test.log", level=logging.DEBUG)
 
@@ -16,8 +18,7 @@ class UserFacade:
     def getCursor(self):
         try:
             #Conexion a postgre
-            self.defaultConnection        = DefaultConnection()  
-            self.defaultConnection.postgre_connect()
+            self.defaultConnection        = DefaultConnection(self.proxy.engine)
             self.beerConnection = self.defaultConnection.getBeerConnection()   
         except Exception as e:
             logging.debug('Error in "UserFacade: "')
