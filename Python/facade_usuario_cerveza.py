@@ -12,13 +12,14 @@ class UserBeerFacade:
     
     defaultConnection = None
     beerConnection = None
-    proxy = ProxyConfiguration()
+    proxy = None
 
     logging.basicConfig(filename="test.log", level=logging.DEBUG)
 
     ####### Constructor ############
     def __init__(self):
-        pass
+        self.proxy = ProxyConfiguration()
+        self.getCursor()        
 
     ############ retorna el cursor para poder interactuar con la DB #######
     def getCursor(self):

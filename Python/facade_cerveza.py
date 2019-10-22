@@ -11,7 +11,7 @@ from proxy                  import ProxyConfiguration
 class BeerFacade:
     defaultConnection = None
     beerConnection = None
-    proxy = ProxyConfiguration()
+    proxy = None
 
     logging.basicConfig(filename="test.log", level=logging.DEBUG)
 
@@ -29,12 +29,13 @@ class BeerFacade:
 
     ############ Constructor ##############################################
     def __init__(self):
+        self.proxy = ProxyConfiguration()
         self.getCursor()        
 
     ############ beerId ####################################################
     def beerId(self, _beer_id):
         try:
-            results = self.beerConnection.session.query(Beer).filter(Beer.id == _beer_id)
+            results = self.beerConnection.session.query(Beer).filter(Beer.id == _beer_id).one()
             return results
         except MultipleResultsFound as me:                
             logging.debug('Multiple rows. Failed Integrity from database')
