@@ -10,7 +10,7 @@ class UserFacade:
 
     defaultConnection = None
     beerConnection = None
-    proxy = ProxyConfiguration()
+    proxy = None
 
     logging.basicConfig(filename="test.log", level=logging.DEBUG)
 
@@ -28,6 +28,7 @@ class UserFacade:
 
     ############ Constructor ##############################################
     def __init__(self):
+        self.proxy = ProxyConfiguration()
         self.getCursor()        
 
     ############ Login ####################################################

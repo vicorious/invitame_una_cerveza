@@ -9,7 +9,7 @@ from proxy                  import ProxyConfiguration
 class BarFacade:
     defaultConnection = None
     beerConnection = None
-    proxy = ProxyConfiguration()
+    proxy = None
 
     logging.basicConfig(filename="test.log", level=logging.DEBUG)
 
@@ -27,12 +27,13 @@ class BarFacade:
 
     ############ Constructor ##############################################
     def __init__(self):
-        self.getCursor()        
+        self.proxy = ProxyConfiguration()
+        self.getCursor()
 
     ############ barId ####################################################
     def barId(self, _bar_id):
         try:
-            results = self.beerConnection.session.query(Bar).filter(Bar.id == _bar_id)
+            results = self.beerConnection.session.query(Bar).filter(Bar.id == _bar_id).one()
             return results
         except MultipleResultsFound as me:                
             logging.debug('Multiple rows. Failed Integrity from database')
@@ -66,7 +67,7 @@ class BarFacade:
             results = self.beerConnection.session.query(Bar).all()
             return results
         except Exception as ex:
-            logging.debug('Exception when we try fetchy Bars: {}"'.format(ex))
+            logging.debug('Exception when we try fetch Bars: {}"'.format(ex))
         finally:            
             self.beerConnection.session.close()          
 

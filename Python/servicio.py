@@ -145,7 +145,7 @@ def userForVisit(_user_id):
         logging.debug("Error no controlado: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
-@app.route('/userBeer/<_user_id>/GET/<_beer_id>/GET', methods=['GET'])
+@app.route('/userBeer/<_user_id>/<_beer_id>/GET', methods=['GET'])
 def userBeerForVisit(_user_id, _beer_id):
     try:
         beers  = UserBeerFacade().userBeerForVisit(_user_id, _beer_id)
@@ -154,7 +154,7 @@ def userBeerForVisit(_user_id, _beer_id):
         logging.debug("Error no controlado: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT    
 
-@app.route('/userBeer/<_user_id>/GET/<_beer_id>/GET/<_pay_type_id>/GET', methods=['GET'])
+@app.route('/userBeer/<_user_id>/<_beer_id>/<_pay_type_id>/GET', methods=['GET'])
 def userBeerPayTypeForVisit(_user_id, _beer_id, _pay_type_id):
     try:
         beers  = UserBeerFacade().userBeerPayTypeForVisit(_user_id, _beer_id, _pay_type_id)
@@ -163,7 +163,7 @@ def userBeerPayTypeForVisit(_user_id, _beer_id, _pay_type_id):
         logging.debug("Error no controlado: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT   
 
-@app.route('/userBeer/<_user_id>/GET/<_pay_type_id>/GET', methods=['GET'])
+@app.route('/userBeer/<_user_id>/<_pay_type_id>/GET', methods=['GET'])
 def userPayTypeForVisit(_user_id, _pay_type_id):
     try:
         beers  = UserBeerFacade().userPayTypeForVisit(_user_id, _pay_type_id)
