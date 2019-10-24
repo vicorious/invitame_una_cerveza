@@ -1,19 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
-import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
-
-let config = new AuthServiceConfig([
-  {
-    id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider("Google-OAuth-Client-Id")
-  },
-  {
-    id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider("Facebook-App-Id")
-  }
-]);
 import { NgxLoadingModule } from 'ngx-loading';
 import { HttpClientModule } from '@angular/common/http'; 
 
@@ -53,8 +39,7 @@ import { BarService } from './services/bar.service';
     BrowserModule,
     AppRoutingModule,
 	NgxLoadingModule.forRoot({}),
-	HttpClientModule,
-	SocialLoginModule.initialize(config)
+	HttpClientModule
   ],
   providers: [BarService],
   bootstrap: [AppComponent]

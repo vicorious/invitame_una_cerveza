@@ -135,6 +135,19 @@
 	
 </div>
 
+	<div class="my-container">
+    <ng-template #customLoadingTemplate>
+        <div class="custom-class">
+            <h3>
+                Loading...
+            </h3>
+        </div>
+    </ng-template>
+ 
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+    //...
+</div>
+
 	<a class="fab fa fa-save" (click)="goSave()"></a>
 	<a class="fab-profile fa fa-user" href="/profile"></a>	
 	<a class="fab-panic fa fa-beer" href="/bars"></a>	
