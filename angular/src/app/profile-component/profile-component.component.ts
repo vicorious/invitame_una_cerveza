@@ -5,11 +5,16 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './profile-component.component.html',
   styleUrls: ['./profile-component.component.css']
 })
-export class ProfileComponentComponent implements OnInit {
+export class ProfileComponentComponent implements OnInit 
+{
+	public loading = false;	
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
+	  this.loading = true;
+	  this.loading = false;
   }
 
 }

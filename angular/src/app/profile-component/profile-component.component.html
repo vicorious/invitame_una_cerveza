@@ -59,6 +59,19 @@
 	
 </div> <!-- /container -->  
 
+	<div class="my-container">
+    <ng-template #customLoadingTemplate>
+        <div class="custom-class">
+            <h3>
+                Loading...
+            </h3>
+        </div>
+    </ng-template>
+ 
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+    //...
+</div>
+
 <a class="fab-profile fa fa-beer" href="/bars"></a>
 <a class="fab fa fa-hands" href="/choose"></a>
 

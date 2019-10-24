@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
-import { AuthService } from "angularx-social-login";
-import { SocialUser } from "angularx-social-login";
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
-@Component({
+@Component
+({
   selector: 'app-login-component',
   templateUrl: './login-component.component.html',
   styleUrls: ['./login-component.component.css']
@@ -13,35 +13,32 @@ export class LoginComponentComponent implements OnInit
 	 
   private user: SocialUser;
   private loggedIn: boolean;
+  public loading = false;  
 
-  constructor(private authService: AuthService) { }
+  constructor(private router: Router, private fire: AuthService) { }
 
-  ngOnInit() 
-  {
-	this.authService.authState.subscribe
-	(
-		(user) => 
-		{
-			this.user = user;
-			this.loggedIn = (user != null);
-		}
-	);
-	  
-  }
+  ngOnInit() {}
   
-  signInWithGoogle(): void 
+  signInWithTwitter(): void 
   {
-		this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+	this.fire.signInWithTwitter();
   }
  
   signInWithFB(): void 
   {
-		this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+		
   } 
  
   signOut(): void 
   {
-		this.authService.signOut();
+		
+  }
+  
+  singInWithOutSocialMedia(): void
+  {
+	  this.loading = true;
+	  this.router.navigate(['/choose']);
+	  this.loading = false;
   }
 
 }
