@@ -13,12 +13,7 @@ export class AuthService
 	constructor(public afAuth: AngularFireAuth) { }
   
   
-	signInWithTwitter()
-	{
-		return this.AuthLogin(new auth.TwitterAuthProvider());
-	}
-  
-	authLogin(provider) 
+  	authLogin(provider) 
 	{
 		return this.afAuth.auth.signInWithPopup(provider).then
 		(
@@ -30,4 +25,15 @@ export class AuthService
 				console.log(error)
 			})
 	}
+  
+	signInWithTwitter()
+	{
+		return this.authLogin(new auth.TwitterAuthProvider());
+	}
+	
+	signInWithFacebook()
+	{
+		return this.authLogin(new auth.FacebookAuthProvider());
+	}
+  
 }
