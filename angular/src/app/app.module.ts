@@ -2,6 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgxLoadingModule } from 'ngx-loading';
 import { HttpClientModule } from '@angular/common/http'; 
+// Firebase services + enviorment module
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +22,7 @@ import { EleccionComponentComponent } from './eleccion-component/eleccion-compon
 import { CuriosoComponentComponent } from './curioso-component/curioso-component.component';
 import { PromocionComponentComponent } from './promocion-component/promocion-component.component';
 import { BarService } from './services/bar.service';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -39,7 +44,11 @@ import { BarService } from './services/bar.service';
     BrowserModule,
     AppRoutingModule,
 	NgxLoadingModule.forRoot({}),
-	HttpClientModule
+	HttpClientModule,
+	AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule
   ],
   providers: [BarService],
   bootstrap: [AppComponent]

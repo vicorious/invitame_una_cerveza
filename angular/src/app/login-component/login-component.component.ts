@@ -10,8 +10,6 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponentComponent implements OnInit 
 {
-	 
-  private user: SocialUser;
   private loggedIn: boolean;
   public loading = false;  
 
@@ -26,7 +24,7 @@ export class LoginComponentComponent implements OnInit
  
   signInWithFB(): void 
   {
-		
+	this.fire.signInWithFacebook();
   } 
  
   signOut(): void 
