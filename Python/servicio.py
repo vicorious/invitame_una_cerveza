@@ -4,6 +4,7 @@ from facade_user            import UserFacade
 from facade_bares           import BarFacade
 from facade_cerveza         import BeerFacade
 from facade_usuario_cerveza import UserBeerFacade
+from facade_promotion       import PromotionFacade
 from proxy                  import ProxyConfiguration
 import sys
 import logging
@@ -182,6 +183,39 @@ def insertUserForVisit():
     except Exception as e:
         logging.debug("Error no controlado: {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
+	
+############ Promotion ################################################
+
+@app.route('/promotion', methods=['GET'])
+def promotions():
+    try:
+        promotions  = PromotionFacade().promotions()
+        return jsonify(promotions) if len(promotions) > 0 else jsonify(promotions), status.HTTP_204_NO_CONTENT
+    except Exception as e:
+        logging.debug("Error: {}".format(e))
+    return jsonify(FAIL), status.HTTP_409_CONFLICT
+
+
+@app.route('/promotion/INSERT', methods=['POST'])
+def insertPromotion():
+    try:
+        _json_promotion = request.get_json()
+        PromotionFacade().insertPromotion(_json_promotion)
+        return jsonify(OK)
+    except Exception as e:
+        logging.debug("Error: {}".format(e))
+    return jsonify(FAIL), status.HTTP_409_CONFLICT
+    
+@app.route('/promotion/UPDATE', methods=['PUT'])
+def updatePromotion():
+    try:
+        _json_promotion = request.get_json()
+        PromotionFacade().updatePromotion(_json_promotion)
+        return jsonify(OK)
+    except Exception as e:
+        logging.debug("Error no controlado: {}".format(e))
+    return jsonify(FAIL), status.HTTP_409_CONFLICT
+
 
 @app.before_request
 def proxy():

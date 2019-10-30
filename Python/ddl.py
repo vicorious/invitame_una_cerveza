@@ -108,4 +108,11 @@ class DDL:
     Column('created_at', DateTime, nullable=False),
     Column('updated_at', DateTime, nullable=False),
     Column('last_updated_by', String, nullable=False))
+    #Promotion
+        promotion = Table('PROMOTION', self.metadata,
+    Column('id', Integer, primary_key=True),
+    Column('beer_id', Integer, ForeignKey('BEER.id'), nullable=False),
+    Column('created_at', DateTime, nullable=False),
+    Column('updated_at', DateTime, nullable=False),
+    Column('last_updated_by', String, nullable=False))
         self.metadata.create_all(engine)
