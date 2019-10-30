@@ -23,6 +23,7 @@ import { CuriosoComponentComponent } from './curioso-component/curioso-component
 import { PromocionComponentComponent } from './promocion-component/promocion-component.component';
 import { BarService } from './services/bar.service';
 import { environment } from '../environments/environment';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { environment } from '../environments/environment';
     ReclamaCodigoComponentComponent,
     EleccionComponentComponent,
     CuriosoComponentComponent,
-    PromocionComponentComponent
+    PromocionComponentComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

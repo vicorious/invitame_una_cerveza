@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Beer } from '../dto/beer'
+import { Promotion } from '../dto/promotion';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
 
 @Injectable
 (
@@ -9,6 +12,21 @@ import { Beer } from '../dto/beer'
 )
 export class PromotionService 
 {
+	public HOST                  : string = "http://localhost:4200"
+	public URI_PROMOTIONS        : string = "/promotions";
+	public URI_PROMOTIONS_INSERT : string = "/promotion/INSERT";
+	public URI_PROMOTIONS_UPDATE : string = "/promotion/UPDATE";
+	
+	// Http Headers
+	httpOptions = 
+	{
+		headers: new HttpHeaders
+		(
+			{
+				'Content-Type': 'application/json'
+			}
+		)
+	}	
 	constructor() { }
 	
 	/**
@@ -24,5 +42,38 @@ export class PromotionService
 	  
 		let beers : Beer[] = [melas_doble_iipa, milagrosa_ipa, tommahowk_ipa];
 		return beers;
+	}
+	
+	/**
+	*
+	*
+	*
+	*
+	**/
+	getPromotions() : Observable<any>
+	{
+		return this.http.get(this.HOST + this.URI_PROMOTIONS, this.httpOptions).pipe(retry(1),catchError(this.errorHandl));
+	}
+	
+		/**
+	*
+	*
+	*
+	*
+	**/
+	promotionInsert(data: string)
+	{
+		return this.http.post(this.HOST + this.URI_PROMOTIONS_INSERT, JSON.stringify(data), this.httpOptions).pipe(retry(1),catchError(this.errorHandl));
+	}
+	
+		
+	/**
+	*
+	*
+	*
+	**/
+	promotionUpdate(data: string) : Observable<any>
+	{
+		return this.http.put(this.HOST + this.URI_PROMOTIONS_UPDATE, JSON.stringify(data), this.httpOptions).pipe(retry(1),catchError(this.errorHandl));
 	}
 }

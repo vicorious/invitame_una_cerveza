@@ -18,7 +18,7 @@ export class BeersPluralComponentComponent implements OnInit
 	ngOnInit() 
 	{
 		const bar = this._activate_route.snapshot.queryParamMap.get('bar');
-		this.beers = this._beers_service.getBeersDummy(bar);	 
+		this.beers = this._beers_service.getBeerForId(bar);	 
 	}
   
   	/**

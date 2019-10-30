@@ -122,9 +122,6 @@
 				<p class="color_tittle center"><strong><em>Creditos a gastar: <span id="demo"></span></em></strong></p>		
 				<p class="color_tittle center"><strong><em>Disponible <span class="color_tittle center" id="demo2">52000</span></em></strong></p>	
 				
-		<!-- Footer component -->
-		<app-footer-component></app-footer-component>
-		<!-- Footer component -->
 				<br/>		
 			</div>
 		
@@ -132,8 +129,14 @@
 		
 		</div>	
     </div>
+
 	
 </div>
+
+			<!-- Footer component -->
+		<app-footer-component></app-footer-component>
+		<!-- Footer component -->
+
 
 	<div class="my-container">
     <ng-template #customLoadingTemplate>
@@ -147,6 +150,8 @@
     <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
     //...
 </div>
+
+
 
 	<a class="fab fa fa-save" (click)="goSave()"></a>
 	<a class="fab-profile fa fa-user" href="/profile"></a>	

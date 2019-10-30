@@ -14,6 +14,8 @@ import { ReclamaCodigoComponentComponent } from './reclama-codigo-component/recl
 import { EleccionComponentComponent } from './eleccion-component/eleccion-component.component';
 import { CuriosoComponentComponent } from './curioso-component/curioso-component.component';
 import { PromocionComponentComponent } from './promocion-component/promocion-component.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+
 
 
 const routes: Routes = 
@@ -30,7 +32,8 @@ const routes: Routes =
   { path: 'choose', component: EleccionComponentComponent },
   { path: 'curious', component: CuriosoComponentComponent },
   { path: 'promotion', component: PromocionComponentComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' }
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

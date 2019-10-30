@@ -66,7 +66,7 @@ class BeerFacade:
     ########### Beers #################################################
     def beers(self):
         try:            
-            results = self.beerConnection.session.query(Beer)
+            results = self.beerConnection.session.query(Beer).all()
             return results
         except Exception as ex:
             logging.debug('Exception when we try fetch Beers: {}"'.format(ex))

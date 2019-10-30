@@ -2,6 +2,7 @@ from sqlalchemy                 import create_engine
 from sqlalchemy_utils           import database_exists, create_database
 from constant                   import Constant
 from ddl                        import DDL
+from dml                        import DML
 import logging
 logging.basicConfig(filename="test.log", level=logging.DEBUG)
 class ProxyConfiguration:
@@ -35,3 +36,5 @@ class ProxyConfiguration:
         ddl = DDL()
         ddl.dataDefinitionLanguage(self.engine)
         logging.debug("DataDefinitionLanguage created!")
+
+    def createInitDML(self):
