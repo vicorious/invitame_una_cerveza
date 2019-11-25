@@ -3,7 +3,7 @@ from sqlalchemy                 import create_engine, Column, String, Integer, D
 
 
 class Entity():
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     created_at = Column(DateTime)
     updated_at = Column(DateTime)
     last_updated_by = Column(String)

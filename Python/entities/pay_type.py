@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Integer
 from entities.entity import Entity
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
@@ -6,7 +6,7 @@ Base = declarative_base()
 
 class PayType(Entity, Base):
     __tablename__ = 'PAY_TYPE'
-
+    id = Column(Integer, primary_key=True, autoincrement=True)
     name                     = Column(String, nullable=False)
     
     def __init__(self, name, created_by):

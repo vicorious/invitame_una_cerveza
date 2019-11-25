@@ -69,7 +69,7 @@ class DDL:
     Column('last_updated_by', String, nullable=False))
     #Bar
         bar = Table('BAR', self.metadata,
-    Column('id', Integer, primary_key=True),
+    Column('id', Integer, primary_key=True, autoincrement=True),
     Column('name', String, nullable=False),
     Column('open_date', DateTime, nullable=False),
     Column('openinng_hour', String, nullable=False),

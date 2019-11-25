@@ -6,7 +6,7 @@ Base = declarative_base()
 
 class Pairing(Entity, Base):
     __tablename__ = 'PAIRING'
-
+    id = Column(Integer, primary_key=True, autoincrement=True)
     name                     = Column(String, nullable=False)
     image                     = Column(String, nullable=False)
     beer_id                 = Column(Integer, ForeignKey('BEER.id'), nullable=False)

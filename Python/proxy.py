@@ -34,7 +34,12 @@ class ProxyConfiguration:
 
     def createDDL(self):
         ddl = DDL()
-        ddl.dataDefinitionLanguage(self.engine)
+        ddl.dataDefinitionLanguage()
+        logging.debug("DataDefinitionLanguage created!")
+        
+    def createDML(self):
+        dml = DML(self.engine)
+        dml.createDML()
         logging.debug("DataDefinitionLanguage created!")
     
     def installPostgre(self):

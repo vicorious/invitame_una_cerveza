@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, DateTime
+from sqlalchemy import Column, String, DateTime, Integer
 from entities.entity import Entity
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
@@ -6,7 +6,7 @@ Base = declarative_base()
 
 class User(Entity, Base):
     __tablename__ = 'USER'
-
+    id = Column(Integer, primary_key=True, autoincrement=True)
     mail                     = Column(String, nullable=False)
     borning_date             = Column(DateTime, nullable=False)
     password_token            = Column(String, nullable=False)

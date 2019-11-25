@@ -6,7 +6,7 @@ Base = declarative_base()
 
 class Promotion(Entity, Base):
     __tablename__ = 'PROMOTION'
-
+    id = Column(Integer, primary_key=True, autoincrement=True)
     beer_id            = Column(Integer, ForeignKey('BEER.id'), nullable=False)
 
     def __init__(self, beer_id, created_by):

@@ -1,65 +1,63 @@
-DEBUG:root:Engine created!
-DEBUG:root:Engine created!
-DEBUG:root:Engine created!
-DEBUG:root:Engine created!
 INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 DEBUG:root:Engine created!
-DEBUG:root:DataBase no exists!
-DEBUG:root:Database created!
-DEBUG:root:Database created!
-INFO:werkzeug:127.0.0.1 - - [21/Oct/2019 09:41:33] "GET /bars HTTP/1.1" 204 -
-DEBUG:root:Engine created!
-DEBUG:root:Database was already created!
-INFO:werkzeug:127.0.0.1 - - [21/Oct/2019 09:41:55] "GET /bars HTTP/1.1" 204 -
-DEBUG:root:Engine created!
-DEBUG:root:Database was already created!
-INFO:werkzeug:127.0.0.1 - - [21/Oct/2019 09:41:57] "GET /bars HTTP/1.1" 204 -
-INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-DEBUG:root:Engine created!
-DEBUG:root:DataBase no exists!
-DEBUG:root:Database created!
-DEBUG:root:DataDefinitionLanguage created!
-INFO:werkzeug:127.0.0.1 - - [25/Nov/2019 12:44:46] "GET /bars/ HTTP/1.1" 404 -
-DEBUG:root:Engine created!
-DEBUG:root:Database was already created!
-INFO:werkzeug:127.0.0.1 - - [25/Nov/2019 12:44:46] "GET /favicon.ico HTTP/1.1" 404 -
-INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-DEBUG:root:Engine created!
-DEBUG:root:Database was already created!
-INFO:werkzeug:127.0.0.1 - - [25/Nov/2019 12:51:40] "GET /bars/ HTTP/1.1" 404 -
-INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-DEBUG:root:Engine created!
-DEBUG:root:Database was already created!
-INFO:werkzeug:127.0.0.1 - - [25/Nov/2019 12:53:22] "GET /bars/ HTTP/1.1" 404 -
-INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-DEBUG:root:Engine created!
-DEBUG:root:Database was already created!
-INFO:werkzeug:127.0.0.1 - - [25/Nov/2019 12:53:52] "GET /bars/ HTTP/1.1" 404 -
-DEBUG:root:Engine created!
-DEBUG:root:Database was already created!
-INFO:werkzeug:127.0.0.1 - - [25/Nov/2019 12:53:52] "GET /favicon.ico HTTP/1.1" 404 -
-INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-DEBUG:root:Engine created!
-DEBUG:root:Database was already created!
-INFO:werkzeug:127.0.0.1 - - [25/Nov/2019 12:54:58] "GET /bars/ HTTP/1.1" 404 -
-DEBUG:root:Engine created!
-DEBUG:root:Database was already created!
-INFO:werkzeug:127.0.0.1 - - [25/Nov/2019 12:54:58] "GET /favicon.ico HTTP/1.1" 404 -
-INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-DEBUG:root:Engine created!
-DEBUG:root:Database was already created!
-INFO:werkzeug:127.0.0.1 - - [25/Nov/2019 12:56:03] "GET /bars/ HTTP/1.1" 404 -
-DEBUG:root:Engine created!
-DEBUG:root:Database was already created!
-INFO:werkzeug:127.0.0.1 - - [25/Nov/2019 12:56:03] "GET /favicon.ico HTTP/1.1" 404 -
-INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-DEBUG:root:Engine created!
-DEBUG:root:Database was already created!
-INFO:werkzeug:127.0.0.1 - - [25/Nov/2019 12:57:35] "GET /bars/ HTTP/1.1" 404 -
-INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-DEBUG:root:Engine created!
-DEBUG:root:Database was already created!
-INFO:werkzeug:127.0.0.1 - - [25/Nov/2019 12:59:34] "GET /configuration/ HTTP/1.1" 404 -
-DEBUG:root:Engine created!
-DEBUG:root:Database was already created!
-INFO:werkzeug:127.0.0.1 - - [25/Nov/2019 12:59:55] "GET /favicon.ico HTTP/1.1" 404 -
+DEBUG:root:Begin insert DML!
+ERROR:servicio:Exception on /create_database_dml [GET]
+Traceback (most recent call last):
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\servicio.py", line 243, in createDML
+    proxy.createDML()
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\proxy.py", line 42, in createDML
+    dml.createDML()
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\dml.py", line 56, in createDML
+    self.defaultConnection.getBeerConnection().session.commit()
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\sqlalchemy\orm\session.py", line 1027, in commit
+    self.transaction.commit()
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\sqlalchemy\orm\session.py", line 494, in commit
+    self._prepare_impl()
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\sqlalchemy\orm\session.py", line 473, in _prepare_impl
+    self.session.flush()
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\sqlalchemy\orm\session.py", line 2470, in flush
+    self._flush(objects)
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\sqlalchemy\orm\session.py", line 2608, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\sqlalchemy\util\langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\sqlalchemy\util\compat.py", line 153, in reraise
+    raise value
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\sqlalchemy\orm\session.py", line 2568, in _flush
+    flush_context.execute()
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 422, in execute
+    rec.execute(self)
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 586, in execute
+    persistence.save_obj(
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\sqlalchemy\orm\persistence.py", line 221, in save_obj
+    for table, mapper in base_mapper._sorted_tables.items():
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\sqlalchemy\util\langhelpers.py", line 855, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\sqlalchemy\orm\mapper.py", line 3128, in _sorted_tables
+    sorted_ = sql_util.sort_tables(
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\sqlalchemy\sql\ddl.py", line 1088, in sort_tables
+    for (t, fkcs) in sort_tables_and_constraints(
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\sqlalchemy\sql\ddl.py", line 1152, in sort_tables_and_constraints
+    filtered = filter_fn(fkc)
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\sqlalchemy\sql\ddl.py", line 1078, in _skip_fn
+    if skip_fn(fk):
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\sqlalchemy\orm\mapper.py", line 3111, in skip
+    dep = table_to_mapper.get(fk.column.table)
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\sqlalchemy\util\langhelpers.py", line 855, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+  File "C:\Users\alindartec\Desktop\Vicorious\invitame_una_cerveza\Python\env\lib\site-packages\sqlalchemy\sql\schema.py", line 2030, in column
+    raise exc.NoReferencedTableError(
+sqlalchemy.exc.NoReferencedTableError: Foreign key associated with column 'BEER.beer_type_id' could not find table 'BEER_TYPE' with which to generate a foreign key to target column 'id'
+INFO:werkzeug:127.0.0.1 - - [25/Nov/2019 16:55:35] "GET /create_database_dml HTTP/1.1" 500 -

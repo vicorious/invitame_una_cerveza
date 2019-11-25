@@ -1,12 +1,13 @@
 from sqlalchemy import Column, String, Integer, DateTime
 from entities.entity import Entity
+from sqlalchemy import Column, String, DateTime, Integer
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
 class Bar(Entity, Base):
     __tablename__ = 'BAR'
-
+    id = Column(Integer, primary_key=True, autoincrement=True)
     name                     = Column(String, nullable=False)
     open_date                 = Column(DateTime, nullable=False)
     openinng_hour            = Column(String, nullable=False)
@@ -21,8 +22,9 @@ class Bar(Entity, Base):
     twitter                    = Column(String)
     instagram                = Column(String)
     emergency_number        = Column(String, nullable=False)
+    beers = relationship("Beer")
 
-    def __init__(self, title, open_date, openinng_hour, close_hour, open_days, payment_product, description, image, address, points, facebook, twitter, instagram, emergency_number, created_by):
+    def __init__(self, name, open_date, openinng_hour, close_hour, open_days, payment_product, description, image, address, points, facebook, twitter, instagram, emergency_number, created_by):
         Entity.__init__(self, created_by)
         self.name = name
         self.open_date = open_date

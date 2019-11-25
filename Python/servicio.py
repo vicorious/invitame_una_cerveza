@@ -224,6 +224,7 @@ def configuration():
     proxy = ProxyConfiguration()
     proxy.installPostgre()
 
+@app.route('/create_data_base', methods=['GET'])
 def createDataBase():
     proxy = ProxyConfiguration()
     if not proxy.existDataBase():
@@ -232,6 +233,19 @@ def createDataBase():
         proxy.createDDL()
     else:
         logging.debug("Database was already created!")
+    return "OK"
+    
+@app.route('/create_database_dml', methods=['GET'])
+def createDML():
+    proxy = ProxyConfiguration()
+    if proxy.existDataBase():
+        logging.debug("Begin insert DML!")
+        proxy.createDML()
+    else:
+        logging.debug("Database no exists. we going to create it!")
+        self.createDataBase()
+        self.createDML()
+    return "OK"
 
 ####### Main ############
 if __name__ == '__main__':
