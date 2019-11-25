@@ -3,6 +3,7 @@ import { Promotion } from '../dto/promotion';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Injectable
 (
@@ -27,7 +28,7 @@ export class PromotionService
 			}
 		)
 	}	
-	constructor() { }
+	constructor(private http: HttpClient) { }
 	
 	/**
 	*
@@ -36,12 +37,12 @@ export class PromotionService
 	**/
 	getPromotion()
 	{
-		let melas_doble_iipa = new Beer("Melas doble IIPA", "assets/images/beer/melas/atomic_ipa.jpg", "Dulce y amarga cerveza con gran cantidad de alcohol para que en vez de saborearla; ALUCINES la cerveza", "10%");
-		let milagrosa_ipa = new Beer("IPA The pub", "assets/images/beer/milagrosa/ipa.jpg", "¡La mejor cerveceria de bogotá con cervezas artesanales del mundo!", "9%");
-		let tommahowk_ipa = new Beer("Tommahowk IPA", "assets/images/beer/tierra_santa/cervezas.jpg", "Tenemos todos los estilos de cerveza a todo tiempo y en todo lugar", "8%");	  
+		let melas_doble_iipa = new Promotion("Melas doble IIPA", "assets/images/beer/melas/atomic_ipa.jpg", "Dulce y amarga cerveza con gran cantidad de alcohol para que en vez de saborearla; ALUCINES la cerveza", "10%");
+		let milagrosa_ipa = new Promotion("IPA The pub", "assets/images/beer/milagrosa/ipa.jpg", "¡La mejor cerveceria de bogotá con cervezas artesanales del mundo!", "9%");
+		let tommahowk_ipa = new Promotion("Tommahowk IPA", "assets/images/beer/tierra_santa/cervezas.jpg", "Tenemos todos los estilos de cerveza a todo tiempo y en todo lugar", "8%");	  
 	  
-		let beers : Beer[] = [melas_doble_iipa, milagrosa_ipa, tommahowk_ipa];
-		return beers;
+		let promotions : Promotion[] = [melas_doble_iipa, milagrosa_ipa, tommahowk_ipa];
+		return promotions;
 	}
 	
 	/**
@@ -52,7 +53,18 @@ export class PromotionService
 	**/
 	getPromotions() : Observable<any>
 	{
-		return this.http.get(this.HOST + this.URI_PROMOTIONS, this.httpOptions).pipe(retry(1),catchError(this.errorHandl));
+		return this.http.get(this.HOST + this.URI_PROMOTIONS, this.httpOptions).
+		pipe
+		(
+			retry(1),
+			catchError
+			(
+				error => 
+				{
+					return of({results: null});
+				}
+			)
+		);
 	}
 	
 		/**
@@ -63,7 +75,18 @@ export class PromotionService
 	**/
 	promotionInsert(data: string)
 	{
-		return this.http.post(this.HOST + this.URI_PROMOTIONS_INSERT, JSON.stringify(data), this.httpOptions).pipe(retry(1),catchError(this.errorHandl));
+		return this.http.post(this.HOST + this.URI_PROMOTIONS_INSERT, JSON.stringify(data), this.httpOptions).
+		pipe
+		(
+			retry(1),
+			catchError
+			(
+				error => 
+				{
+					return of({results: null});
+				}
+			)
+		);
 	}
 	
 		
@@ -74,6 +97,17 @@ export class PromotionService
 	**/
 	promotionUpdate(data: string) : Observable<any>
 	{
-		return this.http.put(this.HOST + this.URI_PROMOTIONS_UPDATE, JSON.stringify(data), this.httpOptions).pipe(retry(1),catchError(this.errorHandl));
+		return this.http.put(this.HOST + this.URI_PROMOTIONS_UPDATE, JSON.stringify(data), this.httpOptions).
+		pipe
+		(
+			retry(1),
+			catchError
+			(
+				error => 
+				{
+					return of({results: null});
+				}
+			)
+		);
 	}
 }

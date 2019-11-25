@@ -5,6 +5,7 @@ class Constant:
     port_default     = '5432'
     db_default       = 'invitame_una_cerveza'
     password_default = '*postgre123*'
+    postgre_exe_file = '\exe\postgresql-12.1-1-windows-x64.exe'
 
     def __init__(self):
         pass

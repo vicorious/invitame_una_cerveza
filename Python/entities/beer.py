@@ -8,8 +8,10 @@ class Beer(Entity, Base):
     __tablename__ = 'BEER'
 
     name                     = Column(String, nullable=False)
-    price                     = Column(Integer, nullable=False)
-    happy_hour_price        = Column(Integer, nullable=False)
+    pint_price                     = Column(Integer, nullable=False)
+    cup330_price                     = Column(Integer, nullable=False)
+    giraffe_price                     = Column(Integer, nullable=False)
+    pitcher_price                     = Column(Integer, nullable=False)
     bar_id                    = Column(Integer, ForeignKey('BAR.id'), nullable=False)
     beer_type_id            = Column(Integer, ForeignKey('BEER_TYPE.id'), nullable=False)
     avb                        = Column(String, nullable=False)
@@ -22,11 +24,13 @@ class Beer(Entity, Base):
     giraffe                    = Column(String, nullable=False)
     pitcher                    = Column(String, nullable=False)
 
-    def __init__(self, title, price, happy_hour_price, bar_id, beer_type_id, avb, ibu, srm, description, image, pint, cup330, giraffe, pitcher, created_by):
+    def __init__(self, title, pint_price, cup330_price, giraffe_price, pitcher_price, bar_id, beer_type_id, avb, ibu, srm, description, image, pint, cup330, giraffe, pitcher, created_by):
         Entity.__init__(self, created_by)
         self.name = name
-        self.price = price
-        self.happy_hour_price = happy_hour_price
+        self.pint_price = pint_price
+        self.cup330_price = cup330_price
+        self.giraffe_price = giraffe_price
+        self.pitcher_price = pitcher_price
         self.bar_id = bar_id
         self.beer_type_id = beer_type_id
         self.avb = avb

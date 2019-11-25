@@ -5,11 +5,11 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './codigo-component.component.html',
   styleUrls: ['./codigo-component.component.css']
 })
-export class CodigoComponentComponent implements OnInit {
+export class CodigoComponentComponent implements OnInit 
+{
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

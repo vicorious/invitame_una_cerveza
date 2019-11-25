@@ -3,6 +3,7 @@ import { Beer } from '../dto/beer';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Injectable
 
@@ -72,7 +73,18 @@ export class BeersService
 	**/
 	getBeers() : Observable<any>
 	{
-		return this.http.get<Beer>(this.HOST + this.URI_BEERS, this.httpOptions).pipe(retry(1),catchError(this.errorHandl));
+		return this.http.get<Beer>(this.HOST + this.URI_BEERS, this.httpOptions).
+		pipe
+		(
+			retry(1),
+			catchError
+			(
+				error => 
+				{
+					return of({results: null});
+				}
+			)
+		);
 	}
 	
 	/**
@@ -80,9 +92,20 @@ export class BeersService
 	*
 	*
 	**/
-	getBeerForId(id: int) :  Observable<any>
+	getBeerForId(id: string) :  Observable<any>
 	{
-		return this.http.get<Beer>(this.HOST + this.URI_BEER_ID + id + this.GET, this.httpOptions).pipe(retry(1),catchError(this.errorHandl));
+		return this.http.get<Beer>(this.HOST + this.URI_BEER_ID + id + this.GET, this.httpOptions).		
+		pipe
+		(
+			retry(1),
+			catchError
+			(
+				error => 
+				{
+					return of({results: null});
+				}
+			)
+		);
 	}
 	
 	/**
@@ -93,7 +116,18 @@ export class BeersService
 	**/
 	beerInsert(data: string)
 	{
-		return this.http.post(this.HOST + this.URI_BEER_INSERT, JSON.stringify(data), this.httpOptions).pipe(retry(1),catchError(this.errorHandl));
+		return this.http.post(this.HOST + this.URI_BEER_INSERT, JSON.stringify(data), this.httpOptions).
+		pipe
+		(
+			retry(1),
+			catchError
+			(
+				error => 
+				{
+					return of({results: null});
+				}
+			)
+		);
 	}
 	
 		
@@ -104,6 +138,17 @@ export class BeersService
 	**/
 	beerUpdate(data: string) : Observable<any>
 	{
-		return this.http.put(this.HOST + this.URI_BEER_UPDATE, JSON.stringify(data), this.httpOptions).pipe(retry(1),catchError(this.errorHandl));
+		return this.http.put(this.HOST + this.URI_BEER_UPDATE, JSON.stringify(data), this.httpOptions).
+		pipe
+		(
+			retry(1),
+			catchError
+			(
+				error => 
+				{
+					return of({results: null});
+				}
+			)
+		);
 	}
 }

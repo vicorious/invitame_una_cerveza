@@ -21,8 +21,7 @@ export class EleccionComponentComponent implements OnInit
   go(item: any): void
   {
 	  this.loading = true;
-	  var _route   = "";
-	  console.log('Go: '+item)
+	  var _route   = "";	  
 	  switch(item)
 	  {
 		  case "master":

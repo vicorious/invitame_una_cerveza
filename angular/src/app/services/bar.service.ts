@@ -3,6 +3,7 @@ import { Bar } from '../dto/bar'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Injectable
 (
@@ -56,7 +57,19 @@ export class BarService
 	**/
 	getBars() : Observable<any>
 	{
-		return this.http.get(this.HOST + this.URI_BARS, this.httpOptions).pipe(retry(1),catchError(this.errorHandl));
+		return this.http.get(this.HOST + this.URI_BARS, this.httpOptions)
+		.pipe
+		(
+			retry(1),
+			catchError
+			(
+				error => 
+				{
+					console.error('Pailander el servicio');
+					return of({results: {}});
+				}
+			)
+		);
 		
 	}
 	
@@ -65,9 +78,20 @@ export class BarService
 	*
 	*
 	**/
-	getBarForId(id: int) : Observable<any>
+	getBarForId(id: number) : Observable<any>
 	{
-		return this.http.get(this.HOST + this.URI_BAR_ID + id + this.GET, this.httpOptions).pipe(retry(1),catchError(this.errorHandl));
+		return this.http.get(this.HOST + this.URI_BAR_ID + id + this.GET, this.httpOptions).
+		pipe
+		(
+			retry(1),
+			catchError
+			(
+				error => 
+				{
+					return of({results: null});
+				}
+			)
+		);
 	}
 	
 	/**
@@ -77,7 +101,18 @@ export class BarService
 	**/
 	insertBar(data: string) : Observable<any>
 	{
-		return this.http.post(this.HOST + this.URI_BAR_INSERT, JSON.stringify(data), this.httpOptions).pipe(retry(1),catchError(this.errorHandl));
+		return this.http.post(this.HOST + this.URI_BAR_INSERT, JSON.stringify(data), this.httpOptions).
+		pipe
+		(
+			retry(1),
+			catchError
+			(
+				error => 
+				{
+					return of({results: null});
+				}
+			)
+		);
 	}
 	
 	
@@ -88,7 +123,18 @@ export class BarService
 	**/
 	updateBar(data: string) : Observable<any>
 	{
-		return this.http.put(this.HOST + this.URI_BAR_UPDATEs, JSON.stringify(data), this.httpOptions).pipe(retry(1),catchError(this.errorHandl));
+		return this.http.put(this.HOST + this.URI_BAR_UPDATE, JSON.stringify(data), this.httpOptions).
+		pipe
+		(
+			retry(1),
+			catchError
+			(
+				error => 
+				{
+					return of({results: null});
+				}
+			)
+		);
 	}
 	
   

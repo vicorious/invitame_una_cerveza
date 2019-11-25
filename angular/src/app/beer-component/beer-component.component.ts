@@ -64,11 +64,10 @@ export class BeerComponentComponent implements OnInit
 		this.loading = false;	
 	}
 	
-	getBeerDetail(id: int)
+	getBeerDetail(id: number)
 	{
 		const beer = this._activate_route.snapshot.queryParamMap.get('beer');
-		this.beer_name = beer;
-		this.beer = this.beer_service.getBeerForId(id);
+		this.beer_name = beer;		
 	}
   		
 

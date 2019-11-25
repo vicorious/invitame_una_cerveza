@@ -217,8 +217,14 @@ def updatePromotion():
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 
-@app.before_request
-def proxy():
+#@app.before_request
+
+@app.route('/configuration', methods=['GET'])
+def configuration():
+    proxy = ProxyConfiguration()
+    proxy.installPostgre()
+
+def createDataBase():
     proxy = ProxyConfiguration()
     if not proxy.existDataBase():
         logging.debug("DataBase no exists!")

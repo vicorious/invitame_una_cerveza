@@ -28,7 +28,13 @@ export class BarComponentComponent implements OnInit
 	ngOnInit() 
 	{
 		initPrimero();
-		this.bares = this.barService.getBars();
+		this.barService.getBars().subscribe
+		(
+			res => 
+			{
+				this.bares = res;
+			}
+		);
 	}
   
 	/**

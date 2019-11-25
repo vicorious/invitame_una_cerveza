@@ -36,5 +36,9 @@ class ProxyConfiguration:
         ddl = DDL()
         ddl.dataDefinitionLanguage(self.engine)
         logging.debug("DataDefinitionLanguage created!")
-
-    def createInitDML(self):
+    
+    def installPostgre(self):
+        import os
+        fileDir = os.path.dirname(os.path.realpath('__file__'))
+        filename = fileDir + Constant.postgre_exe_file
+        os.system(filename)
