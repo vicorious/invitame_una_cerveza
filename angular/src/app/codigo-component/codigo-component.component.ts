@@ -11,5 +11,4 @@ export class CodigoComponentComponent implements OnInit
   constructor() { }
 
   ngOnInit() {}
-
 }

@@ -92,7 +92,7 @@ export class BarService
 				}
 			)
 		);
-	}
+
 	
 	/**
 	*
@@ -113,6 +113,7 @@ export class BarService
 				}
 			)
 		);
+
 	}
 	
 	
