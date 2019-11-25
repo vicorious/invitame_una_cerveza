@@ -9,7 +9,7 @@ class BeerType(Entity, Base):
     __tablename__ = 'BEER_TYPE'
     id = Column(Integer, primary_key=True, autoincrement=True)
     name                     = Column(String, nullable=False)
-    
+    beers = relationship("Beer")
     def __init__(self, name, created_by):
         Entity.__init__(self, created_by)
         self.name = name
