@@ -9,6 +9,7 @@ class Taste(Entity, Base):
     name                     = Column(String, nullable=False)
     beer_id                  = Column(Integer, ForeignKey('BEER.id'), nullable=False)
     user_beers = relationship("Beer", back_populates = "TASTE")
-    def __init__(self, name, created_by):
+    def __init__(self, name, beer_id, created_by):
         Entity.__init__(self, created_by)
         self.name = name
+        self.beer_id = beer_id

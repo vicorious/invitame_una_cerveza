@@ -53,7 +53,6 @@ class DDL:
     Column('cup330_price', Integer, nullable=False),
     Column('giraffe_price', Integer, nullable=False),
     Column('pitcher_price', Integer, nullable=False),
-    Column('happy_hour_price', Integer, nullable=False),
     Column('bar_id', Integer, ForeignKey('BAR.id'), nullable=False),
     Column('beer_type_id', Integer, ForeignKey('BEER_TYPE.id'), nullable=False),
     Column('avb', String, nullable=False),

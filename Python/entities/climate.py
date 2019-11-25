@@ -7,7 +7,6 @@ Base = declarative_base()
 
 class Climate(Entity, Base):
     __tablename__ = 'CLIMATE'
-
     json                     = Column(JSONB, nullable=False)
 
     def __init__(self, json, created_by):
