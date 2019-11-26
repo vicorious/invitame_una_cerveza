@@ -7,6 +7,7 @@ Base = declarative_base()
 
 class Bar(Entity, Base):
     __tablename__ = 'BAR'
+    __table_args__ = {"schema": "public"}
     id = Column(Integer, primary_key=True, autoincrement=True)
     name                     = Column(String, nullable=False)
     open_date                 = Column(DateTime, nullable=False)
@@ -22,7 +23,6 @@ class Bar(Entity, Base):
     twitter                    = Column(String)
     instagram                = Column(String)
     emergency_number        = Column(String, nullable=False)
-    beers = relationship("Beer")
 
     def __init__(self, name, open_date, openinng_hour, close_hour, open_days, payment_product, description, image, address, points, facebook, twitter, instagram, emergency_number, created_by):
         Entity.__init__(self, created_by)

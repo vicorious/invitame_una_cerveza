@@ -1,19 +1,22 @@
 from sqlalchemy import Column, String, Integer, ForeignKey
 from entities.entity import Entity
+from entities.beer_type import BeerType
+from entities.bar import Bar
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
 class Beer(Entity, Base):
     __tablename__ = 'BEER'
+    __table_args__ = {"schema": "public"}
     id = Column(Integer, primary_key=True, autoincrement=True)
     name                     = Column(String, nullable=False)
     pint_price                     = Column(Integer, nullable=False)
     cup330_price                     = Column(Integer, nullable=False)
     giraffe_price                     = Column(Integer, nullable=False)
     pitcher_price                     = Column(Integer, nullable=False)
-    bar_id                    = Column(Integer, ForeignKey('BAR.id'), nullable=False)
-    beer_type_id            = Column(Integer, ForeignKey('BEER_TYPE.id'), nullable=False)
+    bar_id                    = Column(Integer, ForeignKey(Bar.id), nullable=False)
+    beer_type_id            = Column(Integer, ForeignKey(BeerType.id), nullable=False)
     avb                        = Column(String, nullable=False)
     ibu                        = Column(String, nullable=False)
     srm                        = Column(String, nullable=False)

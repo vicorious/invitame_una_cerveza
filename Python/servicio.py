@@ -243,8 +243,9 @@ def createDML():
         proxy.createDML()
     else:
         logging.debug("Database no exists. we going to create it!")
-        self.createDataBase()
-        self.createDML()
+        proxy.createDatabase()
+        proxy.createDDL()
+        proxy.createDML()
     return "OK"
 
 ####### Main ############

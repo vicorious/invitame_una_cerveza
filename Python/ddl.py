@@ -7,30 +7,6 @@ class DDL:
         self.metadata = MetaData()
 
     def dataDefinitionLanguage(self, engine):
-        user = Table('USER', self.metadata,
-    Column('id', Integer, primary_key=True),
-    Column('borning_date', DateTime, nullable=False),
-    Column('password_token', String, nullable=False),
-    Column('positive_balance', String, nullable=False),
-    Column('photo', String, nullable=False),
-    Column('credits', String, nullable=False),
-    Column('created_at', DateTime, nullable=False),
-    Column('updated_at', DateTime, nullable=False),
-    Column('last_updated_by', String, nullable=False))
-    #BeerType
-        beer_type = Table('BEER_TYPE', self.metadata,
-    Column('id', Integer, primary_key=True),
-    Column('name', String, nullable=False),
-    Column('created_at', DateTime, nullable=False),
-    Column('updated_at', DateTime, nullable=False),
-    Column('last_updated_by', String, nullable=False))
-    #PayType
-        pay_type = Table('PAY_TYPE', self.metadata,
-    Column('id', Integer, primary_key=True),
-    Column('name', String, nullable=False),
-    Column('created_at', DateTime, nullable=False),
-    Column('updated_at', DateTime, nullable=False),
-    Column('last_updated_by', String, nullable=False))
     #UserBeer
         user_beer = Table('USER_BEER', self.metadata,
     Column('id', Integer, primary_key=True),
@@ -44,7 +20,39 @@ class DDL:
     Column('qr', String, nullable=False),
     Column('created_at', DateTime, nullable=False),
     Column('updated_at', DateTime, nullable=False),
-    Column('last_updated_by', String, nullable=False))
+    Column('last_updated_by', String, nullable=False),
+    UniqueConstraint('_token', name='_token_unique_user_beer_constraint'),
+    UniqueConstraint('qr', name='qr_unique_user_beer_constraint'))
+        user = Table('USER', self.metadata,
+    Column('id', Integer, primary_key=True),
+    Column('borning_date', DateTime, nullable=False),
+    Column('email', String, nullable=False),
+    Column('password_token', String, nullable=False),
+    Column('positive_balance', String, nullable=False),
+    Column('photo', String, nullable=False),
+    Column('credits', String, nullable=False),
+    Column('created_at', DateTime, nullable=False),
+    Column('updated_at', DateTime, nullable=False),
+    Column('last_updated_by', String, nullable=False),
+    UniqueConstraint('email', name='email_unique_user_constraint'),
+    UniqueConstraint('password_token', name='password_token_unique_user_constraint'),
+    UniqueConstraint('photo', name='photo_unique_user_constraint'))
+    #BeerType
+        beer_type = Table('BEER_TYPE', self.metadata,
+    Column('id', Integer, primary_key=True),
+    Column('name', String, nullable=False),
+    Column('created_at', DateTime, nullable=False),
+    Column('updated_at', DateTime, nullable=False),
+    Column('last_updated_by', String, nullable=False),
+    UniqueConstraint('name', name='name_unique_beer_type_constraint'))
+    #PayType
+        pay_type = Table('PAY_TYPE', self.metadata,
+    Column('id', Integer, primary_key=True),
+    Column('name', String, nullable=False),
+    Column('created_at', DateTime, nullable=False),
+    Column('updated_at', DateTime, nullable=False),
+    Column('last_updated_by', String, nullable=False),
+    UniqueConstraint('name', name='name_unique_pay_type_constraint'))
     #Beer
         beer = Table('BEER', self.metadata,
     Column('id', Integer, primary_key=True),
@@ -66,15 +74,17 @@ class DDL:
     Column('pitcher', String, nullable=False),
     Column('created_at', DateTime, nullable=False),
     Column('updated_at', DateTime, nullable=False),
-    Column('last_updated_by', String, nullable=False))
+    Column('last_updated_by', String, nullable=False),
+    UniqueConstraint('name', name='name_unique_beer_constraint'),
+    UniqueConstraint('image', name='image_unique_beer_constraint'))
     #Bar
         bar = Table('BAR', self.metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
     Column('name', String, nullable=False),
     Column('open_date', DateTime, nullable=False),
-    Column('openinng_hour', String, nullable=False),
-    Column('close_hour', String, nullable=False),
-    Column('open_days', String, nullable=False),
+    Column('opening_hour', Integer, nullable=False),
+    Column('close_hour', Integer, nullable=False),
+    Column('open_days', Integer, nullable=False),
     Column('payment_product', String, nullable=False),
     Column('description', String, nullable=False),
     Column('image', String, nullable=False),
@@ -82,11 +92,22 @@ class DDL:
     Column('points', Integer, nullable=False),
     Column('facebook', String),
     Column('twitter', String),
-    Column('instagram', DateTime),
+    Column('instagram', String),
     Column('emergency_number', String, nullable=False),
     Column('created_at', DateTime, nullable=False),
     Column('updated_at', DateTime, nullable=False),
-    Column('last_updated_by', String, nullable=False))
+    Column('last_updated_by', String, nullable=False),
+    UniqueConstraint('image', name='image_unique_bar_constraint'),
+    UniqueConstraint('address', name='address_unique_bar_constraint'),
+    UniqueConstraint('facebook', name='facebook_unique_bar_constraint'),
+    UniqueConstraint('twitter', name='twitter_unique_bar_constraint'),
+    UniqueConstraint('instagram', name='instagram_unique_bar_constraint'),
+    CheckConstraint('opening_hour >= 0', name='chk_opening_zero'),
+    CheckConstraint('opening_hour <= 24', name='chk_opening_closed'),
+    CheckConstraint('open_days > 0', name='chk_open_days_zero'),
+    CheckConstraint('open_days <= 7', name='chk_open_days_closed'),
+    CheckConstraint('close_hour >= 0', name='chk_close_hour_zero'),
+    CheckConstraint('close_hour <= 24', name='chk_close_hour_closed'))
     #Pairing
         pairing = Table('PAIRING', self.metadata,
     Column('id', Integer, primary_key=True),
@@ -95,14 +116,18 @@ class DDL:
     Column('beer_id', Integer, ForeignKey('BEER.id'), nullable=False),
     Column('created_at', DateTime, nullable=False),
     Column('updated_at', DateTime, nullable=False),
-    Column('last_updated_by', String, nullable=False))
+    Column('last_updated_by', String, nullable=False),
+    UniqueConstraint('image', name='image_unique_pairing_constraint'),
+    UniqueConstraint('name', name='name_unique_pairing_constraint'))
     #Taste
         taste = Table('TASTE', self.metadata,
     Column('id', Integer, primary_key=True),
     Column('name', String, nullable=False),
     Column('created_at', DateTime, nullable=False),
+    Column('beer_id', Integer, ForeignKey('BEER.id'), nullable=False),
     Column('updated_at', DateTime, nullable=False),
-    Column('last_updated_by', String, nullable=False))
+    Column('last_updated_by', String, nullable=False),
+    UniqueConstraint('name', name='name_unique_taste_constraint'))
     #Climate
         climate = Table('CLIMATE', self.metadata,
     Column('id', Integer, primary_key=True),

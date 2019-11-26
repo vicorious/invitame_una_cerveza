@@ -7,6 +7,7 @@ Base = declarative_base()
 
 class Climate(Entity, Base):
     __tablename__ = 'CLIMATE'
+    __table_args__ = {"schema": "public"}
     id = Column(Integer, primary_key=True, autoincrement=True)
     json                     = Column(JSONB, nullable=False)
 
