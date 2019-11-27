@@ -16,12 +16,10 @@ class ProxyConfiguration:
            logging.debug("Engine set!")
 
     def createDatabase(self):
-        #Create database
         create_database(self.engine.url)
         logging.debug("Database created!")
 
     def createEngine(self):
-        # generate database schema
         db_url = Constant.ip_default + ":" + Constant.port_default
         db_name = Constant.db_default
         db_user = Constant.user_default

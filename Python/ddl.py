@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, DateTime, MetaData, Table, ForeignKey
+from sqlalchemy import Column, String, Integer, DateTime, MetaData, Table, ForeignKey, UniqueConstraint, CheckConstraint
 from sqlalchemy.dialects.postgresql import JSONB
 
 class DDL:
