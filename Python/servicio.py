@@ -215,7 +215,7 @@ def promotions():
     try:
         promotions  = PromotionFacade().promotions()
         if len(promotions) > 0:
-            return jsonify(promotions) 
+            return jsonify(json.dumps(promotions, cls=AlchemyEncoder)) 
         elif len(promotions) == 0: 
             return jsonify(promotions), status.HTTP_204_NO_CONTENT
     except Exception as e:
