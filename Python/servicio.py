@@ -242,6 +242,16 @@ def updatePromotion():
     except Exception as e:
         logging.debug("Unexpected Error {}".format(e))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
+    
+@app.route('/climate/weather', methods=['PUT'])
+def weather():
+    try:
+        _json_promotion = request.get_json()
+        PromotionFacade().updatePromotion(_json_promotion)
+        return jsonify(OK)
+    except Exception as e:
+        logging.debug("Unexpected Error {}".format(e))
+    return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 
 #@app.before_request
