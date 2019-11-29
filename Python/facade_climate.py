@@ -1,6 +1,7 @@
 from constant import Constant
 from dto.climate_dto import ClimateDTO
 import requests
+
 class Climate:
 
     def __init__(self):
