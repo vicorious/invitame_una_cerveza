@@ -13,10 +13,10 @@ class PostgreConnect:
     
     def __init__(self, db, port, ip, user, password):
         self.password = password
-        self.user     = user
-        self.ip       = ip
-        self.port     = port
-        self.db       = db
+        self.user = user
+        self.ip = ip
+        self.port = port
+        self.db = db
 
     def connect(self):
         cadena = "host='{}' dbname='{}' user='{}' password='{}'".format(self.ip, self.db, self.user, self.password)
@@ -24,3 +24,4 @@ class PostgreConnect:
         conexion = psycopg2.connect(cadena) 
         logging.debug('Conexion correcta')		
         return conexion
+        

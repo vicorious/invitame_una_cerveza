@@ -12,14 +12,14 @@ class UserBeer(Entity, Base):
     __tablename__ = 'USER_BEER'
     __table_args__ = {"schema": "public"}
 
-    beer_id                 = Column(Integer, ForeignKey(Beer.id), nullable=False)
-    user_id                 = Column(Integer, ForeignKey(User.id), nullable=False)
-    pay_type_id                = Column(Integer, ForeignKey(PayType.id), nullable=False)
-    climate_id                = Column(Integer, ForeignKey(Climate.id), nullable=False)
-    visit_date                = Column(DateTime, nullable=False)
-    _token                    = Column(String, nullable=False)    
-    payment_product            = Column(String, nullable=False)
-    qr                        = Column(String, nullable=False)
+    beer_id = Column(Integer, ForeignKey(Beer.id), nullable=False)
+    user_id = Column(Integer, ForeignKey(User.id), nullable=False)
+    pay_type_id = Column(Integer, ForeignKey(PayType.id), nullable=False)
+    climate_id = Column(Integer, ForeignKey(Climate.id), nullable=False)
+    visit_date = Column(DateTime, nullable=False)
+    _token = Column(String, nullable=False)    
+    payment_product = Column(String, nullable=False)
+    qr = Column(String, nullable=False)
 
     def __init__(self, beer_id, user_id, pay_type_id, climate_id, visit_date, _token, qr, created_by):
         Entity.__init__(self, created_by)

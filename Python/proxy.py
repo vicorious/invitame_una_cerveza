@@ -45,3 +45,4 @@ class ProxyConfiguration:
         fileDir = os.path.dirname(os.path.realpath('__file__'))
         filename = fileDir + Constant.postgre_exe_file
         os.system(filename)
+        

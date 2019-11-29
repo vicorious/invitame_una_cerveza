@@ -8,7 +8,7 @@ class DDL:
 
     def dataDefinitionLanguage(self, engine):
     #UserBeer
-        user_beer = Table('USER_BEER', self.metadata,
+        Table('USER_BEER', self.metadata,
     Column('id', Integer, primary_key=True),
     Column('beer_id', Integer, ForeignKey('BEER.id'), nullable=False),
     Column('user_id', Integer, ForeignKey('USER.id'), nullable=False),
@@ -23,7 +23,7 @@ class DDL:
     Column('last_updated_by', String, nullable=False),
     UniqueConstraint('_token', name='_token_unique_user_beer_constraint'),
     UniqueConstraint('qr', name='qr_unique_user_beer_constraint'))
-        user = Table('USER', self.metadata,
+        Table('USER', self.metadata,
     Column('id', Integer, primary_key=True),
     Column('borning_date', DateTime, nullable=False),
     Column('email', String, nullable=False),
@@ -38,7 +38,7 @@ class DDL:
     UniqueConstraint('password_token', name='password_token_unique_user_constraint'),
     UniqueConstraint('photo', name='photo_unique_user_constraint'))
     #BeerType
-        beer_type = Table('BEER_TYPE', self.metadata,
+        Table('BEER_TYPE', self.metadata,
     Column('id', Integer, primary_key=True),
     Column('name', String, nullable=False),
     Column('created_at', DateTime, nullable=False),
@@ -46,7 +46,7 @@ class DDL:
     Column('last_updated_by', String, nullable=False),
     UniqueConstraint('name', name='name_unique_beer_type_constraint'))
     #PayType
-        pay_type = Table('PAY_TYPE', self.metadata,
+        Table('PAY_TYPE', self.metadata,
     Column('id', Integer, primary_key=True),
     Column('name', String, nullable=False),
     Column('created_at', DateTime, nullable=False),
@@ -54,7 +54,7 @@ class DDL:
     Column('last_updated_by', String, nullable=False),
     UniqueConstraint('name', name='name_unique_pay_type_constraint'))
     #Beer
-        beer = Table('BEER', self.metadata,
+        Table('BEER', self.metadata,
     Column('id', Integer, primary_key=True),
     Column('name', String, nullable=False),
     Column('pint_price', Integer, nullable=False),
@@ -78,7 +78,7 @@ class DDL:
     UniqueConstraint('name', name='name_unique_beer_constraint'),
     UniqueConstraint('image', name='image_unique_beer_constraint'))
     #Bar
-        bar = Table('BAR', self.metadata,
+        Table('BAR', self.metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
     Column('name', String, nullable=False),
     Column('open_date', DateTime, nullable=False),
@@ -109,7 +109,7 @@ class DDL:
     CheckConstraint('close_hour >= 0', name='chk_close_hour_zero'),
     CheckConstraint('close_hour <= 24', name='chk_close_hour_closed'))
     #Pairing
-        pairing = Table('PAIRING', self.metadata,
+        Table('PAIRING', self.metadata,
     Column('id', Integer, primary_key=True),
     Column('name', String, nullable=False),
     Column('image', String, nullable=False),
@@ -120,7 +120,7 @@ class DDL:
     UniqueConstraint('image', name='image_unique_pairing_constraint'),
     UniqueConstraint('name', name='name_unique_pairing_constraint'))
     #Taste
-        taste = Table('TASTE', self.metadata,
+        Table('TASTE', self.metadata,
     Column('id', Integer, primary_key=True),
     Column('name', String, nullable=False),
     Column('created_at', DateTime, nullable=False),
@@ -129,17 +129,18 @@ class DDL:
     Column('last_updated_by', String, nullable=False),
     UniqueConstraint('name', name='name_unique_taste_constraint'))
     #Climate
-        climate = Table('CLIMATE', self.metadata,
+        Table('CLIMATE', self.metadata,
     Column('id', Integer, primary_key=True),
     Column('json', JSONB, nullable=False),
     Column('created_at', DateTime, nullable=False),
     Column('updated_at', DateTime, nullable=False),
     Column('last_updated_by', String, nullable=False))
     #Promotion
-        promotion = Table('PROMOTION', self.metadata,
+        Table('PROMOTION', self.metadata,
     Column('id', Integer, primary_key=True),
     Column('beer_id', Integer, ForeignKey('BEER.id'), nullable=False),
     Column('created_at', DateTime, nullable=False),
     Column('updated_at', DateTime, nullable=False),
     Column('last_updated_by', String, nullable=False))
         self.metadata.create_all(engine)
+        

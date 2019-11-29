@@ -18,7 +18,7 @@ class UserFacade:
     def getCursor(self):
         try:
             #Conexion a postgre
-            self.defaultConnection        = DefaultConnection(self.proxy.engine)
+            self.defaultConnection = DefaultConnection(self.proxy.engine)
             self.beerConnection = self.defaultConnection.getBeerConnection()   
         except Exception as e:
             logging.debug('Error in "UserFacade: "')
@@ -50,9 +50,7 @@ class UserFacade:
     def register(self, _json):
         try:
             _json_entrada = json.loads(_json)
-            user = User(_json_entrada["mail"], _json_entrada["borning_date"], _json_entrada["password_token"], 
-                        _json_entrada["positive_balance"], _json_entrada["photo"], _json_entrada["credits"], 
-                        _json_entrada["user_login"])
+            user = User(_json_entrada["mail"], _json_entrada["borning_date"], _json_entrada["password_token"],_json_entrada["positive_balance"], _json_entrada["photo"], _json_entrada["credits"], _json_entrada["user_login"])
             self.beerConnection.session.add(user)
             self.beerConnection.session.commit()
             self.beerConnection.session.close()

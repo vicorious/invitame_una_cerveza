@@ -19,7 +19,7 @@ class PromotionFacade:
     def getCursor(self):
         try:
             #Conexion a postgre
-            self.defaultConnection        = DefaultConnection(self.proxy.engine)
+            self.defaultConnection = DefaultConnection(self.proxy.engine)
             self.beerConnection = self.defaultConnection.getBeerConnection()   
         except Exception as e:
             logging.debug('Error in "Promotion facade: "')
@@ -57,8 +57,8 @@ class PromotionFacade:
 
     ########### Update beer #################################################
     def updatePromotion(self, _json):
-        SQL_UPDATE_BEERS         = "UPDATE PROMOTION SET "
-        SQL_WHERE_UPDATE_BEERS      = "WHERE ID = {}"            
+        SQL_UPDATE_BEERS = "UPDATE PROMOTION SET "
+        SQL_WHERE_UPDATE_BEERS = "WHERE ID = {}"            
         try:
             _json_entrada = json.loads(_json)
             update = ''

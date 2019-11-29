@@ -9,9 +9,9 @@ class Pairing(Entity, Base):
     __tablename__ = 'PAIRING'
     __table_args__ = {"schema": "public"}
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name                     = Column(String, nullable=False)
-    image                     = Column(String, nullable=False)
-    beer_id                 = Column(Integer, ForeignKey(Beer.id), nullable=False)
+    name = Column(String, nullable=False)
+    image = Column(String, nullable=False)
+    beer_id = Column(Integer, ForeignKey(Beer.id), nullable=False)
     def __init__(self, name, image, beer_id, created_by):
         Entity.__init__(self, created_by)
         self.name = name

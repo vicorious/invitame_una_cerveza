@@ -48,9 +48,7 @@ class UserBeerFacade:
     def insertUserForVisit(self, _json):
         try:
             _json_entrada = json.loads(_json)
-            user_beer = UserBeer(_json_entrada["beer_id"], _json_entrada["user_id"], _json_entrada["pay_type_id"], 
-                        _json_entrada["climate_id"], _json_entrada["visit_date"], _json_entrada["_token"], 
-                        _json_entrada["qr"], _json_entrada["created_by"])
+            user_beer = UserBeer(_json_entrada["beer_id"], _json_entrada["user_id"], _json_entrada["pay_type_id"], _json_entrada["climate_id"], _json_entrada["visit_date"], _json_entrada["_token"], _json_entrada["qr"], _json_entrada["created_by"])
             self.beerConnection.session.add(user_beer)
             self.beerConnection.session.commit()
             self.beerConnection.session.close()

@@ -1,10 +1,10 @@
-from default_connection import DefaultConnection
 import json
 import sys
 import psycopg2.extras
 import datetime
 import logging
 import time
+from default_connection import DefaultConnection
 from entities.beer import Beer
 from proxy                  import ProxyConfiguration
 
@@ -19,7 +19,7 @@ class BeerFacade:
     def getCursor(self):
         try:
             #Conexion a postgre
-            self.defaultConnection        = DefaultConnection(self.proxy.engine)
+            self.defaultConnection = DefaultConnection(self.proxy.engine)
             self.beerConnection = self.defaultConnection.getBeerConnection()   
         except Exception as e:
             logging.debug('Error in "Beer facade: "')
@@ -50,11 +50,7 @@ class BeerFacade:
     def insertBeer(self, _json):
         try:
             _json_entrada = json.loads(_json)
-            beer = Beer(_json_entrada["title"], _json_entrada["price"], _json_entrada["happy_hour_price"], 
-                        _json_entrada["bar_id"], _json_entrada["beer_type_id"], _json_entrada["avb"], 
-                        _json_entrada["ibu"], _json_entrada["srm"], _json_entrada["description"],
-                        _json_entrada["image"], _json_entrada["pint"], _json_entrada["cup330"],
-                        _json_entrada["giraffe"], _json_entrada["pitcher"], _json_entrada["created_by"])
+            beer = Beer(_json_entrada["title"], _json_entrada["price"], _json_entrada["happy_hour_price"],_json_entrada["bar_id"], _json_entrada["beer_type_id"], _json_entrada["avb"],_json_entrada["ibu"], _json_entrada["srm"], _json_entrada["description"],_json_entrada["image"], _json_entrada["pint"], _json_entrada["cup330"],_json_entrada["giraffe"], _json_entrada["pitcher"], _json_entrada["created_by"])
             self.beerConnection.session.add(beer)
             self.beerConnection.session.commit()
             self.beerConnection.session.close()            
@@ -75,8 +71,8 @@ class BeerFacade:
 
     ########### Update beer #################################################
     def updateBeer(self, _json):
-        SQL_UPDATE_BEERS         = "UPDATE BEER SET "
-        SQL_WHERE_UPDATE_BEERS      = "WHERE ID = {}"            
+        SQL_UPDATE_BEERS = "UPDATE BEER SET "
+        SQL_WHERE_UPDATE_BEERS = "WHERE ID = {}"            
         try:
             _json_entrada = json.loads(_json)
             update = ''

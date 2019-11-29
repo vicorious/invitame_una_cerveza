@@ -1,8 +1,8 @@
-from default_connection import DefaultConnection
 import json
 import sys
 import psycopg2.extras
 import logging
+from default_connection import DefaultConnection
 from entities.bar import Bar
 from proxy                  import ProxyConfiguration
 
@@ -17,7 +17,7 @@ class BarFacade:
     def getCursor(self):
         try:
             #Conexion a postgre
-            self.defaultConnection        = DefaultConnection(self.proxy.engine) 
+            self.defaultConnection = DefaultConnection(self.proxy.engine) 
             self.beerConnection = self.defaultConnection.getBeerConnection()            
         except Exception as e:
             logging.debug('Error in "BarFacade: "')
@@ -48,11 +48,7 @@ class BarFacade:
     def insertBar(self, _json):
         try:
             _json_entrada = json.loads(_json)
-            bar = Bar(_json_entrada["title"], _json_entrada["open_date"], _json_entrada["openinng_hour"], 
-                        _json_entrada["close_hour"], _json_entrada["open_days"], _json_entrada["payment_product"], 
-                        _json_entrada["description"], _json_entrada["image"], _json_entrada["address"],
-                        _json_entrada["points"], _json_entrada["facebook"], _json_entrada["twitter"],
-                        _json_entrada["instagram"], _json_entrada["emergency_number"], _json_entrada["created_by"])
+            bar = Bar(_json_entrada["title"], _json_entrada["open_date"], _json_entrada["openinng_hour"],_json_entrada["close_hour"], _json_entrada["open_days"], _json_entrada["payment_product"],_json_entrada["description"], _json_entrada["image"], _json_entrada["address"],_json_entrada["points"], _json_entrada["facebook"], _json_entrada["twitter"],_json_entrada["instagram"], _json_entrada["emergency_number"], _json_entrada["created_by"])
             self.beerConnection.session.add(bar)
             self.beerConnection.session.commit()
             self.beerConnection.session.close()            
@@ -73,8 +69,8 @@ class BarFacade:
 
     ########### Update bar #################################################
     def updateBar(self, _json):
-        SQL_UPDATE_BARES          = "UPDATE BAR SET "
-        SQL_WHERE_UPDATE_BARES      = "WHERE ID = {}"            
+        SQL_UPDATE_BARES = "UPDATE BAR SET "
+        SQL_WHERE_UPDATE_BARES = "WHERE ID = {}"            
         try:
             _json_entrada = json.loads(_json)
             update = ''
