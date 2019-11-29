@@ -1,16 +1,12 @@
 import json
-import sys
-import datetime
 import logging
-import time
-from sqlalchemy.orm.exc import MultipleResultsFound, NoResultFound
 from default_connection import DefaultConnection
 from entities.promotion import Promotion
 from proxy import ProxyConfiguration
 
 class PromotionFacade:
-    defaultConnection = None
-    beerConnection = None
+    default_connection = None
+    beer_connection = None
     proxy = None
 
     logging.basicConfig(filename="test.log", level=logging.DEBUG)
@@ -19,8 +15,8 @@ class PromotionFacade:
     def get_cursor(self):
         try:
             #Conexion a postgre
-            self.defaultConnection = DefaultConnection(self.proxy.engine)
-            self.beerConnection = self.defaultConnection.get_beer_connection()
+            self.default_connection = DefaultConnection(self.proxy.engine)
+            self.beer_connection = self.defaultConnection.get_beer_connection()
         except Exception as exception:
             logging.debug('Error in "Promotion facade: %s "', exception)
             raise Exception('Error no controlado: {}'.format(exception.args[0]))
@@ -37,23 +33,23 @@ class PromotionFacade:
         try:
             _json_entrada = json.loads(_json)
             promotion = Promotion(_json_entrada["beer_id"], _json_entrada["created_by"])
-            self.beerConnection.session.add(promotion)
-            self.beerConnection.session.commit()
-            self.beerConnection.session.close()
+            self.beer_connection.session.add(promotion)
+            self.beer_connection.session.commit()
+            self.beer_connection.session.close()
         except Exception as exception:
-            logging.debug('Exception when we try add Promotion: %s"' , exception)
+            logging.debug('Exception when we try add Promotion: %s"', exception)
         finally:
-            self.beerConnection.session.close()
+            self.beer_connection.session.close()
 
     ########### Beers #################################################
     def promotions(self):
         try:
-            results = self.beerConnection.session.query(Promotion).all()
+            results = self.beer_connection.session.query(Promotion).all()
             return results
         except Exception as exception:
-            logging.debug('Exception when we try fetch Promotions: %s"' , exception)
+            logging.debug('Exception when we try fetch Promotions: %s"', exception)
         finally:
-            self.beerConnection.session.close()
+            self.beer_connection.session.close()
 
     ########### Update beer #################################################
     def update_promotion(self, _json):
@@ -64,17 +60,17 @@ class PromotionFacade:
             update = ''
             for json_i in _json_entrada:
                 for attribute, value in json_i:
-                    if attribute == 'id' or attribute == 'ID':
+                    if attribute in('id', 'ID'):
                         continue
                     if value is int:
                         update.join(attribute.upper()).join(" = ").join(value).join(" ")
                     else:
                         update.join(attribute.upper()).join(" = ").join("'").join(value).join("'").join(" ")
             update = sql_update_promotion.join(update).join(sql_where_update_promotion.format(_json_entrada["id"]))
-            self.beerConnection.session.query(Promotion).from_statement(str(update))
-            self.beerConnection.session.commit()
-            self.beerConnection.session.close()
+            self.beer_connection.session.query(Promotion).from_statement(str(update))
+            self.beer_connection.session.commit()
+            self.beer_connection.session.close()
         except Exception as exception:
-            logging.debug('Exception when we try update promotion: %s"' , exception)
+            logging.debug('Exception when we try update promotion: %s"', exception)
         finally:
-            self.beerConnection.session.close() 
+            self.beer_connection.session.close()

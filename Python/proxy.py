@@ -1,19 +1,20 @@
+import os
+import logging
 from sqlalchemy                 import create_engine
 from sqlalchemy_utils           import database_exists, create_database
 from constant                   import Constant
 from ddl                        import DDL
 from dml                        import DML
-import logging
 logging.basicConfig(filename="test.log", level=logging.DEBUG)
 class ProxyConfiguration:
 
     engine = None
     def __init__(self, engine=None):
-       if engine is None:
-           self.create_engine()
-       else:
-           self.engine = engine
-           logging.debug("Engine set!")
+        if engine is None:
+            self.create_engine()
+        else:
+            self.engine = engine
+            logging.debug("Engine set!")
 
     def create_database(self):
         create_database(self.engine.url)
@@ -34,15 +35,14 @@ class ProxyConfiguration:
         ddl = DDL()
         ddl.data_definition_language(self.engine)
         logging.debug("DataDefinitionLanguage created!")
-        
+
     def create_dml(self):
         dml = DML(self.engine)
         dml.create_dml()
         logging.debug("DataModelingLanguage created!")
     
     def install_postgre(self):
-        import os
-        fileDir = os.path.dirname(os.path.realpath('__file__'))
-        filename = fileDir + Constant.postgre_exe_file
-        os.system(filename)
+        file_dir = os.path.dirname(os.path.realpath('__file__'))
+        file_name = file_dir + Constant.postgre_exe_file
+        os.system(file_name)
         
