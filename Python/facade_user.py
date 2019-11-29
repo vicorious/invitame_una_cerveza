@@ -1,11 +1,11 @@
 import json
 import sys
-import psycopg2.extras
 import logging
 from entities.user import User
 from sqlalchemy.orm.exc import MultipleResultsFound, NoResultFound
 from default_connection import DefaultConnection
 from proxy import ProxyConfiguration
+from sqlalchemy.orm.sync import update
 
 class UserFacade:
 
@@ -20,17 +20,17 @@ class UserFacade:
         try:
             #Conexion a postgre
             self.defaultConnection = DefaultConnection(self.proxy.engine)
-            self.beerConnection = self.defaultConnection.get_beer_connection()   
-        except Exception as e:
-            logging.debug('Error in "UserFacade: "')
-            raise Exception('Error no controlado: {}'.format(e.args[0]))            
-        finally:            
+            self.beerConnection = self.defaultConnection.get_beer_connection()
+        except Exception as exception:
+            logging.debug('Error in "UserFacade: %s"', exception)
+            raise Exception('Error no controlado: {}'.format(exception.args[0]))
+        finally:
             pass
 
     ############ Constructor ##############################################
     def __init__(self):
         self.proxy = ProxyConfiguration()
-        self.get_cursor()        
+        self.get_cursor()
 
     ############ Login ####################################################
     def login(self, _json):
@@ -38,13 +38,13 @@ class UserFacade:
             _json_entrada = json.loads(_json)
             results = self.beerConnection.session.query(User).filter(User.name == _json_entrada["name"], User.password_token == _json_entrada["password_token"]).one()
             self.beerConnection.session.close()
-        except MultipleResultsFound as me:                
-            logging.debug('Multiple rows. Failed Integrity from database')
-        except NoResultFound as ne:
-            logging.debug('User not found "')
-        except Exception as ex:
-            logging.debug('Exception: "')
-        finally:            
+        except MultipleResultsFound as multiples_results:
+            logging.debug('Multiple rows. Failed Integrity from database %s', multiples_results)
+        except NoResultFound as no_results:
+            logging.debug('User not found %s"', no_results)
+        except Exception as exception:
+            logging.debug('Exception: %s"' , exception)
+        finally:
             pass
 
     ########### Register #################################################
@@ -55,9 +55,9 @@ class UserFacade:
             self.beerConnection.session.add(user)
             self.beerConnection.session.commit()
             self.beerConnection.session.close()
-        except Exception as ex:
-            logging.debug('Exception when we try add User: {}"'.format(ex))
-        finally:            
+        except Exception as exception:
+            logging.debug('Exception when we try add User: %s"' , exception)
+        finally:
             pass
 
     ########### forgotPassword #################################################
@@ -67,7 +67,7 @@ class UserFacade:
             self.beerConnection.session.execute(update(User, values={User.password_token: _json_entrada["new_password_token"]})).filter(User.name == _json_entrada["name"], User.password_token == _json_entrada["password_token"])
             self.beerConnection.session.commit()
             self.beerConnection.session.close()
-        except Exception as ex:
-            logging.debug('Exception when we try add User: {}"'.format(ex))
-        finally:            
-            pass              
+        except Exception as exception:
+            logging.debug('Exception when we try add User: %s"' , exception)
+        finally:
+            pass

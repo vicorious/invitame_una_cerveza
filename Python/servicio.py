@@ -22,7 +22,7 @@ FAIL = 'FAIL'
 logging.basicConfig(filename="test.log", level=logging.DEBUG)
 #################### USER #############################
 @app.route('/user/login', methods=['POST'])
-def login():    
+def login():
     try:
         _json_login = request.get_json()
         UserFacade().login(_json_login)
@@ -36,7 +36,7 @@ def register():
     try:
         _json_registro = request.get_json()
         UserFacade().register(_json_registro)
-        return jsonify(OK)                    
+        return jsonify(OK)
     except Exception as exception:
         logging.debug("Unexpected Error {}".format(exception))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
@@ -46,7 +46,7 @@ def forgotPassword():
     try:
         _json_olvido = request.get_json()
         UserFacade().forgot_password(_json_olvido)
-        return jsonify(OK)                    
+        return jsonify(OK)
     except Exception as exception:
         logging.debug("Unexpected Error {}".format(exception))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
@@ -58,9 +58,9 @@ def barForId(_bar_id):
     try: 
         bar = BarFacade().bar_id(_bar_id)
         if bar is None:
-            return jsonify(bar), status.HTTP_204_NO_CONTENT  
+            return jsonify(bar), status.HTTP_204_NO_CONTENT
         else:
-            return jsonify(json.dumps(bar, cls=AlchemyEncoder))        
+            return jsonify(json.dumps(bar, cls=AlchemyEncoder))
     except Exception as exception:
         logging.debug("Unexpected Error {}".format(exception))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
@@ -70,9 +70,9 @@ def barForId(_bar_id):
 def bars():
     try:
         bars = BarFacade().bars()
-        if len(bars) > 0: 
+        if len(bars) > 0:
             return jsonify(json.dumps(bars, cls=AlchemyEncoder))
-        elif len(bars) == 0: 
+        elif len(bars) == 0:
             return jsonify(bars), status.HTTP_204_NO_CONTENT
     except Exception as exception:
         logging.debug("Unexpected Error {}".format(exception))
@@ -108,7 +108,7 @@ def beerId(_beer_id):
         beer = BeerFacade().beer_id(_beer_id)
         if beer is None:
             return jsonify(beer), status.HTTP_204_NO_CONTENT  
-        else: 
+        else:
             return jsonify(json.dumps(beer, cls=AlchemyEncoder))
     except Exception as exception:
         logging.debug("Unexpected Error {}".format(exception))
@@ -121,7 +121,7 @@ def beers():
         beers  = BeerFacade().beers()
         if len(beers) > 0:
             return jsonify(json.dumps(beers, cls=AlchemyEncoder))
-        elif len(beers) == 0: 
+        elif len(beers) == 0:
             return jsonify(beers), status.HTTP_204_NO_CONTENT
     except Exception as exception:
         logging.debug("Unexpected Error {}".format(exception))
@@ -156,8 +156,8 @@ def userForVisit(_user_id):
         user_beer = UserBeerFacade().user_for_visit(_user_id)
         if len(user_beer) > 0:
             return jsonify(json.dumps(user_beer, cls=AlchemyEncoder))
-        elif len(user_beer) == 0: 
-            return jsonify(user_beer), status.HTTP_204_NO_CONTENT            
+        elif len(user_beer) == 0:
+            return jsonify(user_beer), status.HTTP_204_NO_CONTENT
     except Exception as exception:
         logging.debug("Unexpected Error {}".format(exception))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
@@ -167,36 +167,36 @@ def userBeerForVisit(_user_id, _beer_id):
     try:
         beers  = UserBeerFacade().user_beer_for_visit(_user_id, _beer_id)
         if len(beers) > 0:
-            return jsonify(json.dumps(beers, cls=AlchemyEncoder)) 
-        elif len(beers) == 0: 
+            return jsonify(json.dumps(beers, cls=AlchemyEncoder))
+        elif len(beers) == 0:
             return jsonify(beers), status.HTTP_204_NO_CONTENT
     except Exception as exception:
         logging.debug("Unexpected Error {}".format(exception))
-    return jsonify(FAIL), status.HTTP_409_CONFLICT    
+    return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 @app.route('/userBeer/<_user_id>/<_beer_id>/<_pay_type_id>/GET', methods=['GET'])
 def userBeerPayTypeForVisit(_user_id, _beer_id, _pay_type_id):
     try:
         beers  = UserBeerFacade().user_beer_pay_type_for_visit(_user_id, _beer_id, _pay_type_id)
         if len(beers) > 0:
-            return jsonify(json.dumps(beers, cls=AlchemyEncoder)) 
+            return jsonify(json.dumps(beers, cls=AlchemyEncoder))
         elif len(beers) == 0:
             return jsonify(beers), status.HTTP_204_NO_CONTENT
     except Exception as exception:
         logging.debug("Unexpected Error {}".format(exception))
-    return jsonify(FAIL), status.HTTP_409_CONFLICT   
+    return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 @app.route('/userBeer/<_user_id>/<_pay_type_id>/GET', methods=['GET'])
 def userPayTypeForVisit(_user_id, _pay_type_id):
     try:
         beers  = UserBeerFacade().user_pay_type_for_visit(_user_id, _pay_type_id)
         if len(beers) > 0:
-            return jsonify(json.dumps(beers, cls=AlchemyEncoder)) 
+            return jsonify(json.dumps(beers, cls=AlchemyEncoder))
         elif len(beers) == 0:
             return jsonify(beers), status.HTTP_204_NO_CONTENT
     except Exception as exception:
         logging.debug("Unexpected Error {}".format(exception))
-    return jsonify(FAIL), status.HTTP_409_CONFLICT    
+    return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 
 @app.route('/userBeer/INSERT', methods=['POST'])
@@ -216,8 +216,8 @@ def promotions():
     try:
         promotions  = PromotionFacade().promotions()
         if len(promotions) > 0:
-            return jsonify(json.dumps(promotions, cls=AlchemyEncoder)) 
-        elif len(promotions) == 0: 
+            return jsonify(json.dumps(promotions, cls=AlchemyEncoder))
+        elif len(promotions) == 0:
             return jsonify(promotions), status.HTTP_204_NO_CONTENT
     except Exception as exception:
         logging.debug("Unexpected Error {}".format(exception))
@@ -299,9 +299,9 @@ def createDML():
             proxy.create_ddl()
             proxy.create_dml()
         return jsonify(OK)
-    except:        
+    except:
         return jsonify(FAIL), status.HTTP_409_CONFLICT
-    return jsonify(FAIL), status.HTTP_409_CONFLICT        
+    return jsonify(FAIL), status.HTTP_409_CONFLICT
 ####### Main ############
 if __name__ == '__main__':
     APP.run()

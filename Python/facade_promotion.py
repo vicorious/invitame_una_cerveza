@@ -1,6 +1,5 @@
 import json
 import sys
-import psycopg2.extras
 import datetime
 import logging
 import time
@@ -21,17 +20,17 @@ class PromotionFacade:
         try:
             #Conexion a postgre
             self.defaultConnection = DefaultConnection(self.proxy.engine)
-            self.beerConnection = self.defaultConnection.get_beer_connection()   
-        except Exception as e:
-            logging.debug('Error in "Promotion facade: "')
-            raise Exception('Error no controlado: {}'.format(e.args[0]))            
-        finally:            
+            self.beerConnection = self.defaultConnection.get_beer_connection()
+        except Exception as exception:
+            logging.debug('Error in "Promotion facade: %s "', exception)
+            raise Exception('Error no controlado: {}'.format(exception.args[0]))
+        finally:
             pass
 
     ############ Constructor ##############################################
     def __init__(self):
         self.proxy = ProxyConfiguration()
-        self.get_cursor()        
+        self.get_cursor()
 
     ########### insert_beer #################################################
     def insert_promotion(self, _json):
@@ -40,26 +39,26 @@ class PromotionFacade:
             promotion = Promotion(_json_entrada["beer_id"], _json_entrada["created_by"])
             self.beerConnection.session.add(promotion)
             self.beerConnection.session.commit()
-            self.beerConnection.session.close()            
-        except Exception as ex:
-            logging.debug('Exception when we try add Promotion: {}"'.format(ex))
-        finally:            
+            self.beerConnection.session.close()
+        except Exception as exception:
+            logging.debug('Exception when we try add Promotion: %s"' , exception)
+        finally:
             self.beerConnection.session.close()
 
     ########### Beers #################################################
     def promotions(self):
-        try:            
+        try:
             results = self.beerConnection.session.query(Promotion).all()
             return results
-        except Exception as ex:
-            logging.debug('Exception when we try fetch Promotions: {}"'.format(ex))
+        except Exception as exception:
+            logging.debug('Exception when we try fetch Promotions: %s"' , exception)
         finally:
-            self.beerConnection.session.close()          
+            self.beerConnection.session.close()
 
     ########### Update beer #################################################
     def update_promotion(self, _json):
-        SQL_UPDATE_BEERS = "UPDATE PROMOTION SET "
-        SQL_WHERE_UPDATE_BEERS = "WHERE ID = {}"            
+        sql_update_promotion = "UPDATE PROMOTION SET "
+        sql_where_update_promotion = "WHERE ID = {}"
         try:
             _json_entrada = json.loads(_json)
             update = ''
@@ -71,11 +70,11 @@ class PromotionFacade:
                         update.join(attribute.upper()).join(" = ").join(value).join(" ")
                     else:
                         update.join(attribute.upper()).join(" = ").join("'").join(value).join("'").join(" ")
-            update = SQL_UPDATE_BEERS.join(update).join(SQL_WHERE_UPDATE_BEERS.format(_json_entrada["id"]))
+            update = sql_update_promotion.join(update).join(sql_where_update_promotion.format(_json_entrada["id"]))
             self.beerConnection.session.query(Promotion).from_statement(str(update))
             self.beerConnection.session.commit()
             self.beerConnection.session.close()
-        except Exception as ex:
-            logging.debug('Exception when we try update promotion: {}"'.format(ex))
-        finally:            
+        except Exception as exception:
+            logging.debug('Exception when we try update promotion: %s"' , exception)
+        finally:
             self.beerConnection.session.close() 

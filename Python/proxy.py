@@ -11,7 +11,7 @@ class ProxyConfiguration:
     def __init__(self, engine=None):
        if engine is None:
            self.create_engine()
-       else: 
+       else:
            self.engine = engine
            logging.debug("Engine set!")
 

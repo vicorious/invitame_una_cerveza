@@ -1,6 +1,5 @@
 import json
 import sys
-import psycopg2.extras
 import logging
 from sqlalchemy.orm.exc import MultipleResultsFound, NoResultFound
 from default_connection import DefaultConnection
@@ -18,11 +17,11 @@ class BarFacade:
     def get_cursor(self):
         try:
             #Conexion a postgre
-            self.defaultConnection = DefaultConnection(self.proxy.engine) 
-            self.beerConnection = self.defaultConnection.get_beer_connection()            
-        except Exception as e:
-            logging.debug('Error in "BarFacade: "')
-            raise Exception('Error no controlado: {}'.format(e.args[0]))            
+            self.defaultConnection = DefaultConnection(self.proxy.engine)
+            self.beerConnection = self.defaultConnection.get_beer_connection()
+        except Exception as exception:
+            logging.debug('Error in "BarFacade: %s"', exception)
+            raise Exception('Error no controlado: {}'.format(exception.args[0]))
         finally:            
             pass
 
@@ -36,13 +35,13 @@ class BarFacade:
         try:
             results = self.beerConnection.session.query(Bar).filter(Bar.id == _bar_id).one()
             return results
-        except MultipleResultsFound as me:                
-            logging.debug('Multiple rows. Failed Integrity from database')
-        except NoResultFound as ne:
-            logging.debug('Bar not found "')
-        except Exception as ex:
-            logging.debug('Exception: "')
-        finally:            
+        except MultipleResultsFound as multiple_results:
+            logging.debug('Multiple rows. Failed Integrity from database %s', multiple_results)
+        except NoResultFound as no_result:
+            logging.debug('Bar not found %s', no_result)
+        except Exception as exception:
+            logging.debug('Error in "bar_id: %s"', exception)
+        finally:
             self.beerConnection.session.close()
         return None
     ########### insert_bar #################################################
@@ -52,26 +51,26 @@ class BarFacade:
             bar = Bar(_json_entrada["title"], _json_entrada["open_date"], _json_entrada["openinng_hour"], _json_entrada["close_hour"], _json_entrada["open_days"], _json_entrada["payment_product"], _json_entrada["description"], _json_entrada["image"], _json_entrada["address"], _json_entrada["points"], _json_entrada["facebook"], _json_entrada["twitter"], _json_entrada["instagram"], _json_entrada["emergency_number"], _json_entrada["created_by"])
             self.beerConnection.session.add(bar)
             self.beerConnection.session.commit()
-            self.beerConnection.session.close()            
-        except Exception as ex:
-            logging.debug('Exception when we try add Bar: {}"'.format(ex))
-        finally:            
+            self.beerConnection.session.close()
+        except Exception as exception:
+            logging.debug('Exception when we try add Bar: %s"', exception)
+        finally:
             pass
 
     ########### Bars #################################################
     def bars(self):
-        try:            
+        try:
             results = self.beerConnection.session.query(Bar).all()
             return results
-        except Exception as ex:
-            logging.debug('Exception when we try fetch Bars: {}"'.format(ex))
-        finally:            
-            self.beerConnection.session.close()          
+        except Exception as exception:
+            logging.debug('Exception when we try fetch Bars: %s"' , exception)
+        finally:
+            self.beerConnection.session.close()
 
     ########### Update bar #################################################
     def update_bar(self, _json):
         SQL_UPDATE_BARES = "UPDATE BAR SET "
-        SQL_WHERE_UPDATE_BARES = "WHERE ID = {}"            
+        SQL_WHERE_UPDATE_BARES = "WHERE ID = {}"
         try:
             _json_entrada = json.loads(_json)
             update = ''
@@ -83,11 +82,11 @@ class BarFacade:
                         update.join(attribute.upper()).join(" = ").join(value).join(" ")
                     else:
                         update.join(attribute.upper()).join(" = ").join("'").join(value).join("'").join(" ")
-            update = SQL_UPDATE_BARES.join(update).join(SQL_WHERE_UPDATE_BARES.format(json_entrada["id"]))
-            self.beerConnection.session.query(Bar).from_statement(text(update))
+            update = SQL_UPDATE_BARES.join(update).join(SQL_WHERE_UPDATE_BARES.format(_json_entrada["id"]))
+            self.beerConnection.session.query(Bar).from_statement(str(update))
             self.beerConnection.session.commit()
             self.beerConnection.session.close()
-        except Exception as ex:
-            logging.debug('Exception when we try update bar: {}"'.format(ex))
-        finally:            
-            self.beerConnection.session.close()                  
+        except Exception as exception:
+            logging.debug('Exception when we try update bar: %s"' , exception)
+        finally:
+            self.beerConnection.session.close()

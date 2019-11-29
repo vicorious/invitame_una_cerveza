@@ -3,11 +3,11 @@ import logging
 
 class PostgreConnect:
     password = ''
-    user     = ''
-    ip       = ''
-    port     = ''
-    db       = ''
-    cadena   = ''
+    user = ''
+    ip = ''
+    port = ''
+    db = ''
+    cadena = ''
 
     logging.basicConfig(filename="test.log", level=logging.DEBUG)
     
@@ -21,7 +21,7 @@ class PostgreConnect:
     def connect(self):
         cadena = "host='{}' dbname='{}' user='{}' password='{}'".format(self.ip, self.db, self.user, self.password)
         logging.debug('La cadena de conexion es: {}'.format(cadena))
-        conexion = psycopg2.connect(cadena) 
-        logging.debug('Conexion correcta')		
+        conexion = psycopg2.connect(cadena)
+        logging.debug('Conexion correcta')
         return conexion
         
