@@ -1,7 +1,7 @@
 import logging
 from sqlalchemy.orm             import sessionmaker
-from dto.beer_connection        import BeerConnection
 from sqlalchemy.ext.declarative import declarative_base
+from dto.beer_connection        import BeerConnection
 logging.basicConfig(filename="test.log", level=logging.DEBUG)
 class DefaultConnection:
 
@@ -15,14 +15,14 @@ class DefaultConnection:
         # start session
         self.session = Session()
         self.base = declarative_base()
-        self.beerConnection = BeerConnection(engine = self.engine,session = self.session,base = self.base)
+        self.beerConnection = BeerConnection(engine= self.engine, session= self.session, base= self.base)
     ########## Cerrar conexion ###################
     def commit(self):
-         self.session.commit()
+        self.session.commit()
        
     ########## Cerrar conexion ###################
-    def closeConnection(self):
-         self.session.close()
+    def close_connection(self):
+        self.session.close()
          
-    def getBeerConnection(self):
+    def get_beer_connection(self):
         return self.beerConnection

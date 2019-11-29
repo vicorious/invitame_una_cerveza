@@ -6,7 +6,7 @@ class DDL:
     def __init__(self):
         self.metadata = MetaData()
 
-    def dataDefinitionLanguage(self, engine):
+    def data_definition_language(self, engine):
     #UserBeer
         Table('USER_BEER', self.metadata,
     Column('id', Integer, primary_key=True),

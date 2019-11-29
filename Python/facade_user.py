@@ -1,10 +1,11 @@
-from default_connection import DefaultConnection
 import json
 import sys
 import psycopg2.extras
 import logging
 from entities.user import User
-from proxy                  import ProxyConfiguration
+from sqlalchemy.orm.exc import MultipleResultsFound, NoResultFound
+from default_connection import DefaultConnection
+from proxy import ProxyConfiguration
 
 class UserFacade:
 
@@ -15,11 +16,11 @@ class UserFacade:
     logging.basicConfig(filename="test.log", level=logging.DEBUG)
 
     ############ retorna el cursor para poder interactuar con la DB #######
-    def getCursor(self):
+    def get_cursor(self):
         try:
             #Conexion a postgre
             self.defaultConnection = DefaultConnection(self.proxy.engine)
-            self.beerConnection = self.defaultConnection.getBeerConnection()   
+            self.beerConnection = self.defaultConnection.get_beer_connection()   
         except Exception as e:
             logging.debug('Error in "UserFacade: "')
             raise Exception('Error no controlado: {}'.format(e.args[0]))            
@@ -29,7 +30,7 @@ class UserFacade:
     ############ Constructor ##############################################
     def __init__(self):
         self.proxy = ProxyConfiguration()
-        self.getCursor()        
+        self.get_cursor()        
 
     ############ Login ####################################################
     def login(self, _json):
@@ -60,7 +61,7 @@ class UserFacade:
             pass
 
     ########### forgotPassword #################################################
-    def forgotPassword(self, _json):
+    def forgot_password(self, _json):
         try:
             _json_entrada = json.loads(_json)
             self.beerConnection.session.execute(update(User, values={User.password_token: _json_entrada["new_password_token"]})).filter(User.name == _json_entrada["name"], User.password_token == _json_entrada["password_token"])

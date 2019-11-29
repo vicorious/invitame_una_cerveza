@@ -1,12 +1,12 @@
-from default_connection import DefaultConnection
 import json
 import sys
 import psycopg2.extras
 import datetime
 import logging
 import time
+from default_connection import DefaultConnection
 from entities.user_beer import UserBeer
-from proxy                  import ProxyConfiguration
+from proxy import ProxyConfiguration
 
 class UserBeerFacade:
     
@@ -19,14 +19,14 @@ class UserBeerFacade:
     ####### Constructor ############
     def __init__(self):
         self.proxy = ProxyConfiguration()
-        self.getCursor()        
+        self.get_cursor()        
 
     ############ retorna el cursor para poder interactuar con la DB #######
-    def getCursor(self):
+    def get_cursor(self):
         try:
             #Conexion a postgre
             self.defaultConnection        = DefaultConnection(self.proxy.engine)
-            self.beerConnection = self.defaultConnection.getBeerConnection()   
+            self.beerConnection = self.defaultConnection.get_beer_connection()   
         except Exception as e:
             logging.debug('Error getting "UserBeerFacade" cursor')
             raise Exception('Error no controlado: {}'.format(e.args[0]))            
@@ -34,7 +34,7 @@ class UserBeerFacade:
             pass
 
  ############ User for visit ####################################################
-    def userForVisit(self, _json):
+    def user_for_visit(self, _json):
         try:
             _json_entrada = json.loads(_json)
             results = self.beerConnection.session.query(UserBeer).filter(UserBeer.id == _json_entrada["id"])            
@@ -45,7 +45,7 @@ class UserBeerFacade:
             self.beerConnection.session.close()
 
     ########### Insert User for visit #################################################
-    def insertUserForVisit(self, _json):
+    def insert_user_for_visit(self, _json):
         try:
             _json_entrada = json.loads(_json)
             user_beer = UserBeer(_json_entrada["beer_id"], _json_entrada["user_id"], _json_entrada["pay_type_id"], _json_entrada["climate_id"], _json_entrada["visit_date"], _json_entrada["_token"], _json_entrada["qr"], _json_entrada["created_by"])
@@ -58,7 +58,7 @@ class UserBeerFacade:
             self.beerConnection.session.close()
             
  ############ Update beer for visit ####################################################
-    def userBeerForVisit(self, _json):
+    def user_beer_for_visit(self, _json):
         try:
             _json_entrada = json.loads(_json)
             results = self.beerConnection.session.query(UserBeer).filter(UserBeer.user_id == _json_entrada["user_id"], UserBeer.beer_id == _json_entrada["beer_id"])
@@ -69,7 +69,7 @@ class UserBeerFacade:
             self.beerConnection.session.close()
             
  ############ getUserBeerForPayment ####################################################
-    def userBeerPayTypeForVisit(self, _json):
+    def user_beer_pay_type_for_visit(self, _json):
         try:
             _json_entrada = json.loads(_json)
             results = self.beerConnection.session.query(UserBeer).filter(UserBeer.user_id == _json_entrada["user_id"], UserBeer.beer_id == _json_entrada["beer_id"], UserBeer.pay_type_id == _json_entrada["pay_type_id"])
@@ -80,7 +80,7 @@ class UserBeerFacade:
             self.beerConnection.session.close()
             
  ############ getUserPayType ####################################################
-    def userPayTypeForVisit(self, _json):
+    def user_pay_type_for_visit(self, _json):
         try:
             _json_entrada = json.loads(_json)
             results = self.beerConnection.session.query(UserBeer).filter(UserBeer.user_id == _json_entrada["user_id"], UserBeer.pay_type_id == _json_entrada["pay_type_id"])

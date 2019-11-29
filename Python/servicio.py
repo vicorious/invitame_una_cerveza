@@ -1,14 +1,15 @@
-from flask                  import Flask, jsonify, json, request
-from flask_api              import status
-from facade_user            import UserFacade
-from facade_bares           import BarFacade
-from facade_cerveza         import BeerFacade
-from facade_usuario_cerveza import UserBeerFacade
-from facade_promotion       import PromotionFacade
-from proxy                  import ProxyConfiguration
 import sys
 import logging
+from flask import Flask, jsonify, json, request
+from flask_api import status
+from proxy import ProxyConfiguration
 from json_encoder import AlchemyEncoder
+from facade_user import UserFacade
+from facade_bares import BarFacade
+from facade_cerveza import BeerFacade
+from facade_usuario_cerveza import UserBeerFacade
+from facade_promotion import PromotionFacade
+from facade_climate import Climate
 
 ###### Flask Object ######################################
 APP = Flask(__name__)
@@ -44,7 +45,7 @@ def register():
 def forgotPassword():
     try:
         _json_olvido = request.get_json()
-        UserFacade().forgotPassword(_json_olvido)
+        UserFacade().forgot_password(_json_olvido)
         return jsonify(OK)                    
     except Exception as exception:
         logging.debug("Unexpected Error {}".format(exception))
@@ -82,7 +83,7 @@ def bars():
 def insertBar():
     try:
         _json_bar = request.get_json()
-        BarFacade().insertBar(_json_bar)
+        BarFacade().insert_bar(_json_bar)
         return jsonify(OK)
     except Exception as exception:
         logging.debug("Unexpected Error {}".format(exception))
@@ -93,7 +94,7 @@ def insertBar():
 def updateBar():
     try:
         _json_bar = request.get_json()
-        BarFacade().updateBar(_json_bar)
+        BarFacade().update_bar(_json_bar)
         return jsonify(OK)
     except Exception as exception:
         logging.debug("Unexpected Error {}".format(exception))
@@ -104,7 +105,7 @@ def updateBar():
 @app.route('/beer/<_beer_id>/GET', methods=['GET'])
 def beerId(_beer_id):
     try:
-        beer = BeerFacade().beerId(_beer_id)
+        beer = BeerFacade().beer_id(_beer_id)
         if beer is None:
             return jsonify(beer), status.HTTP_204_NO_CONTENT  
         else: 
@@ -131,7 +132,7 @@ def beers():
 def insertBeer():
     try:
         _json_beer = request.get_json()
-        BeerFacade().insertBeer(_json_beer)
+        BeerFacade().insert_beer(_json_beer)
         return jsonify(OK)
     except Exception as exception:
         logging.debug("Unexpected Error {}".format(exception))
@@ -141,7 +142,7 @@ def insertBeer():
 def updateBeer():
     try:
         _json_beer = request.get_json()
-        BeerFacade().updateBeer(_json_beer)
+        BeerFacade().update_beer(_json_beer)
         return jsonify(OK)
     except Exception as exception:
         logging.debug("Unexpected Error {}".format(exception))
@@ -152,7 +153,7 @@ def updateBeer():
 @app.route('/userBeer/<_user_id>/GET', methods=['GET'])
 def userForVisit(_user_id):
     try:
-        user_beer = UserBeerFacade().userForVisit(_user_id)
+        user_beer = UserBeerFacade().user_for_visit(_user_id)
         if len(user_beer) > 0:
             return jsonify(json.dumps(user_beer, cls=AlchemyEncoder))
         elif len(user_beer) == 0: 
@@ -164,7 +165,7 @@ def userForVisit(_user_id):
 @app.route('/userBeer/<_user_id>/<_beer_id>/GET', methods=['GET'])
 def userBeerForVisit(_user_id, _beer_id):
     try:
-        beers  = UserBeerFacade().userBeerForVisit(_user_id, _beer_id)
+        beers  = UserBeerFacade().user_beer_for_visit(_user_id, _beer_id)
         if len(beers) > 0:
             return jsonify(json.dumps(beers, cls=AlchemyEncoder)) 
         elif len(beers) == 0: 
@@ -176,7 +177,7 @@ def userBeerForVisit(_user_id, _beer_id):
 @app.route('/userBeer/<_user_id>/<_beer_id>/<_pay_type_id>/GET', methods=['GET'])
 def userBeerPayTypeForVisit(_user_id, _beer_id, _pay_type_id):
     try:
-        beers  = UserBeerFacade().userBeerPayTypeForVisit(_user_id, _beer_id, _pay_type_id)
+        beers  = UserBeerFacade().user_beer_pay_type_for_visit(_user_id, _beer_id, _pay_type_id)
         if len(beers) > 0:
             return jsonify(json.dumps(beers, cls=AlchemyEncoder)) 
         elif len(beers) == 0:
@@ -188,7 +189,7 @@ def userBeerPayTypeForVisit(_user_id, _beer_id, _pay_type_id):
 @app.route('/userBeer/<_user_id>/<_pay_type_id>/GET', methods=['GET'])
 def userPayTypeForVisit(_user_id, _pay_type_id):
     try:
-        beers  = UserBeerFacade().userPayTypeForVisit(_user_id, _pay_type_id)
+        beers  = UserBeerFacade().user_pay_type_for_visit(_user_id, _pay_type_id)
         if len(beers) > 0:
             return jsonify(json.dumps(beers, cls=AlchemyEncoder)) 
         elif len(beers) == 0:
@@ -227,7 +228,7 @@ def promotions():
 def insertPromotion():
     try:
         _json_promotion = request.get_json()
-        PromotionFacade().insertPromotion(_json_promotion)
+        PromotionFacade().insert_promotion(_json_promotion)
         return jsonify(OK)
     except Exception as exception:
         logging.debug("Unexpected Error {}".format(exception))
@@ -237,17 +238,19 @@ def insertPromotion():
 def updatePromotion():
     try:
         _json_promotion = request.get_json()
-        PromotionFacade().updatePromotion(_json_promotion)
+        PromotionFacade().update_promotion(_json_promotion)
         return jsonify(OK)
     except Exception as exception:
         logging.debug("Unexpected Error {}".format(exception))
     return jsonify(FAIL), status.HTTP_409_CONFLICT
+
+##################### Climate ##################################################
     
 @app.route('/climate/weather', methods=['PUT'])
 def weather():
     try:
         _json_promotion = request.get_json()
-        PromotionFacade().updatePromotion(_json_promotion)
+        Climate().get_current_weather(_json_promotion)
         return jsonify(OK)
     except Exception as exception:
         logging.debug("Unexpected Error {}".format(exception))
@@ -262,7 +265,7 @@ def weather():
 def configuration():
     try:
         proxy = ProxyConfiguration()
-        proxy.installPostgre()
+        proxy.install_postgre()
         return jsonify(OK)
     except Exception as exception:
         logging.debug("Unexpected Error {}".format(exception))
@@ -272,10 +275,10 @@ def configuration():
 def createDataBase():
     try:
         proxy = ProxyConfiguration()
-        if not proxy.existDataBase():
+        if not proxy.exist_data_base():
             logging.debug("DataBase no exists!")
-            proxy.createDatabase()
-            proxy.createDDL()
+            proxy.create_database()
+            proxy.create_ddl()
         else:
             logging.debug("Database was already created!")
         return jsonify(OK)
@@ -287,14 +290,14 @@ def createDataBase():
 def createDML():
     try:
         proxy = ProxyConfiguration()
-        if proxy.existDataBase():
+        if proxy.exist_data_base():
             logging.debug("Begin insert DML!")
-            proxy.createDML()
+            proxy.create_dml()
         else:
             logging.debug("Database no exists. we going to create it!")
-            proxy.createDatabase()
-            proxy.createDDL()
-            proxy.createDML()
+            proxy.exist_data_base()
+            proxy.create_ddl()
+            proxy.create_dml()
         return jsonify(OK)
     except:        
         return jsonify(FAIL), status.HTTP_409_CONFLICT

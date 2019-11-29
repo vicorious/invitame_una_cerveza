@@ -2,9 +2,10 @@ import json
 import sys
 import psycopg2.extras
 import logging
+from sqlalchemy.orm.exc import MultipleResultsFound, NoResultFound
 from default_connection import DefaultConnection
 from entities.bar import Bar
-from proxy                  import ProxyConfiguration
+from proxy import ProxyConfiguration
 
 class BarFacade:
     defaultConnection = None
@@ -14,11 +15,11 @@ class BarFacade:
     logging.basicConfig(filename="test.log", level=logging.DEBUG)
 
     ############ retorna el cursor para poder interactuar con la DB #######
-    def getCursor(self):
+    def get_cursor(self):
         try:
             #Conexion a postgre
             self.defaultConnection = DefaultConnection(self.proxy.engine) 
-            self.beerConnection = self.defaultConnection.getBeerConnection()            
+            self.beerConnection = self.defaultConnection.get_beer_connection()            
         except Exception as e:
             logging.debug('Error in "BarFacade: "')
             raise Exception('Error no controlado: {}'.format(e.args[0]))            
@@ -28,10 +29,10 @@ class BarFacade:
     ############ Constructor ##############################################
     def __init__(self):
         self.proxy = ProxyConfiguration()
-        self.getCursor()
+        self.get_cursor()
 
     ############ barId ####################################################
-    def barId(self, _bar_id):
+    def bar_id(self, _bar_id):
         try:
             results = self.beerConnection.session.query(Bar).filter(Bar.id == _bar_id).one()
             return results
@@ -45,10 +46,10 @@ class BarFacade:
             self.beerConnection.session.close()
         return None
     ########### insert_bar #################################################
-    def insertBar(self, _json):
+    def insert_bar(self, _json):
         try:
             _json_entrada = json.loads(_json)
-            bar = Bar(_json_entrada["title"], _json_entrada["open_date"], _json_entrada["openinng_hour"],_json_entrada["close_hour"], _json_entrada["open_days"], _json_entrada["payment_product"],_json_entrada["description"], _json_entrada["image"], _json_entrada["address"],_json_entrada["points"], _json_entrada["facebook"], _json_entrada["twitter"],_json_entrada["instagram"], _json_entrada["emergency_number"], _json_entrada["created_by"])
+            bar = Bar(_json_entrada["title"], _json_entrada["open_date"], _json_entrada["openinng_hour"], _json_entrada["close_hour"], _json_entrada["open_days"], _json_entrada["payment_product"], _json_entrada["description"], _json_entrada["image"], _json_entrada["address"], _json_entrada["points"], _json_entrada["facebook"], _json_entrada["twitter"], _json_entrada["instagram"], _json_entrada["emergency_number"], _json_entrada["created_by"])
             self.beerConnection.session.add(bar)
             self.beerConnection.session.commit()
             self.beerConnection.session.close()            
@@ -68,14 +69,14 @@ class BarFacade:
             self.beerConnection.session.close()          
 
     ########### Update bar #################################################
-    def updateBar(self, _json):
+    def update_bar(self, _json):
         SQL_UPDATE_BARES = "UPDATE BAR SET "
         SQL_WHERE_UPDATE_BARES = "WHERE ID = {}"            
         try:
             _json_entrada = json.loads(_json)
             update = ''
-            for json in _json_entrada:
-                for attribute, value in json:
+            for json_i in _json_entrada:
+                for attribute, value in json_i:
                     if attribute == 'id' or attribute == 'ID':
                         continue
                     if value is int:
