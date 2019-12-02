@@ -4,6 +4,7 @@ DDL File
 from sqlalchemy import Column, String, Integer, DateTime, MetaData, Table, ForeignKey, UniqueConstraint, CheckConstraint
 from sqlalchemy.dialects.postgresql import JSONB
 class DDL:
+    """This class have creation of dataDefinitionLanguage"""
     metadata = None
     def __init__(self):
         """Constructor"""
@@ -146,4 +147,7 @@ class DDL:
     Column('updated_at', DateTime, nullable=False),
     Column('last_updated_by', String, nullable=False))
         self.metadata.create_all(engine)
+    
+    def __str__(self):
+        return self.__class__.__name__
         
