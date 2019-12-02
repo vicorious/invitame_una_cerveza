@@ -57,8 +57,6 @@ class UserFacade:
             logging.debug('Multiple rows. Failed Integrity from database %s', multiples_results)
         except NoResultFound as no_results:
             logging.debug('User not found %s"', no_results)
-        except Exception as _excep:
-            logging.debug('Exception: %s"', _excep)
         finally:
             pass
 
@@ -91,8 +89,8 @@ class UserFacade:
             self.beer_connection.session.execute(
                 update(User, values={
                     User.password_token: _json_entrada["new_password_token"]})).filter(
-                           User.name == _json_entrada["name"],
-                           User.password_token == _json_entrada["password_token"])
+                        User.name == _json_entrada["name"],
+                        User.password_token == _json_entrada["password_token"])
             self.beer_connection.session.commit()
             self.beer_connection.session.close()
         except Exception as _excep:

@@ -53,8 +53,6 @@ class BarFacade:
             logging.debug('Multiple rows. Failed Integrity from database %s', multiple_results)
         except NoResultFound as no_result:
             logging.debug('Bar not found %s', no_result)
-        except Exception as _excep:
-            logging.debug('Error in "bar_id: %s"', _excep)
         finally:
             self.beer_connection.session.close()
         return None
