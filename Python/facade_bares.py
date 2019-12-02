@@ -26,7 +26,7 @@ class BarFacade:
         try:
             #Conexion a postgre
             self.default_connection = DefaultConnection(self.proxy.engine)
-            self.beer_connection = self.defaultConnection.get_beer_connection()
+            self.beer_connection = self.default_connection.get_beer_connection()
         except Exception as _excep:
             logging.debug('Error in "BarFacade: %s"', _excep)
             raise Exception('Error no controlado: {}'.format(_excep.args[0]))
@@ -53,8 +53,8 @@ class BarFacade:
             logging.debug('Multiple rows. Failed Integrity from database %s', multiple_results)
         except NoResultFound as no_result:
             logging.debug('Bar not found %s', no_result)
-        except Exception as exception:
-            logging.debug('Error in "bar_id: %s"', exception)
+        except Exception as _excep:
+            logging.debug('Error in "bar_id: %s"', _excep)
         finally:
             self.beer_connection.session.close()
         return None
@@ -66,16 +66,18 @@ class BarFacade:
         try:
             _json_entrada = json.loads(_json)
             bar = Bar(_json_entrada["title"], _json_entrada["open_date"],
-                      _json_entrada["openinng_hour"], _json_entrada["close_hour"], _json_entrada["open_days"],
-                      _json_entrada["payment_product"], _json_entrada["description"], _json_entrada["image"],
+                      _json_entrada["openinng_hour"], _json_entrada["close_hour"], 
+                      _json_entrada["open_days"],
+                      _json_entrada["payment_product"], _json_entrada["description"], 
+                      _json_entrada["image"],
                       _json_entrada["address"], _json_entrada["points"], _json_entrada["facebook"],
                       _json_entrada["twitter"], _json_entrada["instagram"],
                       _json_entrada["emergency_number"], _json_entrada["created_by"])
             self.beer_connection.session.add(bar)
             self.beer_connection.session.commit()
             self.beer_connection.session.close()
-        except Exception as exception:
-            logging.debug('Exception when we try add Bar: %s"', exception)
+        except Exception as _excep:
+            logging.debug('Exception when we try add Bar: %s"', _excep)
         finally:
             pass
 
@@ -87,8 +89,8 @@ class BarFacade:
         try:
             results = self.beer_connection.session.query(Bar).all()
             return results
-        except Exception as exception:
-            logging.debug('Exception when we try fetch Bars: %s"', exception)
+        except Exception as _excep:
+            logging.debug('Exception when we try fetch Bars: %s"', _excep)
         finally:
             self.beer_connection.session.close()
 
@@ -104,7 +106,7 @@ class BarFacade:
             update = ''
             for json_i in _json_entrada:
                 for attribute, value in json_i:
-                    if attribute in ('id' ,'ID'):
+                    if attribute in ('id' , 'ID'):
                         continue
                     if value is int:
                         update.join(attribute.upper()).join(" = ").join(value).join(" ")
@@ -114,7 +116,7 @@ class BarFacade:
             self.beer_connection.session.query(Bar).from_statement(str(update))
             self.beer_connection.session.commit()
             self.beer_connection.session.close()
-        except Exception as exception:
-            logging.debug('Exception when we try update bar: %s"', exception)
+        except Exception as _excep:
+            logging.debug('Exception when we try update bar: %s"', _excep)
         finally:
             self.beer_connection.session.close()

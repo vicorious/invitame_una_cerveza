@@ -1,3 +1,6 @@
+"""
+Promotion module
+"""
 import json
 import logging
 from default_connection import DefaultConnection
@@ -5,6 +8,9 @@ from entities.promotion import Promotion
 from proxy import ProxyConfiguration
 
 class PromotionFacade:
+    """
+    Promotion class
+    """
     default_connection = None
     beer_connection = None
     proxy = None
@@ -13,6 +19,9 @@ class PromotionFacade:
 
     ############ retorna el cursor para poder interactuar con la DB #######
     def get_cursor(self):
+        """
+        get cursor method
+        """
         try:
             #Conexion a postgre
             self.default_connection = DefaultConnection(self.proxy.engine)
@@ -25,11 +34,17 @@ class PromotionFacade:
 
     ############ Constructor ##############################################
     def __init__(self):
+        """
+        Constructor
+        """
         self.proxy = ProxyConfiguration()
         self.get_cursor()
 
     ########### insert_beer #################################################
     def insert_promotion(self, _json):
+        """
+        insert promotion
+        """
         try:
             _json_entrada = json.loads(_json)
             promotion = Promotion(_json_entrada["beer_id"], _json_entrada["created_by"])
@@ -43,6 +58,9 @@ class PromotionFacade:
 
     ########### Beers #################################################
     def promotions(self):
+        """
+        get promotions method
+        """
         try:
             results = self.beer_connection.session.query(Promotion).all()
             return results
@@ -53,6 +71,9 @@ class PromotionFacade:
 
     ########### Update beer #################################################
     def update_promotion(self, _json):
+        """
+        update promotion method
+        """
         sql_update_promotion = "UPDATE PROMOTION SET "
         sql_where_update_promotion = "WHERE ID = {}"
         try:

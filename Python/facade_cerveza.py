@@ -26,7 +26,7 @@ class BeerFacade:
         try:
             #Conexion a postgre
             self.default_connection = DefaultConnection(self.proxy.engine)
-            self.beer_connection = self.defaultConnection.get_beer_connection()
+            self.beer_connection = self.default_connection.get_beer_connection()
         except Exception as _excep:
             logging.debug('Error in "Beer facade: %s"', _excep)
             raise Exception('Error no controlado: {}'.format(_excep.args[0]))
@@ -65,7 +65,13 @@ class BeerFacade:
         """
         try:
             _json_entrada = json.loads(_json)
-            beer = Beer(_json_entrada["title"], _json_entrada["price"], _json_entrada["happy_hour_price"],_json_entrada["bar_id"], _json_entrada["beer_type_id"], _json_entrada["avb"],_json_entrada["ibu"], _json_entrada["srm"], _json_entrada["description"], _json_entrada["image"], _json_entrada["pint"], _json_entrada["cup330"], _json_entrada["giraffe"], _json_entrada["pitcher"], _json_entrada["created_by"])
+            beer = Beer(_json_entrada["title"], _json_entrada["price"],
+            _json_entrada["happy_hour_price"],
+            _json_entrada["bar_id"], _json_entrada["beer_type_id"],
+            _json_entrada["avb"],_json_entrada["ibu"], _json_entrada["srm"],
+            _json_entrada["description"], _json_entrada["image"], _json_entrada["pint"],
+            _json_entrada["cup330"], _json_entrada["giraffe"],
+            _json_entrada["pitcher"], _json_entrada["created_by"])
             self.beer_connection.session.add(beer)
             self.beer_connection.session.commit()
             self.beer_connection.session.close()
