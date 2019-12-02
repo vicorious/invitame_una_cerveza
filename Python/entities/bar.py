@@ -1,14 +1,19 @@
+"""
+Bar entity
+"""
 from sqlalchemy import Column, String, Integer, DateTime
-from entities.entity import Entity
-from sqlalchemy import Column, String, DateTime, Integer
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
+from entities.entity import Entity
 Base = declarative_base()
 
 class Bar(Entity, Base):
+    """
+    Bar class
+    """
     __tablename__ = 'BAR'
     __table_args__ = {"schema": "public"}
-    id = Column(Integer, primary_key = True, autoincrement = True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String, nullable=False)
     open_date = Column(DateTime, nullable=False)
     opening_hour = Column(String, nullable=False)
@@ -24,7 +29,12 @@ class Bar(Entity, Base):
     instagram = Column(String)
     emergency_number = Column(String, nullable=False)
 
-    def __init__(self, name, open_date, opening_hour, close_hour, open_days, payment_product, description, image, address, points, facebook, twitter, instagram, emergency_number, created_by):
+    def __init__(self, name, open_date, opening_hour, close_hour, open_days,
+                payment_product, description, image, address, points, facebook,
+                twitter, instagram, emergency_number, created_by):
+        """
+        Constructor
+        """
         Entity.__init__(self, created_by)
         self.name = name
         self.open_date = open_date

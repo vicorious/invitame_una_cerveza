@@ -1,5 +1,10 @@
+"""
+Constant module
+"""
 class Constant:
-
+    """
+    Constant class
+    """
     user_default = 'postgres'
     ip_default = 'localhost'
     port_default = '5432'
@@ -12,4 +17,8 @@ class Constant:
     weather_units = 'metric'
 
     def __init__(self):
-        pass
+        """
+        Constructor
+        """
+    def __str__(self):
+        return self.__class__.__name__

@@ -98,8 +98,8 @@ class BeerFacade:
         """
         update beer method
         """
-        sql_update_beers = "UPDATE BEER SET "
-        sql_where_update_beers = "WHERE ID = {}"
+        update_beers = "UPDATE BEER SET "
+        where_update_beers = "WHERE ID = {}"
         try:
             _json_entrada = json.loads(_json)
             update = ''
@@ -111,7 +111,7 @@ class BeerFacade:
                         update.join(attribute.upper()).join(" = ").join(value).join(" ")
                     else:
                         update.join(attribute.upper()).join(" = '").join(value).join("' ")
-            update = sql_update_beers.join(update).join(sql_where_update_beers.format(_json_entrada["id"]))
+            update = update_beers.join(update).join(where_update_beers.format(_json_entrada["id"]))
             self.beer_connection.session.query(Beer).from_statement(str(update))
             self.beer_connection.session.commit()
             self.beer_connection.session.close()

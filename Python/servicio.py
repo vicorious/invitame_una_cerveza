@@ -1,7 +1,6 @@
 """
 Service http module
 """
-import sys
 import logging
 from flask import Flask, jsonify, json, request
 from flask_api import status
@@ -74,8 +73,8 @@ def bar_for_id(_bar_id):
         bar = BarFacade().bar_id(_bar_id)
         if bar is None:
             return jsonify(bar), status.HTTP_204_NO_CONTENT
-        else:
-            return jsonify(json.dumps(bar, cls=AlchemyEncoder))
+        
+        return jsonify(json.dumps(bar, cls=AlchemyEncoder))
     except Exception as exception:
         logging.debug("Unexpected Error %s", exception)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
@@ -135,8 +134,7 @@ def beer_id(_beer_id):
         beer = BeerFacade().beer_id(_beer_id)
         if beer is None:
             return jsonify(beer), status.HTTP_204_NO_CONTENT
-        else:
-            return jsonify(json.dumps(beer, cls=AlchemyEncoder))
+        return jsonify(json.dumps(beer, cls=AlchemyEncoder))
     except Exception as exception:
         logging.debug("Unexpected Error %s", exception)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
@@ -151,8 +149,7 @@ def beers():
         beers = BeerFacade().beers()
         if len(beers) > 0:
             return jsonify(json.dumps(beers, cls=AlchemyEncoder))
-        elif len(beers) == 0:
-            return jsonify(beers), status.HTTP_204_NO_CONTENT
+        return jsonify(beers), status.HTTP_204_NO_CONTENT
     except Exception as exception:
         logging.debug("Unexpected Error %s", exception)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
@@ -195,8 +192,7 @@ def user_for_visit(_user_id):
         user_beer = UserBeerFacade().user_for_visit(_user_id)
         if len(user_beer) > 0:
             return jsonify(json.dumps(user_beer, cls=AlchemyEncoder))
-        elif len(user_beer) == 0:
-            return jsonify(user_beer), status.HTTP_204_NO_CONTENT
+        return jsonify(user_beer), status.HTTP_204_NO_CONTENT
     except Exception as exception:
         logging.debug("Unexpected Error %s", exception)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
@@ -210,8 +206,7 @@ def user_beer_for_visit(_user_id, _beer_id):
         beers = UserBeerFacade().user_beer_for_visit(_user_id, _beer_id)
         if len(beers) > 0:
             return jsonify(json.dumps(beers, cls=AlchemyEncoder))
-        elif len(beers) == 0:
-            return jsonify(beers), status.HTTP_204_NO_CONTENT
+        return jsonify(beers), status.HTTP_204_NO_CONTENT
     except Exception as exception:
         logging.debug("Unexpected Error %s", exception)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
@@ -225,8 +220,7 @@ def user_beer_pay_type_for_visit(_user_id, _beer_id, _pay_type_id):
         beers = UserBeerFacade().user_beer_pay_type_for_visit(_user_id, _beer_id, _pay_type_id)
         if len(beers) > 0:
             return jsonify(json.dumps(beers, cls=AlchemyEncoder))
-        elif len(beers) == 0:
-            return jsonify(beers), status.HTTP_204_NO_CONTENT
+        return jsonify(beers), status.HTTP_204_NO_CONTENT
     except Exception as exception:
         logging.debug("Unexpected Error %s", exception)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
@@ -239,9 +233,8 @@ def user_pay_type_for_visit(_user_id, _pay_type_id):
     try:
         beers = UserBeerFacade().user_pay_type_for_visit(_user_id, _pay_type_id)
         if len(beers) > 0:
-            return jsonify(json.dumps(beers, cls=AlchemyEncoder))
-        elif len(beers) == 0:
-            return jsonify(beers), status.HTTP_204_NO_CONTENT
+            return jsonify(json.dumps(beers, cls=AlchemyEncoder))        
+        return jsonify(beers), status.HTTP_204_NO_CONTENT
     except Exception as exception:
         logging.debug("Unexpected Error %s", exception)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
@@ -270,9 +263,8 @@ def promotions():
     try:
         promotions = PromotionFacade().promotions()
         if len(promotions) > 0:
-            return jsonify(json.dumps(promotions, cls=AlchemyEncoder))
-        elif len(promotions) == 0:
-            return jsonify(promotions), status.HTTP_204_NO_CONTENT
+            return jsonify(json.dumps(promotions, cls=AlchemyEncoder))        
+        return jsonify(promotions), status.HTTP_204_NO_CONTENT
     except Exception as exception:
         logging.debug("Unexpected Error %s", exception)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
@@ -290,7 +282,7 @@ def insert_promotion():
     except Exception as exception:
         logging.debug("Unexpected Error %s", exception)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
-    
+
 @app.route('/promotion/UPDATE', methods=['PUT'])
 def update_promotion():
     """
@@ -305,7 +297,7 @@ def update_promotion():
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 ##################### Climate ##################################################
-    
+
 @app.route('/climate/weather', methods=['PUT'])
 def weather():
     """
@@ -354,7 +346,7 @@ def create_database():
     except:
         return jsonify(FAIL), status.HTTP_409_CONFLICT
     return jsonify(FAIL), status.HTTP_409_CONFLICT
-    
+
 @app.route('/create_database_dml', methods=['GET'])
 def create_dml():
     """

@@ -106,12 +106,12 @@ class BarFacade:
             update = ''
             for json_i in _json_entrada:
                 for attribute, value in json_i:
-                    if attribute in ('id','ID'):
+                    if attribute in ('id', 'ID'):
                         continue
                     if value is int:
                         update.join(attribute.upper()).join(" = ").join(value).join(" ")
                     else:
-                        update.join(attribute.upper()).join(" = ").join("'").join(value).join("'").join(" ")
+                        update.join(attribute.upper()).join(" = '").join(value).join("' ")
             update = sql_update_bares.join(update).join(sql_where_update_bares.format(_json_entrada["id"]))
             self.beer_connection.session.query(Bar).from_statement(str(update))
             self.beer_connection.session.commit()

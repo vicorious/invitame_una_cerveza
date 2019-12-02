@@ -63,7 +63,7 @@ class ProxyConfiguration:
         dml = DML(self.engine)
         dml.create_dml()
         logging.debug("DataModelingLanguage created!")
-    
+
     def install_postgre(self):
         """
         install postgre method

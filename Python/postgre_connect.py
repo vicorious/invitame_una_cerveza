@@ -30,9 +30,13 @@ class PostgreConnect:
         """
         Connect method
         """
-        cadena = "host='{}' dbname='{}' user='{}' password='{}'".format(self._ip, self._db, self.user, self.password)
-        logging.debug('La cadena de conexion es: {}'.format(cadena))
+        db_str = "host='{}' dbname='{}'".format(self._ip, self._db)
+        user_str = "user='{}' password='{}'".format(self.user, self.password)
+        cadena = db_str.join(user_str)
+        logging.debug('La cadena de conexion es: %s', cadena)
         conexion = psycopg2.connect(cadena)
         logging.debug('Conexion correcta')
         return conexion
-        
+
+    def __str__(self):
+        return self.__class__.__name__

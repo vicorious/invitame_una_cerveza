@@ -25,7 +25,7 @@ class PromotionFacade:
         try:
             #Conexion a postgre
             self.default_connection = DefaultConnection(self.proxy.engine)
-            self.beer_connection = self.defaultConnection.get_beer_connection()
+            self.beer_connection = self.default_connection.get_beer_connection()
         except Exception as _excep:
             logging.debug('Error in "Promotion facade: %s "', _excep)
             raise Exception('Error no controlado: {}'.format(_excep.args[0]))
@@ -74,8 +74,8 @@ class PromotionFacade:
         """
         update promotion method
         """
-        sql_update_promotion = "UPDATE PROMOTION SET "
-        sql_where_update_promotion = "WHERE ID = {}"
+        update_promotion = "UPDATE PROMOTION SET "
+        where_update_promotion = "WHERE ID = {}"
         try:
             _json_entrada = json.loads(_json)
             update = ''
@@ -86,8 +86,8 @@ class PromotionFacade:
                     if value is int:
                         update.join(attribute.upper()).join(" = ").join(value).join(" ")
                     else:
-                        update.join(attribute.upper()).join(" = ").join("'").join(value).join("'").join(" ")
-            update = sql_update_promotion.join(update).join(sql_where_update_promotion.format(_json_entrada["id"]))
+                        update.join(attribute.upper()).join(" = '").join(value).join("' ")
+            update = update_promotion.join(update).join(where_update_promotion.format(_json_entrada["id"]))
             self.beer_connection.session.query(Promotion).from_statement(str(update))
             self.beer_connection.session.commit()
             self.beer_connection.session.close()

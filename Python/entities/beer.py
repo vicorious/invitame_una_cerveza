@@ -1,12 +1,18 @@
+"""
+Beer entity
+"""
 from sqlalchemy import Column, String, Integer, ForeignKey
+from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
 from entities.entity import Entity
 from entities.beer_type import BeerType
 from entities.bar import Bar
-from sqlalchemy.orm import relationship
-from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
 class Beer(Entity, Base):
+    """
+    Beer class
+    """
     __tablename__ = 'BEER'
     __table_args__ = {"schema": "public"}
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -27,7 +33,12 @@ class Beer(Entity, Base):
     giraffe = Column(String, nullable=False)
     pitcher = Column(String, nullable=False)
 
-    def __init__(self, name, pint_price, cup330_price, giraffe_price, pitcher_price, bar_id, beer_type_id, avb, ibu, srm, description, image, pint, cup330, giraffe, pitcher, created_by):
+    def __init__(self, name, pint_price, cup330_price, giraffe_price, pitcher_price,
+                bar_id, beer_type_id, avb, ibu, srm, description,
+                image, pint, cup330, giraffe, pitcher, created_by):
+        """
+        Constructor
+        """
         Entity.__init__(self, created_by)
         self.name = name
         self.pint_price = pint_price
