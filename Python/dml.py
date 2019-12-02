@@ -17,7 +17,7 @@ class DML:
     default_connection = None
     def __init__(self, engine):
         self.default_connection = DefaultConnection(engine)
-    
+
     def create_dml(self):
         now = datetime.datetime(2009, 5, 5)
         now.strftime('%Y-%m-%d %H:%M:%S')
@@ -25,13 +25,19 @@ class DML:
         _my_json = json.dumps(_data)
         beer_type = BeerType("IPA", Constant.user)
         pay_type = PayType("TARJETA_CREDITO", Constant.user)
-        bar = Bar("Melas", now, "12", "24", "6", "a", "MELAS BAR", "http://servidor/melas.jpg", "Calle 72 #11-07", "5", "https://facebook/melas", "https://twitter/@melas", "https://instragram/melas", "123", Constant.user)
+        bar = Bar("Melas", now, "12", "24", "6", "a", "MELAS BAR", "http://servidor/melas.jpg",
+            "Calle 72 #11-07", "5", "https://facebook/melas", "https://twitter/@melas", 
+            "https://instragram/melas", "123", Constant.user)
         self.default_connection.get_beer_connection().session.add(beer_type)
         self.default_connection.get_beer_connection().session.add(pay_type)
         self.default_connection.get_beer_connection().session.add(bar)
         self.default_connection.get_beer_connection().session.flush()
-        beer = Beer("Atomic IIPA", 16000, 10000, 75000, 38000, bar.id, beer_type.id, "10%", "82", "40", "Doble IIPA", "http://imagen/assets/images/dobleIIpa.jpg", "1", "1", "1", "1", Constant.user)
-        user = User("alejo.lindarte@outlook.com", now, "Kasdasda76sshd6a3naksjda_asda", "100000", "http://servidor/foto.jpg", "0", Constant.user)
+        beer = Beer("Atomic IIPA", 16000, 10000, 75000, 38000, bar.id, beer_type.id, 
+            "10%", "82", "40", "Doble IIPA", 
+            "http://imagen/assets/images/dobleIIpa.jpg", "1", "1", 
+            "1", "1", Constant.user)
+        user = User("alejo.lindarte@outlook.com", now, "Kasdasda76sshd6a3naksjda_asda",
+            "100000", "http://servidor/foto.jpg", "0", Constant.user)
         self.default_connection.get_beer_connection().session.add(beer)
         self.default_connection.get_beer_connection().session.add(user)
         self.default_connection.get_beer_connection().session.flush()
