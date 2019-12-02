@@ -66,9 +66,9 @@ class BarFacade:
         try:
             _json_entrada = json.loads(_json)
             bar = Bar(_json_entrada["title"], _json_entrada["open_date"],
-                      _json_entrada["openinng_hour"], _json_entrada["close_hour"], 
+                      _json_entrada["openinng_hour"], _json_entrada["close_hour"],
                       _json_entrada["open_days"],
-                      _json_entrada["payment_product"], _json_entrada["description"], 
+                      _json_entrada["payment_product"], _json_entrada["description"],
                       _json_entrada["image"],
                       _json_entrada["address"], _json_entrada["points"], _json_entrada["facebook"],
                       _json_entrada["twitter"], _json_entrada["instagram"],
@@ -106,7 +106,7 @@ class BarFacade:
             update = ''
             for json_i in _json_entrada:
                 for attribute, value in json_i:
-                    if attribute in ('id' , 'ID'):
+                    if attribute in ('id','ID'):
                         continue
                     if value is int:
                         update.join(attribute.upper()).join(" = ").join(value).join(" ")

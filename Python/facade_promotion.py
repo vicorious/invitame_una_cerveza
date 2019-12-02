@@ -26,9 +26,9 @@ class PromotionFacade:
             #Conexion a postgre
             self.default_connection = DefaultConnection(self.proxy.engine)
             self.beer_connection = self.defaultConnection.get_beer_connection()
-        except Exception as exception:
-            logging.debug('Error in "Promotion facade: %s "', exception)
-            raise Exception('Error no controlado: {}'.format(exception.args[0]))
+        except Exception as _excep:
+            logging.debug('Error in "Promotion facade: %s "', _excep)
+            raise Exception('Error no controlado: {}'.format(_excep.args[0]))
         finally:
             pass
 
@@ -51,8 +51,8 @@ class PromotionFacade:
             self.beer_connection.session.add(promotion)
             self.beer_connection.session.commit()
             self.beer_connection.session.close()
-        except Exception as exception:
-            logging.debug('Exception when we try add Promotion: %s"', exception)
+        except Exception as _excep:
+            logging.debug('Exception when we try add Promotion: %s"', _excep)
         finally:
             self.beer_connection.session.close()
 
@@ -64,8 +64,8 @@ class PromotionFacade:
         try:
             results = self.beer_connection.session.query(Promotion).all()
             return results
-        except Exception as exception:
-            logging.debug('Exception when we try fetch Promotions: %s"', exception)
+        except Exception as _excep:
+            logging.debug('Exception when we try fetch Promotions: %s"', _excep)
         finally:
             self.beer_connection.session.close()
 
@@ -91,7 +91,7 @@ class PromotionFacade:
             self.beer_connection.session.query(Promotion).from_statement(str(update))
             self.beer_connection.session.commit()
             self.beer_connection.session.close()
-        except Exception as exception:
-            logging.debug('Exception when we try update promotion: %s"', exception)
+        except Exception as _excep:
+            logging.debug('Exception when we try update promotion: %s"', _excep)
         finally:
             self.beer_connection.session.close()

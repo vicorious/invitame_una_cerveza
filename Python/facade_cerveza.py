@@ -53,8 +53,8 @@ class BeerFacade:
             logging.debug('Multiple rows. Failed Integrity from database %s', multiple_results)
         except NoResultFound as no_result:
             logging.debug('Beer not found %s"', no_result)
-        except Exception as exception:
-            logging.debug('Exception: %s"', exception)
+        except Exception as _excep:
+            logging.debug('Exception: %s"', _excep)
         finally:
             self.beer_connection.session.close()
         return None
@@ -66,17 +66,17 @@ class BeerFacade:
         try:
             _json_entrada = json.loads(_json)
             beer = Beer(_json_entrada["title"], _json_entrada["price"],
-            _json_entrada["happy_hour_price"],
-            _json_entrada["bar_id"], _json_entrada["beer_type_id"],
-            _json_entrada["avb"],_json_entrada["ibu"], _json_entrada["srm"],
-            _json_entrada["description"], _json_entrada["image"], _json_entrada["pint"],
-            _json_entrada["cup330"], _json_entrada["giraffe"],
-            _json_entrada["pitcher"], _json_entrada["created_by"])
+                        _json_entrada["happy_hour_price"],
+                        _json_entrada["bar_id"], _json_entrada["beer_type_id"],
+                        _json_entrada["avb"], _json_entrada["ibu"], _json_entrada["srm"],
+                        _json_entrada["description"], _json_entrada["image"], _json_entrada["pint"],
+                        _json_entrada["cup330"], _json_entrada["giraffe"],
+                        _json_entrada["pitcher"], _json_entrada["created_by"])
             self.beer_connection.session.add(beer)
             self.beer_connection.session.commit()
             self.beer_connection.session.close()
-        except Exception as exception:
-            logging.debug('Exception when we try add Beer: %s"', exception)
+        except Exception as _excep:
+            logging.debug('Exception when we try add Beer: %s"', _excep)
         finally:
             self.beer_connection.session.close()
 
@@ -88,8 +88,8 @@ class BeerFacade:
         try:
             results = self.beer_connection.session.query(Beer).all()
             return results
-        except Exception as exception:
-            logging.debug('Exception when we try fetch Beers: %s"', exception)
+        except Exception as _excep:
+            logging.debug('Exception when we try fetch Beers: %s"', _excep)
         finally:
             self.beer_connection.session.close()
 
@@ -110,12 +110,12 @@ class BeerFacade:
                     if value is int:
                         update.join(attribute.upper()).join(" = ").join(value).join(" ")
                     else:
-                        update.join(attribute.upper()).join(" = ").join("'").join(value).join("'").join(" ")
+                        update.join(attribute.upper()).join(" = '").join(value).join("' ")
             update = sql_update_beers.join(update).join(sql_where_update_beers.format(_json_entrada["id"]))
             self.beer_connection.session.query(Beer).from_statement(str(update))
             self.beer_connection.session.commit()
             self.beer_connection.session.close()
-        except Exception as exception:
-            logging.debug('Exception when we try update beer: %s"', exception)
+        except Exception as _excep:
+            logging.debug('Exception when we try update beer: %s"', _excep)
         finally:
             self.beer_connection.session.close()

@@ -1,3 +1,6 @@
+"""
+Service http module
+"""
 import sys
 import logging
 from flask import Flask, jsonify, json, request
@@ -23,6 +26,9 @@ logging.basicConfig(filename="test.log", level=logging.DEBUG)
 #################### USER #############################
 @app.route('/user/login', methods=['POST'])
 def login():
+    """
+    Login method
+    """
     try:
         _json_login = request.get_json()
         UserFacade().login(_json_login)
@@ -33,6 +39,9 @@ def login():
 
 @app.route('/user/register/INSERT', methods=['POST'])
 def register():
+    """
+    Register method
+    """
     try:
         _json_registro = request.get_json()
         UserFacade().register(_json_registro)
@@ -43,6 +52,9 @@ def register():
 
 @app.route('/user/password/UPDATE', methods=['PUT'])
 def forgot_password():
+    """
+    Forgot method
+    """
     try:
         _json_olvido = request.get_json()
         UserFacade().forgot_password(_json_olvido)
@@ -55,6 +67,9 @@ def forgot_password():
 
 @app.route('/bar/<_bar_id>/GET', methods=['GET'])
 def bar_for_id(_bar_id):
+    """
+    Bar for id method
+    """
     try:
         bar = BarFacade().bar_id(_bar_id)
         if bar is None:
@@ -68,6 +83,9 @@ def bar_for_id(_bar_id):
 
 @app.route('/bars', methods=['GET'])
 def bars():
+    """
+    Get bars method
+    """
     try:
         bars = BarFacade().bars()
         if len(bars) > 0:
@@ -81,6 +99,9 @@ def bars():
 
 @app.route('/bar/INSERT', methods=['POST'])
 def insert_bar():
+    """
+    Insert bar method
+    """
     try:
         _json_bar = request.get_json()
         BarFacade().insert_bar(_json_bar)
@@ -92,6 +113,9 @@ def insert_bar():
 
 @app.route('/bar/UPDATE', methods=['PUT'])
 def update_bar():
+    """
+    Update bar method
+    """
     try:
         _json_bar = request.get_json()
         BarFacade().update_bar(_json_bar)
@@ -104,6 +128,9 @@ def update_bar():
 
 @app.route('/beer/<_beer_id>/GET', methods=['GET'])
 def beer_id(_beer_id):
+    """
+    Beer for id method
+    """
     try:
         beer = BeerFacade().beer_id(_beer_id)
         if beer is None:
@@ -117,6 +144,9 @@ def beer_id(_beer_id):
 
 @app.route('/beers', methods=['GET'])
 def beers():
+    """
+    get Beers method
+    """
     try:
         beers = BeerFacade().beers()
         if len(beers) > 0:
@@ -130,6 +160,9 @@ def beers():
 
 @app.route('/beer/INSERT', methods=['POST'])
 def insert_beer():
+    """
+    Insert beer method
+    """
     try:
         _json_beer = request.get_json()
         BeerFacade().insert_beer(_json_beer)
@@ -140,6 +173,9 @@ def insert_beer():
 
 @app.route('/beer/UPDATE', methods=['PUT'])
 def update_beer():
+    """
+    Update beer method
+    """
     try:
         _json_beer = request.get_json()
         BeerFacade().update_beer(_json_beer)
@@ -152,6 +188,9 @@ def update_beer():
 
 @app.route('/userBeer/<_user_id>/GET', methods=['GET'])
 def user_for_visit(_user_id):
+    """
+    User for visit method
+    """
     try:
         user_beer = UserBeerFacade().user_for_visit(_user_id)
         if len(user_beer) > 0:
@@ -164,6 +203,9 @@ def user_for_visit(_user_id):
 
 @app.route('/userBeer/<_user_id>/<_beer_id>/GET', methods=['GET'])
 def user_beer_for_visit(_user_id, _beer_id):
+    """
+    User beer method
+    """
     try:
         beers = UserBeerFacade().user_beer_for_visit(_user_id, _beer_id)
         if len(beers) > 0:
@@ -176,6 +218,9 @@ def user_beer_for_visit(_user_id, _beer_id):
 
 @app.route('/userBeer/<_user_id>/<_beer_id>/<_pay_type_id>/GET', methods=['GET'])
 def user_beer_pay_type_for_visit(_user_id, _beer_id, _pay_type_id):
+    """
+    User beer pay type for visit method
+    """
     try:
         beers = UserBeerFacade().user_beer_pay_type_for_visit(_user_id, _beer_id, _pay_type_id)
         if len(beers) > 0:
@@ -188,6 +233,9 @@ def user_beer_pay_type_for_visit(_user_id, _beer_id, _pay_type_id):
 
 @app.route('/userBeer/<_user_id>/<_pay_type_id>/GET', methods=['GET'])
 def user_pay_type_for_visit(_user_id, _pay_type_id):
+    """
+    User pay type for visit method
+    """
     try:
         beers = UserBeerFacade().user_pay_type_for_visit(_user_id, _pay_type_id)
         if len(beers) > 0:
@@ -201,6 +249,9 @@ def user_pay_type_for_visit(_user_id, _pay_type_id):
 
 @app.route('/userBeer/INSERT', methods=['POST'])
 def insert_user_by_visit():
+    """
+    Insert user by visit method
+    """
     try:
         _json = request.get_json()
         UserBeerFacade().insert_usuario_cerveza(_json)
@@ -213,6 +264,9 @@ def insert_user_by_visit():
 
 @app.route('/promotion', methods=['GET'])
 def promotions():
+    """
+    Promotions method
+    """
     try:
         promotions = PromotionFacade().promotions()
         if len(promotions) > 0:
@@ -226,6 +280,9 @@ def promotions():
 
 @app.route('/promotion/INSERT', methods=['POST'])
 def insert_promotion():
+    """
+    Insert promotion method
+    """
     try:
         _json_promotion = request.get_json()
         PromotionFacade().insert_promotion(_json_promotion)
@@ -236,6 +293,9 @@ def insert_promotion():
     
 @app.route('/promotion/UPDATE', methods=['PUT'])
 def update_promotion():
+    """
+    Update promotion method
+    """
     try:
         _json_promotion = request.get_json()
         PromotionFacade().update_promotion(_json_promotion)
@@ -248,6 +308,9 @@ def update_promotion():
     
 @app.route('/climate/weather', methods=['PUT'])
 def weather():
+    """
+    Weather method
+    """
     try:
         _json_promotion = request.get_json()
         Climate().get_current_weather(_json_promotion)
@@ -261,8 +324,11 @@ def weather():
 
 ######################### Configuration #################################################
 
-@app.route('/configuration', methods=['GET'])
-def configuration():
+@app.route('/postgre', methods=['GET'])
+def postgre():
+    """
+    Postgre instalation method
+    """
     try:
         proxy = ProxyConfiguration()
         proxy.install_postgre()
@@ -273,6 +339,9 @@ def configuration():
 
 @app.route('/create_data_base', methods=['GET'])
 def create_database():
+    """
+    Create database method
+    """
     try:
         proxy = ProxyConfiguration()
         if not proxy.exist_data_base():
@@ -288,6 +357,9 @@ def create_database():
     
 @app.route('/create_database_dml', methods=['GET'])
 def create_dml():
+    """
+    Create dml method
+    """
     try:
         proxy = ProxyConfiguration()
         if proxy.exist_data_base():
@@ -302,6 +374,7 @@ def create_dml():
     except:
         return jsonify(FAIL), status.HTTP_409_CONFLICT
     return jsonify(FAIL), status.HTTP_409_CONFLICT
+
 ####### Main ############
 if __name__ == '__main__':
     app.run()
