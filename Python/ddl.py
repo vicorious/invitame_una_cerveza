@@ -1,10 +1,16 @@
+"""
+DDL File
+"""
 from sqlalchemy import Column, String, Integer, DateTime, MetaData, Table, ForeignKey, UniqueConstraint, CheckConstraint
 from sqlalchemy.dialects.postgresql import JSONB
-
+"""
+DataDefinitionLanguage class
+"""
 class DDL:
     metadata = None
     def __init__(self):
         self.metadata = MetaData()
+
 
     def data_definition_language(self, engine):
     #UserBeer
