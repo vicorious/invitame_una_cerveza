@@ -6,11 +6,11 @@ from sqlalchemy.dialects.postgresql import JSONB
 class DDL:
     metadata = None
     def __init__(self):
+        """Constructor"""
         self.metadata = MetaData()
 
-
     def data_definition_language(self, engine):
-    #UserBeer
+        """Create structure of database"""
         Table('USER_BEER', self.metadata,
     Column('id', Integer, primary_key=True),
     Column('beer_id', Integer, ForeignKey('BEER.id'), nullable=False),
