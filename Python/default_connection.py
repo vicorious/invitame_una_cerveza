@@ -3,7 +3,7 @@ Connection module
 """
 import logging
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm.session import Session
+#from sqlalchemy.orm.session import Session
 from sqlalchemy.ext.declarative import declarative_base
 from dto.beer_connection import BeerConnection
 logging.basicConfig(filename="test.log", level=logging.DEBUG)
@@ -20,9 +20,9 @@ class DefaultConnection:
         Constructor
         """
         self.engine = engine
-        Session = sessionmaker(bind=engine)
+        session_maker = sessionmaker(bind=engine)
         # start session
-        self._session = Session()
+        self._session = session_maker()
         self.base = declarative_base()
         self.beer_connection = BeerConnection(
             engine=self.engine,
