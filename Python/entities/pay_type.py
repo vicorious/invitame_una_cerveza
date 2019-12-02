@@ -2,9 +2,9 @@
 Pay type entity
 """
 from sqlalchemy import Column, String, Integer
-from entities.entity import Entity
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
+from entities.entity import Entity
 Base = declarative_base()
 class PayType(Entity, Base):
     """

@@ -1,7 +1,7 @@
 """
 BeerConnection module
 """
-class BeerConnection():  
+class BeerConnection():
     """
     BeerConnection class
     """

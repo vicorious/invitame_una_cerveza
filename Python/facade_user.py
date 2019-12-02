@@ -50,8 +50,8 @@ class UserFacade:
         try:
             _json_entrada = json.loads(_json)
             results = self.beer_connection.session.query(User).filter(
-                User.name == _json_entrada["name"], 
-                User.password_token == _json_entrada["password_token"]).one()
+                    User.name == _json_entrada["name"],
+                    User.password_token == _json_entrada["password_token"]).one()
             self.beer_connection.session.close()
         except MultipleResultsFound as multiples_results:
             logging.debug('Multiple rows. Failed Integrity from database %s', multiples_results)

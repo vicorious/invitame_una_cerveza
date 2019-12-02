@@ -13,7 +13,7 @@ class AlchemyEncoder(json.JSONEncoder):
         Default method
         """
         fields = {}
-        if isinstance(obj.__class__, DeclarativeMeta):            
+        if isinstance(obj.__class__, DeclarativeMeta):
             for field in [x for x in dir(obj) if not x.startswith('_') and x != 'metadata']:
                 data = obj.__getattribute__(field)
                 try:

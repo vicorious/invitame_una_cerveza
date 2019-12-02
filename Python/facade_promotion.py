@@ -74,8 +74,8 @@ class PromotionFacade:
         """
         update promotion method
         """
-        update_promotion = "UPDATE PROMOTION SET "
-        where_update_promotion = "WHERE ID = {}"
+        update_promo = "UPDATE PROMOTION SET "
+        where_promotion = "WHERE ID = {}"
         try:
             _json_entrada = json.loads(_json)
             update = ''
@@ -87,7 +87,7 @@ class PromotionFacade:
                         update.join(attribute.upper()).join(" = ").join(value).join(" ")
                     else:
                         update.join(attribute.upper()).join(" = '").join(value).join("' ")
-            update = update_promotion.join(update).join(where_update_promotion.format(_json_entrada["id"]))
+            update = update_promo.join(update).join(where_promotion.format(_json_entrada["id"]))
             self.beer_connection.session.query(Promotion).from_statement(str(update))
             self.beer_connection.session.commit()
             self.beer_connection.session.close()

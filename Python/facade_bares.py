@@ -99,8 +99,8 @@ class BarFacade:
         """
         Update Bar Method
         """
-        sql_update_bares = "UPDATE BAR SET "
-        sql_where_update_bares = "WHERE ID = {}"
+        update_bares = "UPDATE BAR SET "
+        where_update_bares = "WHERE ID = {}"
         try:
             _json_entrada = json.loads(_json)
             update = ''
@@ -112,7 +112,7 @@ class BarFacade:
                         update.join(attribute.upper()).join(" = ").join(value).join(" ")
                     else:
                         update.join(attribute.upper()).join(" = '").join(value).join("' ")
-            update = sql_update_bares.join(update).join(sql_where_update_bares.format(_json_entrada["id"]))
+            update = update_bares.join(update).join(where_update_bares.format(_json_entrada["id"]))
             self.beer_connection.session.query(Bar).from_statement(str(update))
             self.beer_connection.session.commit()
             self.beer_connection.session.close()
