@@ -12,6 +12,7 @@ from facade_cerveza import BeerFacade
 from facade_usuario_cerveza import UserBeerFacade
 from facade_promotion import PromotionFacade
 from facade_climate import Climate
+from sqlalchemy.orm.exc import MultipleResultsFound
 
 ###### Flask Object ######################################
 app = Flask(__name__)
@@ -32,7 +33,7 @@ def login():
         _json_login = request.get_json()
         UserFacade().login(_json_login)
         return jsonify(OK)
-    except Exception as _excep:
+    except MultipleResultsFound as _excep:
         logging.debug("Unexpected Error %s", _excep)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
