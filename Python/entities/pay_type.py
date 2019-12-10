@@ -13,7 +13,7 @@ class PayType(Entity, Base):
     __tablename__ = 'PAY_TYPE'
     __table_args__ = {"schema": "public"}
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String, nullable=False)    
+    name = Column(String, nullable=False)
     def __init__(self, name, created_by):
         """
         Constructor
