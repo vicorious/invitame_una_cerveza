@@ -4,6 +4,7 @@ Service http module
 import logging
 from flask import Flask, jsonify, json, request
 from flask_api import status
+from sqlalchemy.orm.exc import MultipleResultsFound
 from proxy import ProxyConfiguration
 from json_encoder import AlchemyEncoder
 from facade_user import UserFacade
@@ -12,7 +13,6 @@ from facade_cerveza import BeerFacade
 from facade_usuario_cerveza import UserBeerFacade
 from facade_promotion import PromotionFacade
 from facade_climate import Climate
-from sqlalchemy.orm.exc import MultipleResultsFound
 
 ###### Flask Object ######################################
 app = Flask(__name__)

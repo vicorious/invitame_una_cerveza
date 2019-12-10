@@ -21,7 +21,7 @@ class User(Entity, Base):
     positive_balance = Column(String, nullable=False)
     photo = Column(String, nullable=False)
     credits = Column(String, nullable=False)
-    def __init__(self, email, borning_date, password_token, positive_balance, photo, credits, created_by):
+    def __init__(self, email, borning_date, password_token, po_balance, photo, credits, created_by):
         """
         Constructor
         """
@@ -29,6 +29,6 @@ class User(Entity, Base):
         self.email = email
         self.borning_date = borning_date
         self.password_token = password_token
-        self.positive_balance = positive_balance
+        self.positive_balance = po_balance
         self.photo = photo
         self.credits = credits

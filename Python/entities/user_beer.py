@@ -22,10 +22,10 @@ class UserBeer(Entity, Base):
     pay_type_id = Column(Integer, ForeignKey(PayType.id), nullable=False)
     climate_id = Column(Integer, ForeignKey(Climate.id), nullable=False)
     visit_date = Column(DateTime, nullable=False)
-    _token = Column(String, nullable=False)    
+    _token = Column(String, nullable=False)
     payment_product = Column(String, nullable=False)
     qr = Column(String, nullable=False)
-    def __init__(self, beer_id, user_id, pay_type_id, climate_id, visit_date, _token, qr, created_by):
+    def __init__(self, beer_id, user_id, pay_type_id, climate_id, v_date, _token, qr, created_by):
         """
         Constructor
         """
@@ -34,7 +34,7 @@ class UserBeer(Entity, Base):
         self.user_id = user_id
         self.pay_type_id = pay_type_id
         self.climate_id = climate_id
-        self.visit_date = visit_date
+        self.visit_date = v_date
         self._token = _token
         self.payment_product = payment_product
         self.qr = qr
