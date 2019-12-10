@@ -24,6 +24,6 @@ class Constant:
         return self.__class__.__name__
 
     def __hash__(self):
-        return hash((self.user_default, self.ip_default, self.port_default, 
-        self.db_default, self.password_default, self.postgre_exe_file, self.user, self.weather_key,
-        self.weather_end_point, self.weather_units))
+        return hash((self.user_default, self.ip_default, self.port_default,
+                     self.db_default, self.password_default, self.postgre_exe_file, self.user, self.weather_key,
+                     self.weather_end_point, self.weather_units))
