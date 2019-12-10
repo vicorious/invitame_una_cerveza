@@ -51,3 +51,14 @@ class Bar(Entity, Base):
         self.twitter = twitter
         self.instagram = instagram
         self.emergency_number = emergency_number
+
+    def __str__(self):
+        return self.__class__.__name__
+
+    def __hash__(self):
+        return hash((self.name, self.open_date, self.opening_hour,
+                     self.close_hour, self.open_days,
+                     self.payment_product, self.description, self.image,
+                     self.address, self.points,
+                     self.facebook, self.twitter,
+                     self.instagram, self.emergency_number))
