@@ -2,7 +2,7 @@
 Climate entity
 """
 from sqlalchemy import Column, Integer
-from sqlalchemy.dialects.postgresql import JSON, JSONB
+from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.ext.declarative import declarative_base
 from entities.entity import Entity
 Base = declarative_base()

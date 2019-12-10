@@ -1,8 +1,8 @@
 """
 Entity class
 """
-from datetime                     import datetime
-from sqlalchemy                 import create_engine, Column, String, Integer, DateTime
+from datetime import datetime
+from sqlalchemy import  Column, String, Integer, DateTime
 class Entity():
     """
     Abstract class FOR ENTITY

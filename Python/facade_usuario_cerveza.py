@@ -63,7 +63,7 @@ class UserBeerFacade:
         try:
             _json_entrada = json.loads(_json)
             results = self.cursor.beer_connection.session.query(UserBeer).filter(
-                UserBeer.user_id == _json_entrada["user_id"], 
+                UserBeer.user_id == _json_entrada["user_id"],
                 UserBeer.beer_id == _json_entrada["beer_id"])
             return results
         except Exception as _excep:
@@ -79,7 +79,7 @@ class UserBeerFacade:
         try:
             _json_entrada = json.loads(_json)
             results = self.cursor.beer_connection.session.query(UserBeer).filter(
-                UserBeer.user_id == _json_entrada["user_id"], 
+                UserBeer.user_id == _json_entrada["user_id"],
                 UserBeer.beer_id == _json_entrada["beer_id"],
                 UserBeer.pay_type_id == _json_entrada["pay_type_id"])
             return results

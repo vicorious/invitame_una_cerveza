@@ -3,7 +3,6 @@ User entity
 """
 from sqlalchemy import Column, String, DateTime, Integer
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import backref
 from entities.entity import Entity
 Base = declarative_base()
 
