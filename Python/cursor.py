@@ -3,13 +3,15 @@ Cursor module
 """
 from proxy import ProxyConfiguration
 from default_connection import DefaultConnection
+from flask import json
 
 class Cursor:
     """
     Cursor Class
     """
-    beer_connection = None
+    default_connection = None
     proxy = None
+    logging.basicConfig(filename="test.log", level=logging.DEBUG)
     def __init__(self):
         """
         Cursor class
@@ -33,13 +35,13 @@ class Cursor:
                     else:
                         update.join(attribute.upper()).join(" = '").join(value).join("' ")
             update = _update_table.join(update).join(_where.format(_json_entrada["id"]))
-            self.cursor.default_connection.beer_connection.session.query(Bar).from_statement(str(update))
-            self.cursor.default_connection.beer_connection.session.commit()
-            self.cursor.default_connection.beer_connection.session.close()
+            self.default_connection.beer_connection.session.query(Bar).from_statement(str(update))
+            self.default_connection.beer_connection.session.commit()
+            self.default_connection.beer_connection.session.close()
         except Exception as _excep:
             logging.debug('Exception when we try update: %s"', _excep)
         finally:
-            self.cursor.default_connection.beer_connection.session.close()
+            self.default_connection.beer_connection.session.close()
 
     def __str__(self):
         return self.__class__.__name__
