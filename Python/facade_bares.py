@@ -26,8 +26,8 @@ class BarFacade:
         Bar for id Method
         """
         try:
-            results = self.cursor.default_connection.beer_connection.session.query(Bar)
-                      .filter(Bar.id == _bar_id).one()
+            results = self.cursor.default_connection.beer_connection.session.query(Bar).filter(
+                      Bar.id == _bar_id).one()
             return results
         except MultipleResultsFound as multiple_results:
             logging.debug('Multiple rows. Failed Integrity from database %s', multiple_results)

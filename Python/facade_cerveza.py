@@ -26,8 +26,8 @@ class BeerFacade:
         Beer for id method
         """
         try:
-            results = self.cur.default_connection.beer_connection.session.query(Beer)
-                      .filter(Beer.id == _beer_id).one()
+            results = self.cur.default_connection.beer_connection.session.query(Beer).filter(
+                      Beer.id == _beer_id).one()
             return results
         except MultipleResultsFound as multiple_results:
             logging.debug('Multiple rows. Failed Integrity from database %s', multiple_results)
