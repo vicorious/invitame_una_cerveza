@@ -14,16 +14,12 @@ from facade_usuario_cerveza import UserBeerFacade
 from facade_promotion import PromotionFacade
 from facade_climate import Climate
 
-###### Flask Object ######################################
 app = Flask(__name__)
 
-###### Constant ##########
 OK = 'OK'
 FAIL = 'FAIL'
-###### Log #################
 
 logging.basicConfig(filename="test.log", level=logging.DEBUG)
-#################### USER #############################
 @app.route('/user/login', methods=['POST'])
 def login():
     """
@@ -62,8 +58,6 @@ def forgot_password():
     except Exception as _excep:
         logging.debug("Unexpected Error %s", _excep)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
-
-################## BAR´S #################################
 
 @app.route('/bar/<_bar_id>/GET', methods=['GET'])
 def bar_for_id(_bar_id):
@@ -122,8 +116,6 @@ def update_bar():
         logging.debug("Unexpected Error %s", _excep)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
-##################### Cerveza #############################################
-
 @app.route('/beer/<_beer_id>/GET', methods=['GET'])
 def beer_id(_beer_id):
     """
@@ -179,8 +171,6 @@ def update_beer():
     except Exception as _excep:
         logging.debug("Unexpected Error %s", _excep)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
-
-#################### Usuario cerveza ###########################
 
 @app.route('/userBeer/<_user_id>/GET', methods=['GET'])
 def user_for_visit(_user_id):
@@ -252,8 +242,6 @@ def insert_user_by_visit():
         logging.debug("Unexpected Error %s", _excep)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
-############ Promotion ################################################
-
 @app.route('/promotion', methods=['GET'])
 def promotions():
     """
@@ -295,8 +283,6 @@ def update_promotion():
         logging.debug("Unexpected Error %s", _excep)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
-##################### Climate ##################################################
-
 @app.route('/climate/weather', methods=['PUT'])
 def weather():
     """
@@ -309,11 +295,6 @@ def weather():
     except Exception as _excep:
         logging.debug("Unexpected Error %s", _excep)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
-
-
-#@app.before_request
-
-######################### Configuration #################################################
 
 @app.route('/postgre', methods=['GET'])
 def postgre():
@@ -366,6 +347,5 @@ def create_dml():
         return jsonify(FAIL), status.HTTP_409_CONFLICT
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
-####### Main ############
 if __name__ == '__main__':
     app.run()
