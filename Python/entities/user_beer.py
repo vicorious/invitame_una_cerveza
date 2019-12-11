@@ -37,3 +37,11 @@ class UserBeer(Entity, Base):
         self._token = _token
         self.payment_product = payment_product
         self._qr = _qr
+
+    def __str__(self):
+        return self.__class__.__name__
+
+    def __hash__(self):
+        return hash((self.beer_id, self.user_id, self.pay_type_id,
+                     self.climate_id, self.visit_date,
+                     self._token, self.payment_product, self._qr))

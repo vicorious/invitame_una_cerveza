@@ -30,3 +30,11 @@ class User(Entity, Base):
         self.positive_balance = po_balance
         self.photo = photo
         self.credits = credits
+
+    def __str__(self):
+        return self.__class__.__name__
+
+    def __hash__(self):
+        return hash((self.email, self.borning_date, self.password_token,
+                     self.positive_balance, self.photo,
+                     self.credits))

@@ -18,3 +18,9 @@ class Entity():
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
         self.last_updated_by = created_by
+
+    def __str__(self):
+        return self.__class__.__name__
+
+    def __hash__(self):
+        return hash((self.created_at, self.updated_at, self.last_updated_by))

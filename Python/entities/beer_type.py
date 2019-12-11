@@ -19,3 +19,9 @@ class BeerType(Entity, Base):
         """
         Entity.__init__(self, created_by)
         self.name = name
+
+    def __str__(self):
+        return self.__class__.__name__
+
+    def __hash__(self):
+        return hash((self.name, self.created_by))

@@ -21,3 +21,9 @@ class Climate(Entity, Base):
         """
         Entity.__init__(self, created_by)
         self.json = json
+
+    def __str__(self):
+        return self.__class__.__name__
+
+    def __hash__(self):
+        return hash((self.json, self.created_by))

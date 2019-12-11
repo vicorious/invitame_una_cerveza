@@ -55,3 +55,15 @@ class Beer(Entity, Base):
         self.cup330 = cup330
         self.giraffe = giraffe
         self.pitcher = pitcher
+
+    def __str__(self):
+        return self.__class__.__name__
+
+    def __hash__(self):
+        return hash((self.name, self.pint_price, self.cup330_price,
+                     self.giraffe_price, self.pitcher_price,
+                     self.bar_id, self.beer_type_id, self.avb,
+                     self.ibu, self.srm,
+                     self.description, self.image,
+                     self.pint, self.cup330,
+                     self.giraffe, self.pitcher))

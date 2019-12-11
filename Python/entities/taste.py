@@ -23,3 +23,9 @@ class Taste(Entity, Base):
         Entity.__init__(self, created_by)
         self.name = name
         self.beer_id = beer_id
+
+    def __str__(self):
+        return self.__class__.__name__
+
+    def __hash__(self):
+        return hash((self.name, self.beer_id))
