@@ -28,9 +28,9 @@ class PromotionFacade:
         try:
             _json_entrada = json.loads(_json)
             promotion = Promotion(_json_entrada["beer_id"], _json_entrada["created_by"])
-            self.cursor.beer_connection.session.add(promotion)
-            self.cursor.beer_connection.session.commit()
-            self.cursor.beer_connection.session.close()
+            self.cursor.default_connection.beer_connection.session.add(promotion)
+            self.cursor.default_connection.beer_connection.session.commit()
+            self.cursor.default_connection.beer_connection.session.close()
         except Exception as _excep:
             logging.debug('Exception when we try add Promotion: %s"', _excep)
         finally:
@@ -42,12 +42,12 @@ class PromotionFacade:
         get promotions method
         """
         try:
-            results = self.cursor.beer_connection.session.query(Promotion).all()
+            results = self.cursor.default_connection.beer_connection.session.query(Promotion).all()
             return results
         except Exception as _excep:
             logging.debug('Exception when we try fetch Promotions: %s"', _excep)
         finally:
-            self.cursordefault_connection..beer_connection.session.close()
+            self.cursor.default_connection.beer_connection.session.close()
 
     ########### Update beer #################################################
     def update_promotion(self, _json):
