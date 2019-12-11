@@ -26,7 +26,7 @@ class BarFacade:
         Bar for id Method
         """
         try:
-            results = self.cursor.beer_connection.session.query(Bar).filter(Bar.id == _bar_id).one()
+            results = self.cursor.default_connection.beer_connection.session.query(Bar).filter(Bar.id == _bar_id).one()
             return results
         except MultipleResultsFound as multiple_results:
             logging.debug('Multiple rows. Failed Integrity from database %s', multiple_results)
@@ -50,9 +50,9 @@ class BarFacade:
                       _json_entrada["address"], _json_entrada["points"], _json_entrada["facebook"],
                       _json_entrada["twitter"], _json_entrada["instagram"],
                       _json_entrada["emergency_number"], _json_entrada["created_by"])
-            self.cursor.beer_connection.session.add(bar)
-            self.cursor.beer_connection.session.commit()
-            self.cursor.beer_connection.session.close()
+            self.cursor.default_connection.beer_connection.session.add(bar)
+            self.cursor.default_connection.beer_connection.session.commit()
+            self.cursor.default_connection.beer_connection.session.close()
         except Exception as _excep:
             logging.debug('Exception when we try add Bar: %s"', _excep)
         finally:
@@ -64,7 +64,7 @@ class BarFacade:
         getBars Method
         """
         try:
-            results = self.cursor.beer_connection.session.query(Bar).all()
+            results = self.cursor.default_connection.beer_connection.session.query(Bar).all()
             return results
         except Exception as _excep:
             logging.debug('Exception when we try fetch Bars: %s"', _excep)

@@ -32,7 +32,7 @@ class UserFacade:
             self.cursor.beer_connection.session.query(User).filter(
                 User.name == _json_entrada["name"],
                 User.password_token == _json_entrada["password_token"]).one()
-            self.cursor.beer_connection.session.close()
+            self.cursor.default_connection.beer_connection.session.close()
         except MultipleResultsFound as multiples_results:
             logging.debug('Multiple rows. Failed Integrity from database %s', multiples_results)
         except NoResultFound as no_results:
@@ -51,9 +51,9 @@ class UserFacade:
                         _json_entrada["password_token"], _json_entrada["positive_balance"],
                         _json_entrada["photo"], _json_entrada["credits"],
                         _json_entrada["user_login"])
-            self.cursor.beer_connection.session.add(user)
-            self.cursor.beer_connection.session.commit()
-            self.cursor.beer_connection.session.close()
+            self.cursor.default_connection.beer_connection.session.add(user)
+            self.cursor.default_connection.beer_connection.session.commit()
+            self.cursor.default_connection.beer_connection.session.close()
         except Exception as _excep:
             logging.debug('Exception when we try add User: %s"', _excep)
         finally:
@@ -66,13 +66,13 @@ class UserFacade:
         """
         try:
             _json_entrada = json.loads(_json)
-            self.cursor.beer_connection.session.execute(
+            self.cursor.default_connection.beer_connection.session.execute(
                 update(User, values={
                     User.password_token: _json_entrada["new_password_token"]})).filter(
                         User.name == _json_entrada["name"],
                         User.password_token == _json_entrada["password_token"])
-            self.cursor.beer_connection.session.commit()
-            self.cursor.beer_connection.session.close()
+            self.cursor.default_connection.beer_connection.session.commit()
+            self.cursor.default_connection.beer_connection.session.close()
         except Exception as _excep:
             logging.debug('Exception when we try add User: %s"', _excep)
         finally:

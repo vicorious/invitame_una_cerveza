@@ -28,13 +28,13 @@ class UserBeerFacade:
         """
         try:
             _json_entrada = json.loads(_json)
-            results = self.cursor.beer_connection.session.query(UserBeer).filter(
+            results = self.cursor.default_connection.beer_connection.session.query(UserBeer).filter(
                 UserBeer.id == _json_entrada["id"])
             return results
         except Exception as _excep:
             logging.debug('Exception: %s"', _excep)
         finally:
-            self.cursor.beer_connection.session.close()
+            self.cursor.default_connection.beer_connection.session.close()
 
     ########### Insert User for visit #################################################
     def insert_user_for_visit(self, _json):
@@ -47,13 +47,13 @@ class UserBeerFacade:
                                  _json_entrada["pay_type_id"], _json_entrada["climate_id"],
                                  _json_entrada["visit_date"], _json_entrada["_token"],
                                  _json_entrada["qr"], _json_entrada["created_by"])
-            self.cursor.beer_connection.session.add(user_beer)
-            self.cursor.beer_connection.session.commit()
-            self.cursor.beer_connection.session.close()
+            self.cursor.default_connection.beer_connection.session.add(user_beer)
+            self.cursor.default_connection.beer_connection.session.commit()
+            self.cursor.default_connection.beer_connection.session.close()
         except Exception as _excep:
             logging.debug('Exception when we try add UserByVisit: %s"', _excep)
         finally:
-            self.cursor.beer_connection.session.close()
+            self.cursor.default_connection.beer_connection.session.close()
 
  ############ Update beer for visit ####################################################
     def user_beer_for_visit(self, _json):
@@ -69,7 +69,7 @@ class UserBeerFacade:
         except Exception as _excep:
             logging.debug('Exception: %s"', _excep)
         finally:
-            self.cursor.beer_connection.session.close()
+            self.cursor.default_connection.beer_connection.session.close()
 
  ############ getUserBeerForPayment ####################################################
     def user_beer_pay_type_for_visit(self, _json):
@@ -78,7 +78,7 @@ class UserBeerFacade:
         """
         try:
             _json_entrada = json.loads(_json)
-            results = self.cursor.beer_connection.session.query(UserBeer).filter(
+            results = self.cursor.default_connection.beer_connection.session.query(UserBeer).filter(
                 UserBeer.user_id == _json_entrada["user_id"],
                 UserBeer.beer_id == _json_entrada["beer_id"],
                 UserBeer.pay_type_id == _json_entrada["pay_type_id"])
@@ -86,7 +86,7 @@ class UserBeerFacade:
         except Exception as _excep:
             logging.debug('Exception: %s"', _excep)
         finally:
-            self.cursor.beer_connection.session.close()
+            self.cursor.default_connection.beer_connection.session.close()
 
  ############ getUserPayType ####################################################
     def user_pay_type_for_visit(self, _json):
@@ -95,11 +95,11 @@ class UserBeerFacade:
         """
         try:
             _json_entrada = json.loads(_json)
-            results = self.cursor.beer_connection.session.query(UserBeer).filter(
+            results = self.cursor.default_connection.beer_connection.session.query(UserBeer).filter(
                 UserBeer.user_id == _json_entrada["user_id"],
                 UserBeer.pay_type_id == _json_entrada["pay_type_id"])
             return results
         except Exception as _excep:
             logging.debug('Exception: %s"', _excep)
         finally:
-            self.cursor.beer_connection.session.close()
+            self.cursor.default_connection.beer_connection.session.close()

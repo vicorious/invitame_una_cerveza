@@ -26,14 +26,14 @@ class BeerFacade:
         Beer for id method
         """
         try:
-            results = self.cur.beer_connection.session.query(Beer).filter(Beer.id == _beer_id).one()
+            results = self.cur.default_connection.beer_connection.session.query(Beer).filter(Beer.id == _beer_id).one()
             return results
         except MultipleResultsFound as multiple_results:
             logging.debug('Multiple rows. Failed Integrity from database %s', multiple_results)
         except NoResultFound as no_result:
             logging.debug('Beer not found %s"', no_result)       
         finally:
-            self.cur.beer_connection.session.close()
+            self.cur.default_connection.beer_connection.session.close()
         return None
     ########### insert_beer #################################################
     def insert_beer(self, _json):
@@ -49,9 +49,9 @@ class BeerFacade:
                         _json_entrada["description"], _json_entrada["image"], _json_entrada["pint"],
                         _json_entrada["cup330"], _json_entrada["giraffe"],
                         _json_entrada["pitcher"], _json_entrada["created_by"])
-            self.cur.beer_connection.session.add(beer)
-            self.cur.beer_connection.session.commit()
-            self.cur.beer_connection.session.close()
+            self.cur.default_connection.beer_connection.session.add(beer)
+            self.cur.default_connection.beer_connection.session.commit()
+            self.cur.default_connection.beer_connection.session.close()
         except Exception as _excep:
             logging.debug('Exception when we try add Beer: %s"', _excep)
         finally:
@@ -63,12 +63,12 @@ class BeerFacade:
         get beers method
         """
         try:
-            results = self.cur.beer_connection.session.query(Beer).all()
+            results = self.cur.default_connection.beer_connection.session.query(Beer).all()
             return results
         except Exception as _excep:
             logging.debug('Exception when we try fetch Beers: %s"', _excep)
         finally:
-            self.cur.beer_connection.session.close()
+            self.cur.default_connection.beer_connection.session.close()
 
     ########### Update beer #################################################
     def update_beer(self, _json):

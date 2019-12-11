@@ -34,7 +34,7 @@ class PromotionFacade:
         except Exception as _excep:
             logging.debug('Exception when we try add Promotion: %s"', _excep)
         finally:
-            self.cursor.beer_connection.session.close()
+            self.cursor.default_connection.beer_connection.session.close()
 
     ########### Beers #################################################
     def promotions(self):
@@ -47,7 +47,7 @@ class PromotionFacade:
         except Exception as _excep:
             logging.debug('Exception when we try fetch Promotions: %s"', _excep)
         finally:
-            self.cursor.beer_connection.session.close()
+            self.cursordefault_connection..beer_connection.session.close()
 
     ########### Update beer #################################################
     def update_promotion(self, _json):
