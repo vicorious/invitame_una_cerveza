@@ -1,10 +1,10 @@
 """
 Cursor module
 """
+import logging
 from flask import json
 from proxy import ProxyConfiguration
 from default_connection import DefaultConnection
-import logging
 class Cursor:
     """
     Cursor Class
