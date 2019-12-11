@@ -78,22 +78,4 @@ class BarFacade:
         """
         update_bares = "UPDATE BAR SET "
         where_update_bares = "WHERE ID = {}"
-        try:
-            _json_entrada = json.loads(_json)
-            update = ''
-            for json_i in _json_entrada:
-                for attribute, value in json_i:
-                    if attribute in ('id', 'ID'):
-                        continue
-                    if value is int:
-                        update.join(attribute.upper()).join(" = ").join(value).join(" ")
-                    else:
-                        update.join(attribute.upper()).join(" = '").join(value).join("' ")
-            update = update_bares.join(update).join(where_update_bares.format(_json_entrada["id"]))
-            self.cursor.beer_connection.session.query(Bar).from_statement(str(update))
-            self.cursor.beer_connection.session.commit()
-            self.cursor.beer_connection.session.close()
-        except Exception as _excep:
-            logging.debug('Exception when we try update bar: %s"', _excep)
-        finally:
-            self.cursor.beer_connection.session.close()
+        self.cursor.update_query(_json, update_bares, where_update_bares)
