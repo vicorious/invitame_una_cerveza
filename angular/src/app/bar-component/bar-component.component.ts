@@ -27,14 +27,22 @@ export class BarComponentComponent implements OnInit
 
 	ngOnInit() 
 	{
+		this.loading = true;		
 		initPrimero();
 		this.barService.getBars().subscribe
 		(
 			res => 
 			{
+				console.log('entro');				
 				this.bares = res;
+				this.loading = false;
+				if(Object.entries(res).length === 1)
+				{
+					this.router.navigate(['**']);	
+				}
 			}
 		);
+	
 	}
   
 	/**

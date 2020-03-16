@@ -3,6 +3,7 @@ DataModelingLanguage module
 """
 import json
 import datetime
+import logging
 from entities.bar import Bar
 from entities.beer import Beer
 from entities.user import User
@@ -20,6 +21,7 @@ class DML:
     DataModelingLanguage class
     """
     default_connection = None
+    logging.basicConfig(filename="test.log", level=logging.DEBUG)
     def __init__(self, engine):
         """
         Constructor
@@ -30,15 +32,18 @@ class DML:
         """
         Create datamodelinglanguage
         """
+        logging.debug("DataModelingLanguage begin!")
         now = datetime.datetime(2009, 5, 5)
         now.strftime('%Y-%m-%d %H:%M:%S')
         _data = [1, [2, 3], {'a': [4, 5]}]
         _my_json = json.dumps(_data)
+        logging.debug("dumps")
         beer_type = BeerType("IPA", Constant.user)
         pay_type = PayType("TARJETA_CREDITO", Constant.user)
         bar = Bar("Melas", now, "12", "24", "6", "a", "MELAS BAR", "http://servidor/melas.jpg",
                   "Calle 72 #11-07", "5", "https://facebook/melas", "https://twitter/@melas",
                   "https://instragram/melas", "123", Constant.user)
+                  
         self.default_connection.get_beer_connection().session.add(beer_type)
         self.default_connection.get_beer_connection().session.add(pay_type)
         self.default_connection.get_beer_connection().session.add(bar)
@@ -62,6 +67,7 @@ class DML:
         self.default_connection.get_beer_connection().session.add(climate)
         self.default_connection.get_beer_connection().session.commit()
         self.default_connection.get_beer_connection().session.close()
+        logging.debug("DataModelingLanguage created!")
 
     def __str__(self):
         return self.__class__.__name__

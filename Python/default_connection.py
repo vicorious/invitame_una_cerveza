@@ -15,6 +15,7 @@ class DefaultConnection:
     _session = None
     base = None
     engine = None
+    logging.basicConfig(filename="test.log", level=logging.DEBUG)
     def __init__(self, engine):
         """
         Constructor
@@ -28,6 +29,7 @@ class DefaultConnection:
             engine=self.engine,
             session=self._session,
             base=self.base)
+        logging.debug('DefaultConnection full')
     ########## Cerrar conexion ###################
     def commit(self):
         """

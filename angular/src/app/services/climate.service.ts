@@ -18,7 +18,7 @@ export class ClimateService
 {
 
 	host 		 : string = "http://api.openweathermap.org/data/2.5/weather";
-	host_service : string = "http://elputohostdelflask/climate/save"
+	host_service : string = "http://localhost:5000/climate/weather"
 	ciudad 		 : string = "Bogota";
 	API_KEY		 : string = "8cde928e3f9fdc6ce35a4f5d0375ac62";
 	
@@ -33,8 +33,8 @@ export class ClimateService
 	getCurrentClimate():  Observable<any>
 	{
 		//TODO This feature going to BACKEND
-		let params = new HttpParams().set('q', this.ciudad).set("appid", this.API_KEY).set("units", "metric")
-		return this.http.get(this.host_service, { params: params }).pipe
+		//let params = new HttpParams().set('city', this.ciudad)
+		return this.http.get(this.host_service + "/" + this.ciudad).pipe
 		(
 			retry(1)		
 		)

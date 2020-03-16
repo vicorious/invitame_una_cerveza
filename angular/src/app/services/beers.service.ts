@@ -14,7 +14,7 @@ import { of } from 'rxjs';
 )
 export class BeersService 
 {
-	public HOST            : string = "http://localhost:4200"
+	public HOST            : string = "http://localhost:5000"
 	public URI_BEERS       : string = "/beers";
 	public URI_BEER_ID     : string = "/beer/";
 	public GET             : string = "/GET";

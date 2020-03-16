@@ -4,6 +4,7 @@ Service http module
 import logging
 from flask import Flask, jsonify, json, request
 from flask_api import status
+from flask_cors import CORS, cross_origin
 from sqlalchemy.orm.exc import MultipleResultsFound
 from proxy import ProxyConfiguration
 from json_encoder import AlchemyEncoder
@@ -15,12 +16,16 @@ from facade_promotion import PromotionFacade
 from facade_climate import Climate
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 OK = 'OK'
 FAIL = 'FAIL'
 
 logging.basicConfig(filename="test.log", level=logging.DEBUG)
+
 @app.route('/user/login', methods=['POST'])
+@cross_origin()
 def login():
     """
     Login method
@@ -34,6 +39,7 @@ def login():
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 @app.route('/user/register/INSERT', methods=['POST'])
+@cross_origin()
 def register():
     """
     Register method
@@ -47,6 +53,7 @@ def register():
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 @app.route('/user/password/UPDATE', methods=['PUT'])
+@cross_origin()
 def forgot_password():
     """
     Forgot method
@@ -60,6 +67,7 @@ def forgot_password():
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 @app.route('/bar/<_bar_id>/GET', methods=['GET'])
+@cross_origin()
 def bar_for_id(_bar_id):
     """
     Bar for id method
@@ -75,12 +83,14 @@ def bar_for_id(_bar_id):
 
 
 @app.route('/bars', methods=['GET'])
+@cross_origin()
 def bars():
     """
     Get bars method
     """
     try:
         _bars = BarFacade().bars()
+        logging.debug("Paso bares")
         if len(_bars) > 0:
             return jsonify(json.dumps(_bars, cls=AlchemyEncoder))
         return jsonify(_bars), status.HTTP_204_NO_CONTENT
@@ -90,6 +100,7 @@ def bars():
 
 
 @app.route('/bar/INSERT', methods=['POST'])
+@cross_origin()
 def insert_bar():
     """
     Insert bar method
@@ -104,6 +115,7 @@ def insert_bar():
 
 
 @app.route('/bar/UPDATE', methods=['PUT'])
+@cross_origin()
 def update_bar():
     """
     Update bar method
@@ -117,6 +129,7 @@ def update_bar():
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 @app.route('/beer/<_beer_id>/GET', methods=['GET'])
+@cross_origin()
 def beer_id(_beer_id):
     """
     Beer for id method
@@ -132,6 +145,7 @@ def beer_id(_beer_id):
 
 
 @app.route('/beers', methods=['GET'])
+@cross_origin()
 def beers():
     """
     get Beers method
@@ -147,6 +161,7 @@ def beers():
 
 
 @app.route('/beer/INSERT', methods=['POST'])
+@cross_origin()
 def insert_beer():
     """
     Insert beer method
@@ -160,6 +175,7 @@ def insert_beer():
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 @app.route('/beer/UPDATE', methods=['PUT'])
+@cross_origin()
 def update_beer():
     """
     Update beer method
@@ -173,6 +189,7 @@ def update_beer():
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 @app.route('/userBeer/<_user_id>/GET', methods=['GET'])
+@cross_origin()
 def user_for_visit(_user_id):
     """
     User for visit method
@@ -187,6 +204,7 @@ def user_for_visit(_user_id):
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 @app.route('/userBeer/<_user_id>/<_beer_id>/GET', methods=['GET'])
+@cross_origin()
 def user_beer_for_visit(_user_id, _beer_id):
     """
     User beer method
@@ -201,6 +219,7 @@ def user_beer_for_visit(_user_id, _beer_id):
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 @app.route('/userBeer/<_user_id>/<_beer_id>/<_pay_type_id>/GET', methods=['GET'])
+@cross_origin()
 def user_beer_pay_type_for_visit(_user_id, _beer_id, _pay_type_id):
     """
     User beer pay type for visit method
@@ -215,6 +234,7 @@ def user_beer_pay_type_for_visit(_user_id, _beer_id, _pay_type_id):
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 @app.route('/userBeer/<_user_id>/<_pay_type_id>/GET', methods=['GET'])
+@cross_origin()
 def user_pay_type_for_visit(_user_id, _pay_type_id):
     """
     User pay type for visit method
@@ -230,6 +250,7 @@ def user_pay_type_for_visit(_user_id, _pay_type_id):
 
 
 @app.route('/userBeer/INSERT', methods=['POST'])
+@cross_origin()
 def insert_user_by_visit():
     """
     Insert user by visit method
@@ -243,6 +264,7 @@ def insert_user_by_visit():
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 @app.route('/promotion', methods=['GET'])
+@cross_origin()
 def promotions():
     """
     Promotions method
@@ -258,6 +280,7 @@ def promotions():
 
 
 @app.route('/promotion/INSERT', methods=['POST'])
+@cross_origin()
 def insert_promotion():
     """
     Insert promotion method
@@ -271,6 +294,7 @@ def insert_promotion():
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 @app.route('/promotion/UPDATE', methods=['PUT'])
+@cross_origin()
 def update_promotion():
     """
     Update promotion method
@@ -283,20 +307,21 @@ def update_promotion():
         logging.debug("Unexpected Error %s", _excep)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
-@app.route('/climate/weather', methods=['PUT'])
-def weather():
+@app.route('/climate/weather/<city>', methods=['GET'])
+@cross_origin()
+def weather(city):
     """
     Weather method
     """
     try:
-        _json_promotion = request.get_json()
-        Climate().get_current_weather(_json_promotion)
+        climate_dto = Climate().get_current_weather(city)
         return jsonify(OK)
     except Exception as _excep:
         logging.debug("Unexpected Error %s", _excep)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 @app.route('/postgre', methods=['GET'])
+@cross_origin()
 def postgre():
     """
     Postgre instalation method
@@ -310,6 +335,7 @@ def postgre():
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 @app.route('/create_data_base', methods=['GET'])
+@cross_origin()
 def create_database():
     """
     Create database method
@@ -328,6 +354,7 @@ def create_database():
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 @app.route('/create_database_dml', methods=['GET'])
+@cross_origin()
 def create_dml():
     """
     Create dml method
@@ -343,7 +370,8 @@ def create_dml():
             proxy.create_ddl()
             proxy.create_dml()
         return jsonify(OK)
-    except:
+    except Exception as _excep:
+        logging.debug("Exception: ", _excep)
         return jsonify(FAIL), status.HTTP_409_CONFLICT
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 

@@ -14,7 +14,7 @@ import { of } from 'rxjs';
 export class BarService 
 {
 	
-	public HOST           : string = "http://localhost:4200"
+	public HOST           : string = "http://localhost:5000"
 	public URI_BARS       : string = "/bars";
 	public URI_BAR_ID     : string = "/bar/";
 	public GET            : string = "/GET";
@@ -92,6 +92,7 @@ export class BarService
 				}
 			)
 		);
+	}
 
 	
 	/**

@@ -6,13 +6,14 @@ export const environment = {
   production: false,
   firebaseConfig : 
   {
-	  apiKey:"AIzaSyAzl0lGy4Bhi6z8QDaf6iBoKY3iO8q8fvg",
-	  authDomain:"angularauth-bd39e.firebaseapp.com",
-	  databaseUrl:"https://angularauth-bd39e.firebaseio.com",
-	  projectId:"angularauth-bd39e",
-	  storageBucket:"angularauth-bd39e.appspot.com",
-	  messagingSenderId:"",
-	  appID:"675147356227522"
+    apiKey: "AIzaSyAzl0lGy4Bhi6z8QDaf6iBoKY3iO8q8fvg",
+    authDomain: "angularauth-bd39e.firebaseapp.com",
+    databaseURL: "https://angularauth-bd39e.firebaseio.com",
+    projectId: "angularauth-bd39e",
+    storageBucket: "angularauth-bd39e.appspot.com",
+    messagingSenderId: "272041005236",
+    appId: "1:272041005236:web:2a832423c4379b28f947e1",
+    measurementId: "G-6S517DHY24"
   }
 };
 

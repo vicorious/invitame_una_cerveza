@@ -26,7 +26,7 @@ class BarFacade:
         Bar for id Method
         """
         try:
-            results = self.cursor.default_connection.beer_connection.session.query(Bar).filter(
+            results = self.cursor.default_connection.get_beer_connection().session.query(Bar).filter(
                 Bar.id == _bar_id).one()
             return results
         except MultipleResultsFound as multiple_results:
@@ -34,7 +34,7 @@ class BarFacade:
         except NoResultFound as no_result:
             logging.debug('Bar not found %s', no_result)
         finally:
-            self.beer_connection.session.close()
+            self.cursor.default_connection.get_beer_connection().session.close()
         return None
     ########### insert_bar #################################################
     def insert_bar(self, _json):
@@ -51,9 +51,9 @@ class BarFacade:
                       _json_entrada["address"], _json_entrada["points"], _json_entrada["facebook"],
                       _json_entrada["twitter"], _json_entrada["instagram"],
                       _json_entrada["emergency_number"], _json_entrada["created_by"])
-            self.cursor.default_connection.beer_connection.session.add(bar)
-            self.cursor.default_connection.beer_connection.session.commit()
-            self.cursor.default_connection.beer_connection.session.close()
+            self.cursor.default_connection.get_beer_connection().session.add(bar)
+            self.cursor.default_connection.get_beer_connection().session.commit()
+            self.cursor.default_connection.get_beer_connection().session.close()
         except Exception as _excep:
             logging.debug('Exception when we try add Bar: %s"', _excep)
         finally:
@@ -65,12 +65,12 @@ class BarFacade:
         getBars Method
         """
         try:
-            results = self.cursor.default_connection.beer_connection.session.query(Bar).all()
+            results = self.cursor.default_connection._session.query(Bar).all()
             return results
         except Exception as _excep:
             logging.debug('Exception when we try fetch Bars: %s"', _excep)
         finally:
-            self.cursor.beer_connection.session.close()
+            self.cursor.default_connection.get_beer_connection().session.close()
 
     ########### Update bar #################################################
     def update_bar(self, _json):
