@@ -238,3 +238,233 @@ DEBUG:urllib3.connectionpool:http://api.openweathermap.org:80 "GET /data/2.5/wea
 INFO:werkzeug:127.0.0.1 - - [15/Mar/2020 21:36:13] "[37mGET /climate/weather/Bogota HTTP/1.1[0m" 200 -
 DEBUG:root:Paso bares
 INFO:werkzeug:127.0.0.1 - - [15/Mar/2020 21:36:13] "[37mGET /bars HTTP/1.1[0m" 200 -
+DEBUG:root:Engine created!
+DEBUG:root:DefaultConnection full
+INFO:werkzeug:127.0.0.1 - - [15/Mar/2020 21:39:22] "[37mGET /beers HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [15/Mar/2020 21:39:39] "[37mOPTIONS /beer/null/GET HTTP/1.1[0m" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): api.openweathermap.org:80
+DEBUG:root:Engine created!
+DEBUG:root:DefaultConnection full
+DEBUG:root:Unexpected Error (psycopg2.errors.InvalidTextRepresentation) invalid input syntax for type integer: "null"
+LINE 3: WHERE public."BEER".id = 'null'
+                                 ^
+
+[SQL: SELECT public."BEER".created_at AS "public_BEER_created_at", public."BEER".updated_at AS "public_BEER_updated_at", public."BEER".last_updated_by AS "public_BEER_last_updated_by", public."BEER".id AS "public_BEER_id", public."BEER".name AS "public_BEER_name", public."BEER".pint_price AS "public_BEER_pint_price", public."BEER".cup330_price AS "public_BEER_cup330_price", public."BEER".giraffe_price AS "public_BEER_giraffe_price", public."BEER".pitcher_price AS "public_BEER_pitcher_price", public."BEER".bar_id AS "public_BEER_bar_id", public."BEER".beer_type_id AS "public_BEER_beer_type_id", public."BEER".avb AS "public_BEER_avb", public."BEER".ibu AS "public_BEER_ibu", public."BEER".srm AS "public_BEER_srm", public."BEER".description AS "public_BEER_description", public."BEER".image AS "public_BEER_image", public."BEER".pint AS "public_BEER_pint", public."BEER".cup330 AS "public_BEER_cup330", public."BEER".giraffe AS "public_BEER_giraffe", public."BEER".pitcher AS "public_BEER_pitcher" 
+FROM public."BEER" 
+WHERE public."BEER".id = %(id_1)s]
+[parameters: {'id_1': 'null'}]
+(Background on this error at: http://sqlalche.me/e/9h9h)
+INFO:werkzeug:127.0.0.1 - - [15/Mar/2020 21:39:39] "[31m[1mGET /beer/null/GET HTTP/1.1[0m" 409 -
+DEBUG:root:Engine created!
+DEBUG:root:DefaultConnection full
+DEBUG:urllib3.connectionpool:http://api.openweathermap.org:80 "GET /data/2.5/weather?q=Bogota&units=metric&appid=8cde928e3f9fdc6ce35a4f5d0375ac62 HTTP/1.1" 200 441
+INFO:werkzeug:127.0.0.1 - - [15/Mar/2020 21:39:40] "[37mGET /climate/weather/Bogota HTTP/1.1[0m" 200 -
+DEBUG:root:Unexpected Error (psycopg2.errors.InvalidTextRepresentation) invalid input syntax for type integer: "null"
+LINE 3: WHERE public."BEER".id = 'null'
+                                 ^
+
+[SQL: SELECT public."BEER".created_at AS "public_BEER_created_at", public."BEER".updated_at AS "public_BEER_updated_at", public."BEER".last_updated_by AS "public_BEER_last_updated_by", public."BEER".id AS "public_BEER_id", public."BEER".name AS "public_BEER_name", public."BEER".pint_price AS "public_BEER_pint_price", public."BEER".cup330_price AS "public_BEER_cup330_price", public."BEER".giraffe_price AS "public_BEER_giraffe_price", public."BEER".pitcher_price AS "public_BEER_pitcher_price", public."BEER".bar_id AS "public_BEER_bar_id", public."BEER".beer_type_id AS "public_BEER_beer_type_id", public."BEER".avb AS "public_BEER_avb", public."BEER".ibu AS "public_BEER_ibu", public."BEER".srm AS "public_BEER_srm", public."BEER".description AS "public_BEER_description", public."BEER".image AS "public_BEER_image", public."BEER".pint AS "public_BEER_pint", public."BEER".cup330 AS "public_BEER_cup330", public."BEER".giraffe AS "public_BEER_giraffe", public."BEER".pitcher AS "public_BEER_pitcher" 
+FROM public."BEER" 
+WHERE public."BEER".id = %(id_1)s]
+[parameters: {'id_1': 'null'}]
+(Background on this error at: http://sqlalche.me/e/9h9h)
+INFO:werkzeug:127.0.0.1 - - [15/Mar/2020 21:39:40] "[31m[1mGET /beer/null/GET HTTP/1.1[0m" 409 -
+INFO:werkzeug:127.0.0.1 - - [15/Mar/2020 22:09:27] "[37mOPTIONS /beer/null/GET HTTP/1.1[0m" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): api.openweathermap.org:80
+DEBUG:root:Engine created!
+DEBUG:root:DefaultConnection full
+DEBUG:root:Unexpected Error (psycopg2.errors.InvalidTextRepresentation) invalid input syntax for type integer: "null"
+LINE 3: WHERE public."BEER".id = 'null'
+                                 ^
+
+[SQL: SELECT public."BEER".created_at AS "public_BEER_created_at", public."BEER".updated_at AS "public_BEER_updated_at", public."BEER".last_updated_by AS "public_BEER_last_updated_by", public."BEER".id AS "public_BEER_id", public."BEER".name AS "public_BEER_name", public."BEER".pint_price AS "public_BEER_pint_price", public."BEER".cup330_price AS "public_BEER_cup330_price", public."BEER".giraffe_price AS "public_BEER_giraffe_price", public."BEER".pitcher_price AS "public_BEER_pitcher_price", public."BEER".bar_id AS "public_BEER_bar_id", public."BEER".beer_type_id AS "public_BEER_beer_type_id", public."BEER".avb AS "public_BEER_avb", public."BEER".ibu AS "public_BEER_ibu", public."BEER".srm AS "public_BEER_srm", public."BEER".description AS "public_BEER_description", public."BEER".image AS "public_BEER_image", public."BEER".pint AS "public_BEER_pint", public."BEER".cup330 AS "public_BEER_cup330", public."BEER".giraffe AS "public_BEER_giraffe", public."BEER".pitcher AS "public_BEER_pitcher" 
+FROM public."BEER" 
+WHERE public."BEER".id = %(id_1)s]
+[parameters: {'id_1': 'null'}]
+(Background on this error at: http://sqlalche.me/e/9h9h)
+INFO:werkzeug:127.0.0.1 - - [15/Mar/2020 22:09:28] "[31m[1mGET /beer/null/GET HTTP/1.1[0m" 409 -
+DEBUG:root:Engine created!
+DEBUG:root:DefaultConnection full
+DEBUG:root:Unexpected Error (psycopg2.errors.InvalidTextRepresentation) invalid input syntax for type integer: "null"
+LINE 3: WHERE public."BEER".id = 'null'
+                                 ^
+
+[SQL: SELECT public."BEER".created_at AS "public_BEER_created_at", public."BEER".updated_at AS "public_BEER_updated_at", public."BEER".last_updated_by AS "public_BEER_last_updated_by", public."BEER".id AS "public_BEER_id", public."BEER".name AS "public_BEER_name", public."BEER".pint_price AS "public_BEER_pint_price", public."BEER".cup330_price AS "public_BEER_cup330_price", public."BEER".giraffe_price AS "public_BEER_giraffe_price", public."BEER".pitcher_price AS "public_BEER_pitcher_price", public."BEER".bar_id AS "public_BEER_bar_id", public."BEER".beer_type_id AS "public_BEER_beer_type_id", public."BEER".avb AS "public_BEER_avb", public."BEER".ibu AS "public_BEER_ibu", public."BEER".srm AS "public_BEER_srm", public."BEER".description AS "public_BEER_description", public."BEER".image AS "public_BEER_image", public."BEER".pint AS "public_BEER_pint", public."BEER".cup330 AS "public_BEER_cup330", public."BEER".giraffe AS "public_BEER_giraffe", public."BEER".pitcher AS "public_BEER_pitcher" 
+FROM public."BEER" 
+WHERE public."BEER".id = %(id_1)s]
+[parameters: {'id_1': 'null'}]
+(Background on this error at: http://sqlalche.me/e/9h9h)
+INFO:werkzeug:127.0.0.1 - - [15/Mar/2020 22:09:28] "[31m[1mGET /beer/null/GET HTTP/1.1[0m" 409 -
+DEBUG:urllib3.connectionpool:http://api.openweathermap.org:80 "GET /data/2.5/weather?q=Bogota&units=metric&appid=8cde928e3f9fdc6ce35a4f5d0375ac62 HTTP/1.1" 200 441
+INFO:werkzeug:127.0.0.1 - - [15/Mar/2020 22:09:29] "[37mGET /climate/weather/Bogota HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Mar/2020 09:43:52] "[37mOPTIONS /beer/null/GET HTTP/1.1[0m" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): api.openweathermap.org:80
+DEBUG:root:Unexpected Error HTTPConnectionPool(host='api.openweathermap.org', port=80): Max retries exceeded with url: /data/2.5/weather?q=Bogota&units=metric&appid=8cde928e3f9fdc6ce35a4f5d0375ac62 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x051D7658>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+INFO:werkzeug:127.0.0.1 - - [16/Mar/2020 09:43:52] "[31m[1mGET /climate/weather/Bogota HTTP/1.1[0m" 409 -
+DEBUG:root:Engine created!
+DEBUG:root:DefaultConnection full
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): api.openweathermap.org:80
+DEBUG:root:Unexpected Error HTTPConnectionPool(host='api.openweathermap.org', port=80): Max retries exceeded with url: /data/2.5/weather?q=Bogota&units=metric&appid=8cde928e3f9fdc6ce35a4f5d0375ac62 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x045D9C70>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+INFO:werkzeug:127.0.0.1 - - [16/Mar/2020 09:43:53] "[31m[1mGET /climate/weather/Bogota HTTP/1.1[0m" 409 -
+DEBUG:root:Unexpected Error (psycopg2.errors.InvalidTextRepresentation) invalid input syntax for type integer: "null"
+LINE 3: WHERE public."BEER".id = 'null'
+                                 ^
+
+[SQL: SELECT public."BEER".created_at AS "public_BEER_created_at", public."BEER".updated_at AS "public_BEER_updated_at", public."BEER".last_updated_by AS "public_BEER_last_updated_by", public."BEER".id AS "public_BEER_id", public."BEER".name AS "public_BEER_name", public."BEER".pint_price AS "public_BEER_pint_price", public."BEER".cup330_price AS "public_BEER_cup330_price", public."BEER".giraffe_price AS "public_BEER_giraffe_price", public."BEER".pitcher_price AS "public_BEER_pitcher_price", public."BEER".bar_id AS "public_BEER_bar_id", public."BEER".beer_type_id AS "public_BEER_beer_type_id", public."BEER".avb AS "public_BEER_avb", public."BEER".ibu AS "public_BEER_ibu", public."BEER".srm AS "public_BEER_srm", public."BEER".description AS "public_BEER_description", public."BEER".image AS "public_BEER_image", public."BEER".pint AS "public_BEER_pint", public."BEER".cup330 AS "public_BEER_cup330", public."BEER".giraffe AS "public_BEER_giraffe", public."BEER".pitcher AS "public_BEER_pitcher" 
+FROM public."BEER" 
+WHERE public."BEER".id = %(id_1)s]
+[parameters: {'id_1': 'null'}]
+(Background on this error at: http://sqlalche.me/e/9h9h)
+INFO:werkzeug:127.0.0.1 - - [16/Mar/2020 09:43:53] "[31m[1mGET /beer/null/GET HTTP/1.1[0m" 409 -
+DEBUG:root:Engine created!
+DEBUG:root:DefaultConnection full
+DEBUG:root:Unexpected Error (psycopg2.errors.InvalidTextRepresentation) invalid input syntax for type integer: "null"
+LINE 3: WHERE public."BEER".id = 'null'
+                                 ^
+
+[SQL: SELECT public."BEER".created_at AS "public_BEER_created_at", public."BEER".updated_at AS "public_BEER_updated_at", public."BEER".last_updated_by AS "public_BEER_last_updated_by", public."BEER".id AS "public_BEER_id", public."BEER".name AS "public_BEER_name", public."BEER".pint_price AS "public_BEER_pint_price", public."BEER".cup330_price AS "public_BEER_cup330_price", public."BEER".giraffe_price AS "public_BEER_giraffe_price", public."BEER".pitcher_price AS "public_BEER_pitcher_price", public."BEER".bar_id AS "public_BEER_bar_id", public."BEER".beer_type_id AS "public_BEER_beer_type_id", public."BEER".avb AS "public_BEER_avb", public."BEER".ibu AS "public_BEER_ibu", public."BEER".srm AS "public_BEER_srm", public."BEER".description AS "public_BEER_description", public."BEER".image AS "public_BEER_image", public."BEER".pint AS "public_BEER_pint", public."BEER".cup330 AS "public_BEER_cup330", public."BEER".giraffe AS "public_BEER_giraffe", public."BEER".pitcher AS "public_BEER_pitcher" 
+FROM public."BEER" 
+WHERE public."BEER".id = %(id_1)s]
+[parameters: {'id_1': 'null'}]
+(Background on this error at: http://sqlalche.me/e/9h9h)
+INFO:werkzeug:127.0.0.1 - - [16/Mar/2020 09:43:53] "[31m[1mGET /beer/null/GET HTTP/1.1[0m" 409 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [12/Apr/2020 15:00:25] "[37mGET /spec HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Apr/2020 15:00:25] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [12/Apr/2020 15:01:47] "[37mGET /spec HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [12/Apr/2020 15:19:22] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Apr/2020 15:19:22] "GET /swaggerui/droid-sans.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Apr/2020 15:19:23] "GET /swaggerui/swagger-ui.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Apr/2020 15:19:23] "GET /swaggerui/swagger-ui-standalone-preset.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Apr/2020 15:19:24] "GET /swaggerui/swagger-ui-bundle.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Apr/2020 15:19:24] "GET /swagger.json HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Apr/2020 15:19:24] "GET /swaggerui/favicon-32x32.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Apr/2020 15:19:27] "GET /swagger.json HTTP/1.1" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ERROR:servicio:Exception on /spec [GET]
+Traceback (most recent call last):
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\flask_cors\extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "servicio.py", line 430, in spec
+    swag = swagger(app)
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\flask_swagger.py", line 183, in swagger
+    summary, description, swag = _parse_docstring(method, process_doc,
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\flask_swagger.py", line 63, in _parse_docstring
+    swag = yaml.full_load(full_doc[line_feed+yaml_sep:])
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\__init__.py", line 142, in full_load
+    return load(stream, FullLoader)
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\__init__.py", line 114, in load
+    return loader.get_single_data()
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\constructor.py", line 49, in get_single_data
+    node = self.get_single_node()
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\composer.py", line 36, in get_single_node
+    document = self.compose_document()
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\composer.py", line 55, in compose_document
+    node = self.compose_node(None, None)
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\composer.py", line 82, in compose_node
+    node = self.compose_sequence_node(anchor)
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\composer.py", line 110, in compose_sequence_node
+    while not self.check_event(SequenceEndEvent):
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\parser.py", line 98, in check_event
+    self.current_event = self.state()
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\parser.py", line 382, in parse_block_sequence_entry
+    if self.check_token(BlockEntryToken):
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\scanner.py", line 116, in check_token
+    self.fetch_more_tokens()
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\scanner.py", line 223, in fetch_more_tokens
+    return self.fetch_value()
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\scanner.py", line 577, in fetch_value
+    raise ScannerError(None, None,
+yaml.scanner.ScannerError: mapping values are not allowed here
+  in "<unicode string>", line 5, column 16:
+        definitions:
+                   ^
+INFO:werkzeug:127.0.0.1 - - [12/Apr/2020 15:49:46] "GET /spec HTTP/1.1" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ERROR:servicio:Exception on /spec [GET]
+Traceback (most recent call last):
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\flask_cors\extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "servicio.py", line 430, in spec
+    swag = swagger(app)
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\flask_swagger.py", line 183, in swagger
+    summary, description, swag = _parse_docstring(method, process_doc,
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\flask_swagger.py", line 63, in _parse_docstring
+    swag = yaml.full_load(full_doc[line_feed+yaml_sep:])
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\__init__.py", line 142, in full_load
+    return load(stream, FullLoader)
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\__init__.py", line 114, in load
+    return loader.get_single_data()
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\constructor.py", line 49, in get_single_data
+    node = self.get_single_node()
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\composer.py", line 36, in get_single_node
+    document = self.compose_document()
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\composer.py", line 55, in compose_document
+    node = self.compose_node(None, None)
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\composer.py", line 82, in compose_node
+    node = self.compose_sequence_node(anchor)
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\composer.py", line 111, in compose_sequence_node
+    node.value.append(self.compose_node(node, index))
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\composer.py", line 127, in compose_mapping_node
+    while not self.check_event(MappingEndEvent):
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\parser.py", line 98, in check_event
+    self.current_event = self.state()
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\parser.py", line 428, in parse_block_mapping_key
+    if self.check_token(KeyToken):
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\scanner.py", line 116, in check_token
+    self.fetch_more_tokens()
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\scanner.py", line 223, in fetch_more_tokens
+    return self.fetch_value()
+  File "C:\Users\alejo\Documents\Work\Personal\BeerAPP\invitame_una_cerveza\Python\env\lib\site-packages\yaml\scanner.py", line 577, in fetch_value
+    raise ScannerError(None, None,
+yaml.scanner.ScannerError: mapping values are not allowed here
+  in "<unicode string>", line 17, column 19:
+              required:
+                      ^
+INFO:werkzeug:127.0.0.1 - - [12/Apr/2020 15:51:33] "GET /spec HTTP/1.1" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [12/Apr/2020 15:54:10] "GET /spec HTTP/1.1" 200 -

@@ -5,6 +5,7 @@ import logging
 from flask import Flask, jsonify, json, request
 from flask_api import status
 from flask_cors import CORS, cross_origin
+from flask_swagger import swagger
 from sqlalchemy.orm.exc import MultipleResultsFound
 from proxy import ProxyConfiguration
 from json_encoder import AlchemyEncoder
@@ -16,8 +17,9 @@ from facade_promotion import PromotionFacade
 from facade_climate import Climate
 
 app = Flask(__name__)
-cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+
+cors = CORS(app)
 
 OK = 'OK'
 FAIL = 'FAIL'
@@ -29,6 +31,52 @@ logging.basicConfig(filename="test.log", level=logging.DEBUG)
 def login():
     """
     Login method
+    ---
+    tags:
+      - users
+    definitions:
+      - schema:
+          id: Group
+          properties:
+            name:
+             type: string
+             description: the group's name
+    parameters:
+      - in: body
+        name: body
+        schema:
+          id: User
+          required:
+            - email
+            - name
+          properties:
+            email:
+              type: string
+              description: email for user
+            name:
+              type: string
+              description: name for user
+            address:
+              description: address for user
+              schema:
+                id: Address
+                properties:
+                  street:
+                    type: string
+                  state:
+                    type: string
+                  country:
+                    type: string
+                  postalcode:
+                    type: string
+            groups:
+              type: array
+              description: list of groups
+              items:
+                $ref: "#/definitions/Group"
+    responses:
+      201:
+        description: User created
     """
     try:
         _json_login = request.get_json()
@@ -374,6 +422,15 @@ def create_dml():
         logging.debug("Exception: ", _excep)
         return jsonify(FAIL), status.HTTP_409_CONFLICT
     return jsonify(FAIL), status.HTTP_409_CONFLICT
+    
+    
+@app.route("/spec", methods=['GET'])
+@cross_origin()
+def spec():
+    swag = swagger(app)
+    swag['info']['version'] = "1.0"
+    swag['info']['title'] = "My API"
+    return jsonify(swag)
 
 if __name__ == '__main__':
     app.run()
