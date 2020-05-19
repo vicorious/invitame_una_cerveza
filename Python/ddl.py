@@ -143,10 +143,13 @@ class DDL:
     #Promotion
         Table('PROMOTION', self.metadata,
               Column('id', Integer, primary_key=True),
+              Column('duration', Integer, nullable=False),
               Column('beer_id', Integer, ForeignKey('BEER.id'), nullable=False),
               Column('created_at', DateTime, nullable=False),
               Column('updated_at', DateTime, nullable=False),
-              Column('last_updated_by', String, nullable=False))
+              Column('last_updated_by', String, nullable=False),
+              CheckConstraint('duration >= 0', name='chk_promotion_duration_zero'),
+              CheckConstraint('duration <= 24', name='chk_promotion_duration_closed'))
         self.metadata.create_all(engine)
 
     def __str__(self):

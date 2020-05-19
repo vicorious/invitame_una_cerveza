@@ -3,6 +3,7 @@ Entity class
 """
 from datetime import datetime
 from sqlalchemy import  Column, String, Integer, DateTime
+from typing import Any, List
 class Entity():
     """
     Abstract class FOR ENTITY
@@ -24,3 +25,8 @@ class Entity():
 
     def __hash__(self):
         return hash((self.created_at, self.updated_at, self.last_updated_by))
+
+    @staticmethod
+    def serialize_many(items: List[Any] = None, is_me: bool = False):
+        return [] if items is None else list(
+            map(lambda item: item.serialize(is_me), items))

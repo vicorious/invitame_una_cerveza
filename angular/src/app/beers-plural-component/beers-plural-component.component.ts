@@ -18,7 +18,7 @@ export class BeersPluralComponentComponent implements OnInit
 	ngOnInit() 
 	{
 		const bar = this._activate_route.snapshot.queryParamMap.get('bar');
-		this._beers_service.getBeerForId(bar).subscribe
+		this._beers_service.getBeersByBar(bar).subscribe
 		(
 			res => 
 			{
@@ -26,6 +26,17 @@ export class BeersPluralComponentComponent implements OnInit
 			}
 		);	 
 	}
+	
+	  	/**
+	*
+	* Beers
+	*
+	**/
+	goBeersByBar(beer: Beer)
+	{
+		this.router.navigate(['/detailbeer'], { queryParams: { beer : beer.name} });		
+	}
+
   
   	/**
 	*

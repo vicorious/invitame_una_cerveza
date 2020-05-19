@@ -46,3 +46,14 @@ class UserBeer(Entity, Base):
         return hash((self.beer_id, self.user_id, self.pay_type_id,
                      self.climate_id, self.visit_date,
                      self._token, self.payment_product, self._qr))
+
+    def serialize(self, is_me: bool = False):
+        return dict(id=self.id,
+                    beer_id=self.beer_id,
+                    user_id=self.user_id,
+                    pay_type_id=self.pay_type_id,
+                    climate_id=self.climate_id,
+                    visit_date=self.visit_date,
+                    token=self._token,
+                    payment_product=self.payment_product,
+                    qr=self._qr)  

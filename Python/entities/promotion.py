@@ -14,16 +14,23 @@ class Promotion(Entity, Base):
     __tablename__ = 'PROMOTION'
     __table_args__ = {"schema": "public"}
     id = Column(Integer, primary_key=True, autoincrement=True)
+    duration = Column(Integer, nullable=False)
     beer_id = Column(Integer, ForeignKey(Beer.id), nullable=False)
-    def __init__(self, beer_id, created_by):
+    def __init__(self, duration, beer_id, created_by):
         """
         Constructor
         """
         Entity.__init__(self, created_by)
         self.beer_id = beer_id
+        self.duration = duration
 
     def __str__(self):
         return self.__class__.__name__
 
     def __hash__(self):
-        return hash((self.name))
+        return hash((self.name, self.duration))
+
+    def serialize(self, is_me: bool = False):
+        return dict(id=self.id, 
+                    duration=self.duration,                   
+                    beer_id=self.beer_id)

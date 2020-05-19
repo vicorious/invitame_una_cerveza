@@ -30,7 +30,7 @@ class UserBeerFacade:
             _json_entrada = json.loads(_json)
             results = self.cursor.default_connection.get_beer_connection().session.query(UserBeer).filter(
                 UserBeer.id == _json_entrada["id"])
-            return results
+            return UserBeer.serialize_many(results)
         except Exception as _excep:
             logging.debug('Exception: %s"', _excep)
         finally:
@@ -65,7 +65,7 @@ class UserBeerFacade:
             result = self.cursor.default_connection.get_beer_connection().session.query(UserBeer).filter(
                 UserBeer.user_id == _json_entrada["user_id"],
                 UserBeer.beer_id == _json_entrada["beer_id"])
-            return result
+            return UserBeer.serialize_many(result)
         except Exception as _excep:
             logging.debug('Exception: %s"', _excep)
         finally:
@@ -82,7 +82,7 @@ class UserBeerFacade:
                 UserBeer.user_id == _json_entrada["user_id"],
                 UserBeer.beer_id == _json_entrada["beer_id"],
                 UserBeer.pay_type_id == _json_entrada["pay_type_id"])
-            return results
+            return UserBeer.serialize_many(results)
         except Exception as _excep:
             logging.debug('Exception: %s"', _excep)
         finally:
@@ -98,7 +98,7 @@ class UserBeerFacade:
             results = self.cursor.default_connection.get_beer_connection().session.query(UserBeer).filter(
                 UserBeer.user_id == _json_entrada["user_id"],
                 UserBeer.pay_type_id == _json_entrada["pay_type_id"])
-            return results
+            return UserBeer.serialize_many(results)
         except Exception as _excep:
             logging.debug('Exception: %s"', _excep)
         finally:

@@ -4,6 +4,7 @@ Bar entity
 from sqlalchemy import Column, String, Integer, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from entities.entity import Entity
+from entities.beer import Beer
 Base = declarative_base()
 
 class Bar(Entity, Base):
@@ -62,3 +63,20 @@ class Bar(Entity, Base):
                      self.address, self.points,
                      self.facebook, self.twitter,
                      self.instagram, self.emergency_number))
+
+    def serialize(self, is_me: bool = False):
+        return dict(id=self.id,
+                    name=self.name,
+                    open_date=self.open_date,
+                    close_hour=self.close_hour,
+                    open_days=self.open_days,
+                    payment_product=self.payment_product,
+                    description=self.description,
+                    image=self.image,
+                    address=self.address,
+                    points=self.points,
+                    facebook=self.facebook,
+                    twitter=self.twitter,
+                    instagram=self.instagram,
+                    emergency_number= self.emergency_number)                    
+        

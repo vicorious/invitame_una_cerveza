@@ -58,7 +58,7 @@ class DML:
         self.default_connection.get_beer_connection().session.add(user)
         self.default_connection.get_beer_connection().session.flush()
         pairing = Pairing("Chorizo", "http://servidor/foto_pairing.jpg", beer.id, Constant.user)
-        promotion = Promotion(beer.id, Constant.user)
+        promotion = Promotion(8, beer.id, Constant.user)
         taste = Taste("taste", beer.id, Constant.user)
         climate = Climate(_my_json, Constant.user)
         self.default_connection.get_beer_connection().session.add(pairing)

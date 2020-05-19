@@ -67,3 +67,22 @@ class Beer(Entity, Base):
                      self.description, self.image,
                      self.pint, self.cup330,
                      self.giraffe, self.pitcher))
+                     
+    def serialize(self, is_me: bool = False):
+        return dict(id=self.id,
+                    name=self.name,
+                    pint_price=self.pint_price,
+                    cup330_price=self.cup330_price,
+                    giraffe_price=self.giraffe_price,
+                    pitcher_price=self.pitcher_price,
+                    bar_id=self.bar_id,
+                    beer_type_id=self.beer_type_id,
+                    avb=self.avb,
+                    ibu=self.ibu,
+                    srm=self.srm,
+                    description=self.description,
+                    image=self.image,
+                    pint= self.pint,
+                    cup330= self.cup330,
+                    giraffe= self.giraffe,
+                    pitcher= self.pitcher)  

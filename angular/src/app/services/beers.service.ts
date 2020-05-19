@@ -91,6 +91,29 @@ export class BeersService
 	*
 	*
 	*
+	*
+	**/
+	getBeersByBar(bar: string) : Observable<any>
+	{
+		return this.http.get<Beer>(this.HOST + this.URI_BEER_ID + bar, this.httpOptions).
+		pipe
+		(
+			retry(1),
+			catchError
+			(
+				error => 
+				{
+					return of({results: null});
+				}
+			)
+		);
+	}
+		
+	
+	/**
+	*
+	*
+	*
 	**/
 	getBeerForId(id: string) :  Observable<any>
 	{

@@ -7,9 +7,9 @@
 <section id="team" class="pb-5">
     <div class="container">
         <h5 class="section-title h1">¿Que te vas a tomar hoy?</h5>
-        <div class="row">
+        <div *ngIf="bares.length > 0" class="row">
             <!-- Team member -->
-            <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let bar of bares">
+            <div  class="col-xs-12 col-sm-6 col-md-4" *ngFor="let bar of bares">
                 <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
                     <div class="mainflip">
                         <div class="frontside">
@@ -50,14 +50,18 @@
                                         </li>
                                     </ul>
                                 </div>
-								<a (click)="goBeers(bar.name)" class="btn btn-primary btn-sm"><p style="color:white; text-align:center;margin-top:4%">¡Este es!</p></a>
+								<a (click)="goBeers(bar.id)" class="btn btn-primary btn-sm"><p style="color:white; text-align:center;margin-top:4%">¡Este es!</p></a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>            
-
+            </div>  
         </div>
+		 <div *ngIf="bares.length == 0" class="col-xs-12 col-sm-6 col-md-4">
+ 
+ No existen bares
+
+</div> 
     </div>
 </section>
 		<!-- Footer component -->

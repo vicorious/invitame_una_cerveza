@@ -28,14 +28,13 @@ class BarFacade:
         try:
             results = self.cursor.default_connection.get_beer_connection().session.query(Bar).filter(
                 Bar.id == _bar_id).one()
-            return results
+            return Bar.serialize(results)
         except MultipleResultsFound as multiple_results:
             logging.debug('Multiple rows. Failed Integrity from database %s', multiple_results)
         except NoResultFound as no_result:
             logging.debug('Bar not found %s', no_result)
         finally:
             self.cursor.default_connection.get_beer_connection().session.close()
-        return None
     ########### insert_bar #################################################
     def insert_bar(self, _json):
         """
@@ -65,8 +64,8 @@ class BarFacade:
         getBars Method
         """
         try:
-            results = self.cursor.default_connection._session.query(Bar).all()
-            return results
+            results = self.cursor.default_connection._session.query(Bar).all()            
+            return Bar.serialize_many(results)
         except Exception as _excep:
             logging.debug('Exception when we try fetch Bars: %s"', _excep)
         finally:

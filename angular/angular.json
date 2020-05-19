@@ -26,23 +26,22 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": 
-			[
-				"src/assets/js/jquery.min.js",
-				"src/assets/js/jquery.js",
-				"src/assets/js/weather.js",
-				"src/assets/js/reclamar_codigo.js",
-				"src/assets/js/profile_beer.js",
-				"src/assets/js/profile.js",
-				"src/assets/js/primera.js",
-				"src/assets/js/login.js",
-				"src/assets/js/jsqrcode-combined.js",
-				"src/assets/js/html5-qrcode.js",
-				"src/assets/js/bootstrap.js",				
-				"src/assets/js/login.js",
-				"src/assets/js/convertTime.js",
-				"src/assets/js/IA.js"
-			]
+            "scripts": [
+              "src/assets/js/jquery.min.js",
+              "src/assets/js/jquery.js",
+              "src/assets/js/weather.js",
+              "src/assets/js/reclamar_codigo.js",
+              "src/assets/js/profile_beer.js",
+              "src/assets/js/profile.js",
+              "src/assets/js/primera.js",
+              "src/assets/js/login.js",
+              "src/assets/js/jsqrcode-combined.js",
+              "src/assets/js/html5-qrcode.js",
+              "src/assets/js/bootstrap.js",
+              "src/assets/js/login.js",
+              "src/assets/js/convertTime.js",
+              "src/assets/js/IA.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -136,6 +135,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "invitame-una-cerveza"
+    }
+  },
+  "defaultProject": "invitame-una-cerveza",
+  "cli": {
+    "analytics": "5f8238f6-2afd-4143-aca3-92d310385b26"
+  }
 }

@@ -28,14 +28,28 @@ class BeerFacade:
         try:
             results = self.cur.default_connection.get_beer_connection().session.query(Beer).filter(
                 Beer.id == _beer_id).one()
-            return results
+            return Beer.serialize(results)
         except MultipleResultsFound as multiple_results:
             logging.debug('Multiple rows. Failed Integrity from database %s', multiple_results)
         except NoResultFound as no_result:
             logging.debug('Beer not found %s"', no_result)       
         finally:
             self.cur.default_connection.get_beer_connection().session.close()
-        return None
+    ############ beerId ####################################################
+    def beer_by_bar(self, _bar_id):
+        """
+        Beer for id method
+        """
+        try:
+            results = self.cur.default_connection.get_beer_connection().session.query(Beer).filter(
+                Beer.bar_id == _bar_id).all()
+            return Beer.serialize_many(results)
+        except MultipleResultsFound as multiple_results:
+            logging.debug('Multiple rows. Failed Integrity from database %s', multiple_results)
+        except NoResultFound as no_result:
+            logging.debug('Beer not found %s"', no_result)       
+        finally:
+            self.cur.default_connection.get_beer_connection().session.close()
     ########### insert_beer #################################################
     def insert_beer(self, _json):
         """
@@ -43,13 +57,14 @@ class BeerFacade:
         """
         try:
             _json_entrada = json.loads(_json)
-            beer = Beer(_json_entrada["title"], _json_entrada["price"],
-                        _json_entrada["happy_hour_price"],
-                        _json_entrada["bar_id"], _json_entrada["beer_type_id"],
-                        _json_entrada["avb"], _json_entrada["ibu"], _json_entrada["srm"],
-                        _json_entrada["description"], _json_entrada["image"], _json_entrada["pint"],
+            beer = Beer(_json_entrada["name"], _json_entrada["pint_price"],
+                        _json_entrada["cup330_price"],
+                        _json_entrada["giraffe_price"], _json_entrada["pitcher_price"],
+                        _json_entrada["bar_id"], _json_entrada["beer_type_id"], _json_entrada["avb"],
+                        _json_entrada["ibu"], _json_entrada["srm"], _json_entrada["description"],
+                        _json_entrada["image"], _json_entrada["pint"],
                         _json_entrada["cup330"], _json_entrada["giraffe"],
-                        _json_entrada["pitcher"], _json_entrada["created_by"])
+                        _json_entrada["pitcher"], _json_entrada["user"])
             self.cur.default_connection.get_beer_connection().session.add(beer)
             self.cur.default_connection.get_beer_connection().session.commit()
             self.cur.default_connection.get_beer_connection().session.close()
@@ -65,7 +80,7 @@ class BeerFacade:
         """
         try:
             results = self.cur.default_connection.get_beer_connection().session.query(Beer).all()
-            return results
+            return Beer.serialize_many(results)
         except Exception as _excep:
             logging.debug('Exception when we try fetch Beers: %s"', _excep)
         finally:

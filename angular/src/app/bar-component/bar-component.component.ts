@@ -32,14 +32,9 @@ export class BarComponentComponent implements OnInit
 		this.barService.getBars().subscribe
 		(
 			res => 
-			{
-				console.log('entro');				
+			{				
 				this.bares = res;
 				this.loading = false;
-				if(Object.entries(res).length === 1)
-				{
-					this.router.navigate(['**']);	
-				}
 			}
 		);
 	
@@ -53,7 +48,6 @@ export class BarComponentComponent implements OnInit
 	goBeers(bar_name: string)
 	{
 		this.loading = true;
-		setTimeout("<p>a</p>", 10000000);
 		this.router.navigate(['/beers'], { queryParams: { bar : bar_name} });	
 		this.loading = false;		
 	}
