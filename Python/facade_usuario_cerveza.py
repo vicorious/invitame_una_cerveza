@@ -29,7 +29,7 @@ class UserBeerFacade:
         try:
             _json_entrada = json.loads(_json)
             results = self.cursor.default_connection.get_beer_connection().session.query(UserBeer).filter(
-                UserBeer.id == _json_entrada["id"])
+                UserBeer.id == _json_entrada["id"]).all()
             return UserBeer.serialize_many(results)
         except Exception as _excep:
             logging.debug('Exception: %s"', _excep)
@@ -46,7 +46,8 @@ class UserBeerFacade:
             user_beer = UserBeer(_json_entrada["beer_id"], _json_entrada["user_id"],
                                  _json_entrada["pay_type_id"], _json_entrada["climate_id"],
                                  _json_entrada["visit_date"], _json_entrada["_token"],
-                                 _json_entrada["qr"], _json_entrada["created_by"])
+                                 _json_entrada["qr"], _json_entrada["pay_product"], 
+                                 _json_entrada["created_by"])
             self.cursor.default_connection.get_beer_connection().session.add(user_beer)
             self.cursor.default_connection.get_beer_connection().session.commit()
             self.cursor.default_connection.get_beer_connection().session.close()
@@ -56,15 +57,14 @@ class UserBeerFacade:
             self.cursor.default_connection.get_beer_connection().session.close()
 
  ############ Update beer for visit ####################################################
-    def user_beer_for_visit(self, _json):
+    def user_beer_for_visit(self, _user_id, _beer_id):
         """
         get cursor
         """
         try:
-            _json_entrada = json.loads(_json)
             result = self.cursor.default_connection.get_beer_connection().session.query(UserBeer).filter(
-                UserBeer.user_id == _json_entrada["user_id"],
-                UserBeer.beer_id == _json_entrada["beer_id"])
+                UserBeer.user_id == _user_id,
+                UserBeer.beer_id == _beer_id).all()
             return UserBeer.serialize_many(result)
         except Exception as _excep:
             logging.debug('Exception: %s"', _excep)
@@ -72,16 +72,15 @@ class UserBeerFacade:
             self.cursor.default_connection.get_beer_connection().session.close()
 
  ############ getUserBeerForPayment ####################################################
-    def user_beer_pay_type_for_visit(self, _json):
+    def user_beer_pay_type_for_visit(self, _user_id, _beer_id, _pay_type_id):
         """
         User beer pay type for visit method
         """
         try:
-            _json_entrada = json.loads(_json)
             results = self.cursor.default_connection.get_beer_connection().session.query(UserBeer).filter(
-                UserBeer.user_id == _json_entrada["user_id"],
-                UserBeer.beer_id == _json_entrada["beer_id"],
-                UserBeer.pay_type_id == _json_entrada["pay_type_id"])
+                UserBeer.user_id == _user_id,
+                UserBeer.beer_id == _beer_id,
+                UserBeer.pay_type_id == _pay_type_id).all()
             return UserBeer.serialize_many(results)
         except Exception as _excep:
             logging.debug('Exception: %s"', _excep)
@@ -89,15 +88,14 @@ class UserBeerFacade:
             self.cursor.default_connection.get_beer_connection().session.close()
 
  ############ getUserPayType ####################################################
-    def user_pay_type_for_visit(self, _json):
+    def user_pay_type_for_visit(self, _user_id, _pay_type_id):
         """
         User pay type for visit method
         """
         try:
-            _json_entrada = json.loads(_json)
             results = self.cursor.default_connection.get_beer_connection().session.query(UserBeer).filter(
-                UserBeer.user_id == _json_entrada["user_id"],
-                UserBeer.pay_type_id == _json_entrada["pay_type_id"])
+                UserBeer.user_id ==  _user_id,
+                UserBeer.pay_type_id == _pay_type_id).all()
             return UserBeer.serialize_many(results)
         except Exception as _excep:
             logging.debug('Exception: %s"', _excep)
