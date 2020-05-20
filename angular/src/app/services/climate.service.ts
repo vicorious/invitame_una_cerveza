@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { Climate } from '../dto/climate'
+import { Climate } from '../dto/climate';
+import { CatchError} from './catch-error';
 
 //#region Function "regresion_lineal" we could be find in "IA.js" 
 declare function regresion_lineal(json) : any;
@@ -36,7 +37,8 @@ export class ClimateService
 		//let params = new HttpParams().set('city', this.ciudad)
 		return this.http.get(this.host_service + "/" + this.ciudad).pipe
 		(
-			retry(1)		
+			retry(1),
+			catchError(CatchError.handleError)		
 		)
 		
 	}
@@ -51,8 +53,8 @@ export class ClimateService
 	{
 		return this.http.post(this.host_service, JSON.stringify(climate)).pipe
 		(
-			retry(1)
-			
+			retry(1),
+			catchError(CatchError.handleError)		
 		)
 	}
 	
@@ -66,8 +68,8 @@ export class ClimateService
 	{
 		return this.http.get(this.host_service).pipe
 		(
-			retry(1)
-			
+			retry(1),
+			catchError(CatchError.handleError)			
 		)
 		
 	}
@@ -83,13 +85,10 @@ export class ClimateService
 	{
 		return this.http.get(this.host_service).pipe
 		(
-			retry(1)
-			
+			retry(1),
+			catchError(CatchError.handleError)			
 		)
 		
-	}
-	
-	
-	
-	
+	}	
+		
 }

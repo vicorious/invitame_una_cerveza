@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Bar } from '../dto/bar'
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError, from } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { CatchError} from './catch-error';
 
 @Injectable
 (
@@ -31,7 +32,7 @@ export class BarService
 			}
 		)
 	}
-	
+
 	constructor(private http: HttpClient) { }
   
 	/**
@@ -61,14 +62,7 @@ export class BarService
 		.pipe
 		(
 			retry(1),
-			catchError
-			(
-				error => 
-				{
-					console.error('Pailander el servicio');
-					return of({results: {}});
-				}
-			)
+			catchError(CatchError.handleError)
 		);
 		
 	}
@@ -84,13 +78,7 @@ export class BarService
 		pipe
 		(
 			retry(1),
-			catchError
-			(
-				error => 
-				{
-					return of({results: null});
-				}
-			)
+			catchError(CatchError.handleError)
 		);
 	}
 
@@ -106,13 +94,7 @@ export class BarService
 		pipe
 		(
 			retry(1),
-			catchError
-			(
-				error => 
-				{
-					return of({results: null});
-				}
-			)
+			catchError(CatchError.handleError)
 		);
 
 	}
@@ -129,15 +111,8 @@ export class BarService
 		pipe
 		(
 			retry(1),
-			catchError
-			(
-				error => 
-				{
-					return of({results: null});
-				}
-			)
+			catchError(CatchError.handleError)
 		);
 	}
-	
   
 }

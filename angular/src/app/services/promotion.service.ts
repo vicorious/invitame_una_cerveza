@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Promotion } from '../dto/promotion';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { CatchError} from './catch-error';
 
 @Injectable
 (
@@ -57,13 +58,7 @@ export class PromotionService
 		pipe
 		(
 			retry(1),
-			catchError
-			(
-				error => 
-				{
-					return of({results: null});
-				}
-			)
+			catchError(CatchError.handleError)
 		);
 	}
 	
@@ -79,13 +74,7 @@ export class PromotionService
 		pipe
 		(
 			retry(1),
-			catchError
-			(
-				error => 
-				{
-					return of({results: null});
-				}
-			)
+			catchError(CatchError.handleError)
 		);
 	}
 	
@@ -101,13 +90,8 @@ export class PromotionService
 		pipe
 		(
 			retry(1),
-			catchError
-			(
-				error => 
-				{
-					return of({results: null});
-				}
-			)
+			catchError(CatchError.handleError)
 		);
 	}
+		
 }

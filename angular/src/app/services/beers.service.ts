@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Beer } from '../dto/beer';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { CatchError} from './catch-error';
 
 @Injectable
 
@@ -77,13 +78,7 @@ export class BeersService
 		pipe
 		(
 			retry(1),
-			catchError
-			(
-				error => 
-				{
-					return of({results: null});
-				}
-			)
+			catchError(CatchError.handleError)
 		);
 	}
 	
@@ -99,13 +94,7 @@ export class BeersService
 		pipe
 		(
 			retry(1),
-			catchError
-			(
-				error => 
-				{
-					return of({results: null});
-				}
-			)
+			catchError(CatchError.handleError)
 		);
 	}
 		
@@ -121,13 +110,7 @@ export class BeersService
 		pipe
 		(
 			retry(1),
-			catchError
-			(
-				error => 
-				{
-					return of({results: null});
-				}
-			)
+			catchError(CatchError.handleError)
 		);
 	}
 	
@@ -143,13 +126,7 @@ export class BeersService
 		pipe
 		(
 			retry(1),
-			catchError
-			(
-				error => 
-				{
-					return of({results: null});
-				}
-			)
+			catchError(CatchError.handleError)
 		);
 	}
 	
@@ -165,13 +142,7 @@ export class BeersService
 		pipe
 		(
 			retry(1),
-			catchError
-			(
-				error => 
-				{
-					return of({results: null});
-				}
-			)
+			catchError(CatchError.handleError)
 		);
 	}
 }
