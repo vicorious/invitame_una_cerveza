@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~8.2.7",
+    "@angular/animations": "^8.2.14",
     "@angular/common": "~8.2.7",
     "@angular/compiler": "~8.2.7",
     "@angular/core": "~8.2.7",
@@ -20,15 +20,19 @@
     "@angular/platform-browser": "~8.2.7",
     "@angular/platform-browser-dynamic": "~8.2.7",
     "@angular/router": "~8.2.7",
+    "@ng-bootstrap/ng-bootstrap": "^5.3.1",
+    "bootstrap": "^4.5.0",
     "firebase": "^7.14.0",
+    "jquery": "^3.5.1",
     "ngx-loading": "^3.0.1",
+    "ngx-toastr": "^12.0.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.803.24",
-    "@angular/cli": "^8.3.6",
+    "@angular/cli": "^9.1.6",
     "@angular/compiler-cli": "~8.2.7",
     "@angular/language-service": "~8.2.7",
     "@types/jasmine": "~3.3.8",
@@ -45,6 +49,6 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.5.3"
+    "typescript": "^3.9.3"
   }
 }

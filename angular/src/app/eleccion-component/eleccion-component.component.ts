@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
+//Function declared in promotions.js
+declare function initChoice(): any;
 
 @Component
 (
@@ -14,9 +18,11 @@ export class EleccionComponentComponent implements OnInit
 
 	public loading = false;
 
-  constructor(private router: Router) { }
+  	constructor(private router: Router, private toastr: ToastrService) { }
 
-  ngOnInit() {}
+  	ngOnInit() {
+		initChoice();
+  	}
   
   go(item: any): void
   {
@@ -39,6 +45,12 @@ export class EleccionComponentComponent implements OnInit
 	  this.router.navigate([_route]);
 	  this.loading = false;	  
 	  
+  }
+
+  showSuccess() {
+    this.toastr.success('Good', 'Easy toast', {
+		timeOut: 3000
+	  });
   }
 
 }

@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { PromotionService } from '../services/promotion.service';
-import { Beer } from '../dto/beer'
+import { Beer } from '../dto/beer';
+
+//Function declared in promotions.js
+declare function initPromotions(): any;
 
 @Component({
   selector: 'app-promocion-component',
@@ -17,9 +20,10 @@ export class PromocionComponentComponent implements OnInit
 
   ngOnInit() 
   {
-	 this.loading = true;
-	 this.beers =  this._promotion_service.getPromotion();
-	 this.loading = false;
+    initPromotions();
+	  this.loading = true;
+	  this.beers =  this._promotion_service.getPromotion();
+	  this.loading = false;
   }
   
   setBeer(beer: Beer)

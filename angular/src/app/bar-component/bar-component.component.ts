@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BarService } from '../services/bar.service';
-import { Bar } from '../dto/bar'
-	
-
+import { Bar } from '../dto/bar';
+import { ToastrService } from 'ngx-toastr';
 
 //#region Function "initPrimero" we could be find in "primera.js" 
 declare function initPrimero() : any;
@@ -23,7 +22,7 @@ export class BarComponentComponent implements OnInit
 {
 	public loading = false;
 	bares : Array<Bar>;	 
-	constructor(private router: Router, private barService: BarService) { }
+	constructor(private router: Router, private barService: BarService, private toastr: ToastrService) { }
 
 	ngOnInit() 
 	{
@@ -35,6 +34,12 @@ export class BarComponentComponent implements OnInit
 			{				
 				this.bares = res;
 				this.loading = false;
+			},
+			error =>
+			{
+				this.toastr.error(error.error, error.message, {
+					timeOut: 3000
+				});
 			}
 		);
 	

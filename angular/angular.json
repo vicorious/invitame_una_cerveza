@@ -24,23 +24,18 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/ngx-toastr/toastr.css",
               "src/styles.css"
             ],
             "scripts": [
-              "src/assets/js/jquery.min.js",
-              "src/assets/js/jquery.js",
+			  "node_modules/jquery/dist/jquery.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js",
               "src/assets/js/weather.js",
-              "src/assets/js/reclamar_codigo.js",
-              "src/assets/js/profile_beer.js",
-              "src/assets/js/profile.js",
-              "src/assets/js/primera.js",
-              "src/assets/js/login.js",
+			  "src/assets/js/card_events.js",
+              "src/assets/js/reclamar_codigo.js",              
               "src/assets/js/jsqrcode-combined.js",
-              "src/assets/js/html5-qrcode.js",
-              "src/assets/js/bootstrap.js",
-              "src/assets/js/login.js",
-              "src/assets/js/convertTime.js",
-              "src/assets/js/IA.js"
+              "src/assets/js/html5-qrcode.js"
             ]
           },
           "configurations": {
