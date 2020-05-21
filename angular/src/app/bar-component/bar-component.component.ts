@@ -4,7 +4,7 @@ import { BarService } from '../services/bar.service';
 import { Bar } from '../dto/bar';
 
 //#region Function "initPrimero" we could be find in "primera.js" 
-declare function initPrimero() : any;
+declare function initBars() : any;
 //#endregion
 
 @Component
@@ -26,7 +26,7 @@ export class BarComponentComponent implements OnInit
 	ngOnInit() 
 	{
 		this.loading = true;		
-		initPrimero();
+		initBars();
 		this.barService.getBars().subscribe
 		(
 			res => 

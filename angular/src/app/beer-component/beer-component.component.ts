@@ -4,8 +4,6 @@ import { Router } from '@angular/router';
 import { BeerService } from '../services/beer.service';
 import { Beer } from '../dto/beer';
 
-//#region Methos declared in JS file
-declare function initProfileBeer(): any;
 //#endregion
 
 @Component
@@ -31,8 +29,7 @@ export class BeerComponentComponent implements OnInit
 
 	ngOnInit() 
 	{
-		this.loading = true;
-		initProfileBeer();		
+		this.loading = true;		
 			
 	}
 	
