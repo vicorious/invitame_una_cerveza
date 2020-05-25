@@ -3,94 +3,101 @@
 <!-- /////// -->
 
 <section class="page-section portfolio" id="portfolio" >            
-            <br />  
-			<br />            
-			<br />  
-			<br /> 			
-            <div class="container">
-                <br />
-                <br />
-                <div class="row">
-                  <div class="col-lg-12 my-3">
-                      <div class="pull-right">
-                          <div class="btn-group">
-                              <button class="btn btn-info" id="list_choice">
-                                  Como Items
-                              </button>
-                              <button class="btn btn-danger" id="grid_choice">
-                                  Como Tarjetas
-                              </button>
-                          </div>
-                      </div>
-                  </div>
-              </div> 
-              <div id="products" class="row view-group">
-                          <div class="item col-xs-4 col-lg-4">
-                              <div class="thumbnail card">
-                                  <div class="img-event">
-                                      <p class="text-center">
-                                          <img class="group list-group-image img-fluid" src="../../assets/images/maestro.jpg" alt="" />
-                                    </p>
-                                  </div>
-                                  <div class="caption card-body">
-                                      <h4 class="group card-title inner list-group-item-heading">
-                                         ¿Que opciones tengo?</h4>
-                                      <p class="group inner list-group-item-text">
-                                        Encontraras las opciones donde veras que opiones tienes
-                                      </p>
-                                      <div class="row">
-                                          <div class="col-xs-12 col-md-6">
-                                              <p class="lead">
-                                                  $21.000</p>
-                                          </div>
-                                          <div class="col-xs-12 col-md-6">
-                                              <button (click)="go('master')" class="btn btn-success stretched-link">Yo quiero!</button>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="item col-xs-4 col-lg-4">
-                              <div class="thumbnail card">
-                                  <div class="img-event">
-                                    <p class="text-center">
-                                      <img class="group list-group-image img-fluid" src="../../assets/images/maestro.jpg" alt="" />
-                                    </p>
-                                  </div>
-                                  <div class="caption card-body">
-                                      <h4 class="group card-title inner list-group-item-heading">
-                                          Promociones</h4>
-                                      <p class="group inner list-group-item-text">
-                                          Aqui encontraras las promociones para llevar</p>
-                                      <div class="row">
-                                          <div class="col-xs-12 col-md-6">
-                                              <p class="lead">
-                                                  $21.000</p>
-                                          </div>
-                                          <div class="col-xs-12 col-md-6">
-                                              <button (click)="go('promotion')" class="btn btn-success stretched-link">Yo quiero!</button>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>                          
-                      </div>
+    <br />  
+    <br />            
+    <br />  
+    <br /> 	  
+      <div class="container">
+      <div class="row">
+        <div class="col-lg-12 my-3">
+            <div class="pull-right">
+                <div class="btn-group">
+                    <button class="btn btn-info" id="list_choice">
+                        Como Items
+                    </button>
+                    <button class="btn btn-danger" id="grid_choice">
+                        Como Tarjetas
+                    </button>
+                </div>
             </div>
+        </div>
+    </div> 
+    <div id="products" class="row view-group">
+                <div class="item col-xs-4 col-lg-4">
+                    <div class="thumbnail card">
+                        <div class="img-event">
+                            <img class="group list-group-image img-fluid" src="../../assets/images/beer/beer.jpg" alt="" />
+                        </div>
+                        <div class="caption card-body">
+                            <h4 class="group card-title inner list-group-item-heading">
+                                Master</h4>
+                            <p class="group inner list-group-item-text">
+                                Quieres elegir la cerveza que tu quieras? esta es tu opcion</p>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <p class="lead">
+                                        Master</p>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <a class="btn btn-success" (click)="go('master')">Elige</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item col-xs-4 col-lg-4">
+                    <div class="thumbnail card">
+                        <div class="img-event">
+                            <img class="group list-group-image img-fluid" src="../../assets/images/beer/beer_3.jpg" alt="" />
+                        </div>
+                        <div class="caption card-body">
+                            <h4 class="group card-title inner list-group-item-heading">
+                                Product title</h4>
+                            <p class="group inner list-group-item-text">
+                                Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                                sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <p class="lead">
+                                        $21.000</p>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <a class="btn btn-success" (click)="toastTest()">Add to cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item col-xs-4 col-lg-4">
+                    <div class="thumbnail card">
+                        <div class="img-event">
+                            <img class="group list-group-image img-fluid" src="../../assets/images/beer/beer_2.jpg" alt="" />
+                        </div>
+                        <div class="caption card-body">
+                            <h4 class="group card-title inner list-group-item-heading">
+                                Promociones</h4>
+                            <p class="group inner list-group-item-text">
+                                Todas las promociones de todas las cervecerias aqui</p>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <p class="lead">
+                                        Promociones</p>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <a class="btn btn-success" (click)="go('promotion')">Promotion</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+    </div>
         </section>
 		<!-- Footer component -->
 		<app-footer-component></app-footer-component>
 		<!-- Footer component -->
 
-	<div class="my-container">
-    <ng-template #customLoadingTemplate>
-        <div class="custom-class">
-            <h3>
-                Loading...
-            </h3>
-        </div>
-    </ng-template>
- 
-    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
-</div>
+<a class="fab" href="/profile"><fa-icon [icon]="faUserTie"></fa-icon></a>
 
-<a class="fab-profile fa fa-user" href="/profile"></a>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-loader" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>

@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { PromotionService } from '../services/promotion.service';
 import { Beer } from '../dto/beer';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+import { faUserTie, faHands } from '@fortawesome/free-solid-svg-icons';
 
 //Function declared in promotions.js
 declare function initPromotions(): any;
@@ -14,23 +17,26 @@ declare function initPromotions(): any;
 })
 export class PromocionComponentComponent implements OnInit 
 {
-	public loading = false;
-	beers : Array<Beer>;
-	constructor(private _activate_route: ActivatedRoute, private _promotion_service: PromotionService, private router: Router) { }
+  beers : Array<Beer>;
+  faUserTie = faUserTie;
+  faHands = faHands;
+  
+  constructor(private _activate_route: ActivatedRoute, private _promotion_service: PromotionService, private router: Router,
+    private spinner: NgxSpinnerService, private toast: ToastrService) { }
 
   ngOnInit() 
   {
-    initPromotions();
-	  this.loading = true;
-	  this.beers =  this._promotion_service.getPromotion();
-	  this.loading = false;
+    this.spinner.show();
+		setTimeout(() => {
+      initPromotions();
+      this.beers =  this._promotion_service.getPromotion();
+			this.spinner.hide();
+		  }, 2000);	
   }
   
   setBeer(beer: Beer)
   {
-	  this.loading = true;
 	  this.router.navigate(['/detailbeer'], { queryParams: { beer : beer.name} });
-	  this.loading = false;
   }
 
 }

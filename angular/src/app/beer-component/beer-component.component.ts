@@ -3,6 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { BeerService } from '../services/beer.service';
 import { Beer } from '../dto/beer';
+import { NgxSpinnerService } from "ngx-spinner";
+import { ToastrService } from 'ngx-toastr';
+import { faUserTie } from '@fortawesome/free-solid-svg-icons';
+import { faHands } from '@fortawesome/free-solid-svg-icons';
+import { faBeer } from '@fortawesome/free-solid-svg-icons';
+import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons';
+
 
 //#endregion
 
@@ -23,42 +30,31 @@ export class BeerComponentComponent implements OnInit
 	beer_image: string;
 	beer_name: string;
 	beer : Beer;
-	public loading = false;
+
+	faUserTie = faUserTie;
+	faHands = faHands;
+	faBeer = faBeer;
+	faSave = faLongArrowAltRight;
 	
-	constructor(private _activate_route: ActivatedRoute, private router: Router, private beer_service: BeerService) { }
+	constructor(private _activate_route: ActivatedRoute, private router: Router, private beer_service: BeerService,
+				private spinner: NgxSpinnerService, private toast: ToastrService) { }
 
 	ngOnInit() 
 	{
-		this.loading = true;		
+		this.spinner.show();
+		setTimeout(() => {
+			this.spinner.hide();
+		  }, 2000);		
 			
 	}
 	
 	goSave() 
-	{		
-		this.loading = true;
-		this.router.navigate(['/code']);
-		this.loading = false;
-	}
-	
-	dummy()
 	{
-		const beer = this._activate_route.snapshot.queryParamMap.get('beer');
-		this.beer_name = beer;
-		switch(beer)
-		{
-			case "Melas doble IIPA":
-				this.beer_image = this.beer_images[0];
-				break;
-			case "IPA The pub":
-				this.beer_image = this.beer_images[1];
-				break;
-			case "Tommahowk IPA":
-				this.beer_image = this.beer_images[2];
-				break;
-			default:
-				break;
-		}
-		this.loading = false;	
+		this.spinner.show();
+		setTimeout(() => {
+			this.spinner.hide();
+		  }, 2000);
+		this.router.navigate(['/code']);
 	}
 	
 

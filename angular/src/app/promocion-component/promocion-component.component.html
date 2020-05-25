@@ -22,7 +22,9 @@
               </div>
           </div>
       </div>
-  </div> 
+  </div>
+  <div><h3>Melas</h3><img class="littlecircleimg" src="../../assets/images/beer/melas/atomic_ipa.jpg"/></div>
+  <br />
   <div id="products" class="row view-group">
               <div class="item col-xs-4 col-lg-4">
                   <div class="thumbnail card">
@@ -93,6 +95,11 @@
                       </div>
                   </div>
               </div>
+  </div>
+  <div><h3>Madriguera</h3><img class="littlecircleimg" src="../../assets/images/beer/madriguera/sirukata.jpg"/></div>
+  <br />
+  <div id="products" class="row view-group">
+              
               <div class="item col-xs-4 col-lg-4">
                   <div class="thumbnail card">
                       <div class="img-event">
@@ -166,11 +173,12 @@
   </div>
 	
 </section>
+
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-loader" [fullScreen] = "true"><p style="color: white" > Loading promotions... </p></ngx-spinner>
 		<!-- Footer component -->
 		<app-footer-component></app-footer-component>
 		<!-- Footer component -->
 
-<a class="fab-profile fa fa-user" href="/profile"></a>
-<a class="fab_2 fa fa-hands" href="/choose"></a>
-
+        <a class="fab" href="/profile"><fa-icon [icon]="faUserTie"></fa-icon></a>
+        <a class="fab_top" href="/choose"><fa-icon [icon]="faHands"></fa-icon></a>
 <!-- Team -->

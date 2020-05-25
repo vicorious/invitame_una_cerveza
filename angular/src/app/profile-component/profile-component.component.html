@@ -1,79 +1,90 @@
 
 
+
+<!-- Container component -->
 <div class="container">
-
-    <div class="fb-profile">
-        <img align="left" class="fb-image-lg" src="assets/images/fondo_perfil_perfil.jpg" alt="Profile image example"/>
-        <img align="left" class="fb-image-profile thumbnail" src="assets/images/melas.jpg" alt="Profile image example"/>
-        <div class="fb-profile-text">
-            <h1 class="color_tittle"><strong>Mela's craft beer</strong></h1>			
-            		
-        </div>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<div class="fb-profile-text">         
-			<div class="tab">
-				<button id="btnHistorial" class="tablinks letra negrita active" onclick="openCity(event, 'historial')">Historial</button>
-				<button class="tablinks letra negrita" onclick="openCity(event, 'saldo')">Saldo</button>
-				<button style="display:none" class="tablinks letra negrita" onclick="openCity(event, 'Tokyo')">Pronto...</button>
-			</div>
-
-			<div id="historial" class="tabcontent" style="display:block; text-align: center">
-				<hr/>		
-				<ol class="rounded-list">
-					<li class="letra negrita">PINTA IPA - $16.200 - Madizzer</li>
-					<li class="letra negrita">VASO 330 ML APA - $13.200 - Diro</li>
-					<li class="letra negrita">PINTA VILLETA - $12.000 - Alejo</li>
-					<li class="letra negrita">PINTA IPA X 2 - $16.200</li>
-					<li class="letra negrita">JARRA IPA - $35.200</li>					
-				</ol>
-				
-					<hr/>
-					<h3 class="letra negrita">Total:</h3>
-					<h2 class="letra negrita" style="color:#008080"> $92.800 </h2>
-			</div>
-
-			<div id="saldo" class="tabcontent" style="text-align: center">
-				<hr/>
-				<h3 class="letra negrita">Saldo en creditos: </h3>
-				<h1 class="letra negrita" style="color:#008080">$ 52.000</h1> 
-			</div>
-
-			<div id="Tokyo" class="tabcontent">
-				<h3>Tokyo</h3>
-				<p>Tokyo is the capital of Japan.</p>
-			</div>
-        </div>		
-		
-		<hr/>
-		<div style="width:100%;height:10%;background-color:#008080">
-			<div class="footer">
-				<p class="letra negrita letra_blanca">Todos los derechos reservados</p>
+    <div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="fb-profile-block">
+					<div class="fb-profile-block-thumb cover-container"></div>
+					<div class="profile-img">
+						<a href="#">
+							<img src="../../assets/images/melas.jpg" alt="" title="">        
+						</a>
+					</div>
+					<div class="profile-name">
+						<h2>Alejo</h2>
+					</div>
+					
+					<!--div class="fb-profile-block-menu">
+						<div class="block-menu">
+							<ul>
+								<li><a href="#">Timeline</a></li>
+								<li><a href="#">about</a></li>
+								<li><a href="#">Friends</a></li>
+								<li><a href="#">Photos</a></li>
+								<li><a href="#">More...</a></li>
+							</ul>
+						</div>
+						<div class="block-menu">
+							<ul>
+								<li><a href="#">Timeline</a></li>
+								<li><a href="#">about</a></li>
+								<li><a href="#">Friends</a></li>
+								<li><a href="#">Photos</a></li>
+								<li><a href="#">More...</a></li>
+							</ul>
+						</div>
+					</div-->
+				</div>
+				<h3>Descripcion</h3>
+				<hr />
+				<p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p>
+				<br />
+				<h3>Acompañala con</h3>
+				<hr />
+				<p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p>
+				<hr />
+				<h3>¿Como quieres tu cerveza?</h3>
+				<hr />
+				<select class="form-control form-control-sm">
+					<option selected>Vaso</option>
+					<option>Pinta</option>
+					<option>Jarra</option>
+					<option>Jirafa</option>
+				</select>
+				<br />
+				<hr />
+				<h3>¿Cantidad?</h3>
+				<br />
+				<select class="form-control form-control-sm">
+					<option selected>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select>
+				<hr />
+				<h3>Tipo de pago?</h3>
+				<select class="form-control form-control-sm">
+					<option selected>Efetivo</option>
+					<option>Tarjeta de credito</option>
+					<option>Tarjeta debito (PSE)</option>
+				</select>		
 			</div>
 		</div>
-		
-		<br/>
-    </div>
+	</div>
+
 	
-</div> <!-- /container -->  
-
-	<div class="my-container">
-    <ng-template #customLoadingTemplate>
-        <div class="custom-class">
-            <h3>
-                Loading...
-            </h3>
-        </div>
-    </ng-template>
- 
-    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
-    //...
 </div>
+<br />
+<br />
+<br />
+<a class="fab" href="/choose"><fa-icon [icon]="faHands"></fa-icon></a>
 
-<a class="fab-profile fa fa-beer" href="/bars"></a>
-<a class="fab fa fa-hands" href="/choose"></a>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-loader" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
 
 				<!-- Footer component -->
 		<app-footer-component></app-footer-component>

@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BarService } from '../services/bar.service';
 import { Bar } from '../dto/bar';
+import { NgxSpinnerService } from "ngx-spinner";
+import { ToastrService } from 'ngx-toastr';
+import { faUserTie } from '@fortawesome/free-solid-svg-icons';
+import { faHands } from '@fortawesome/free-solid-svg-icons';
+
 
 //#region Function "initPrimero" we could be find in "primera.js" 
 declare function initBars() : any;
@@ -19,26 +24,33 @@ declare function initBars() : any;
 
 export class BarComponentComponent implements OnInit 
 {
-	public loading = false;
-	bares : Array<Bar>;	 
-	constructor(private router: Router, private barService: BarService) { }
+	bares : Array<Bar>;
+	faUserTie = faUserTie;
+	faHands = faHands;
+	constructor(private router: Router, private barService: BarService, private spinner: NgxSpinnerService,
+				private toast: ToastrService) { }
 
 	ngOnInit() 
-	{
-		this.loading = true;		
+	{	
+		this.spinner.show();
 		initBars();
 		this.barService.getBars().subscribe
 		(
 			res => 
 			{				
 				this.bares = res;
-				this.loading = false;
+				this.spinner.hide();
+
 			},
 			error =>
 			{
-				console.error(error);
+				this.toast.error('Error obteniendo bares', error);
+				this.spinner.hide();
+
 			}
 		);
+		
+		
 	
 	}
   
@@ -47,11 +59,9 @@ export class BarComponentComponent implements OnInit
 	* Beers
 	*
 	**/
-	goBeers(bar_name: string)
+	goBeers(_bar_id: string)
 	{
-		this.loading = true;
-		this.router.navigate(['/beers'], { queryParams: { bar : bar_name} });	
-		this.loading = false;		
+		this.router.navigate(['/beers'], { queryParams: { bar : _bar_id} });		
 	}
 
 }

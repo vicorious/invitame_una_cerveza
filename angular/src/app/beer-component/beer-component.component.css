@@ -5,8 +5,8 @@
   }
   .cover-container{
       background: #1E90FF;
-      background: -webkit-radial-gradient(bottom, #73D6F5 12%, #1E90FF);
-      background: radial-gradient(at bottom, #73D6F5 12%, #1E90FF)
+      background: -webkit-radial-gradient(bottom, #008080 12%, #008080);
+      background: radial-gradient(at bottom, #008080 12%, #008080)
   }
   .fb-profile-block-thumb{
     display: block;
@@ -86,4 +86,4 @@
   }
   .block-menu ul li:first-child a{
     border-left: 1px solid #e9eaed;
-  }
+  }   

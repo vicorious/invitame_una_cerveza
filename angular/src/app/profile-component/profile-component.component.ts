@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { faHands } from '@fortawesome/free-solid-svg-icons';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-profile-component',
@@ -7,14 +11,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponentComponent implements OnInit 
 {
-	public loading = false;	
+  
+	faHands = faHands;
 
-  constructor() { }
+  constructor(private spinner: NgxSpinnerService, private toast: ToastrService) { }
 
   ngOnInit() 
   {
-	  this.loading = true;
-	  this.loading = false;
+    this.spinner.show();
+		setTimeout(() => {
+			this.spinner.hide();
+		  }, 2000);		
   }
 
 }

@@ -4,65 +4,59 @@
 
 <!-- Team -->
 <section id="team" class="pb-5">
-    <div class="container">	
-        <h5 class="section-title h1">¿Que sed tienes hoy?</h5>
-        <div class="row">
-            <!-- Team member -->
-            <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let beer of beers">
-                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                    <div class="mainflip">
-                        <div class="frontside">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src={{beer.image}} alt="card image"></p>
-                                    <h4 class="card-title">{{beer.name}}</h4>
-                                    <p class="card-text">{{beer.abv}} alcohol</p>
-                                    <a (click)="goBeerDetail(beer)" class="btn btn-primary btn-sm"><i class="fa fa-beer"></i></a>									
-                                </div>
-                            </div>
+    <br />  
+    <br />            
+    <br />  
+    <br /> 	  
+      <div class="container">
+      <div class="row">
+        <div class="col-lg-12 my-3">
+            <div class="pull-right">
+                <div class="btn-group">
+                    <button class="btn btn-info" id="list_bar">
+                        Como Items
+                    </button>
+                    <button class="btn btn-danger" id="grid_bar">
+                        Como Tarjetas
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div id="products" class="row view-group" *ngFor="let beer of beers">
+                <div class="item col-xs-4 col-lg-4">
+                    <div class="thumbnail card">
+                        <div class="img-event">
+                            <img class="group list-group-image img-fluid" src={{beer.image}} alt="" />
                         </div>
-                        <div class="backside">
-                            <div class="card">
-                                <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Descripción</h4>
-                                    <p class="card-text">{{beer.description}}</p>
-									   <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-instagram"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fab fa-google"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
+                        <div class="caption card-body">
+                            <h4 class="group card-title inner list-group-item-heading">
+                                {{beer.name}}</h4>
+                            <p class="group inner list-group-item-text">
+                                {{beer.description}}</p>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <p class="lead">
+                                        {{beer.avb}}</p>
                                 </div>
-								<a (click)="goBeerDetail(beer)" class="btn btn-primary btn-sm"><p style="color:white; text-align:center;margin-top:4%">¡Quiero una!</p></a>
+                                <div class="col-xs-12 col-md-6">
+                                    <a class="btn btn-success" (click)="goBeerDetail(beer.id)">Quiero esta!</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                
             </div>
-            <!-- ./Team member -->            
-        </div>
     </div>
 </section>
 		<!-- Footer component -->
 		<app-footer-component></app-footer-component>
 		<!-- Footer component -->
 <!-- Team -->
-<a class="fab-profile fa fa-user" href="/profile"></a>
-<a class="fab_2 fa fa-beer" href="/bars"></a>	
+<a class="fab" href="/profile"><fa-icon [icon]="faUserTie"></fa-icon></a>
+<a class="fab_middle" href="/choose"><fa-icon [icon]="faHands"></fa-icon></a>
+<a class="fab_top" href="/bars"><fa-icon [icon]="faBeer"></fa-icon></a>	
+
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-loader" [fullScreen] = "true"><p style="color: white" > Cargando las polas... </p></ngx-spinner>
 <router-outlet></router-outlet>

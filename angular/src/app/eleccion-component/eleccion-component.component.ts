@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
+import { ToastrService } from 'ngx-toastr';
+import { faUserTie } from '@fortawesome/free-solid-svg-icons';
+import { faBeer } from '@fortawesome/free-solid-svg-icons';
 
-//Function declared in promotions.js
+
+//Function declared in card_events.js
 declare function initChoice(): any;
 
 @Component
@@ -15,17 +20,21 @@ declare function initChoice(): any;
 export class EleccionComponentComponent implements OnInit 
 {
 
-	public loading = false;
+	faUserTie = faUserTie;
+	faBeer = faBeer;
 
-  	constructor(private router: Router) { }
+  	constructor(private router: Router, private spinner: NgxSpinnerService, private toast: ToastrService) { }
 
-  	ngOnInit() {
-		initChoice();
+  	ngOnInit() { 
+		initChoice(); 
+		this.spinner.show();
+		setTimeout(() => {
+			this.spinner.hide();
+		  }, 2000);	
   	}
   
   go(item: any): void
   {
-	  this.loading = true;
 	  var _route   = "";	  
 	  switch(item)
 	  {
@@ -41,9 +50,12 @@ export class EleccionComponentComponent implements OnInit
 		  default:
 		    break;
 	  }
-	  this.router.navigate([_route]);
-	  this.loading = false;	  
+	  this.router.navigate([_route]); 
 	  
+  }
+
+  toastTest(){
+	this.toast.success('Hello world!', 'Toastr fun!');
   }
 
 }
