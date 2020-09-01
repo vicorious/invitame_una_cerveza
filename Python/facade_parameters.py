@@ -3,6 +3,7 @@ Parameters module
 """
 import logging
 from entities.pay_type import PayType
+from cursor import Cursor
 class FacadeParameters:
     """
     FacadeParameters class

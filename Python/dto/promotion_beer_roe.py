@@ -30,20 +30,20 @@ class PromotionBeerBar():
         return hash((self.__class__.__name__))
     
     def serialize(self):
-        return dict(promotion=Promotion(self.promotion.id,self.promotion.duration, self.promotion.beer_id, Constant.user).serialize(),
-                    beer=Beer(self.beer.id, self.beer.name, self.beer.pint_price, self.beer.cup330_price,
+        return dict(promotion=Promotion(self.promotion.duration, self.promotion.beer_id, Constant.user, self.promotion.id).serialize(),
+                    beer=Beer(self.beer.name, self.beer.pint_price, self.beer.cup330_price,
                      self.beer.giraffe_price, self.beer.pitcher_price,
                      self.beer.bar_id, self.beer.beer_type_id, self.beer.avb,
                      self.beer.ibu, self.beer.srm,
                      self.beer.description, self.beer.image,
                      self.beer.pint, self.beer.cup330,
-                     self.beer.giraffe, self.beer.pitcher, Constant.user).serialize(),
-                    bar=Bar(self.bar.id, self.bar.name, self.bar.open_date, self.bar.opening_hour,
+                     self.beer.giraffe, self.beer.pitcher, Constant.user, self.beer.id).serialize(),
+                    bar=Bar(self.bar.name, self.bar.open_date, self.bar.opening_hour,
                      self.bar.close_hour, self.bar.open_days,
                      self.bar.payment_product, self.bar.description, self.bar.image,
                      self.bar.address, self.bar.points,
                      self.bar.facebook, self.bar.twitter,
-                     self.bar.instagram, self.bar.emergency_number, Constant.user).serialize())
+                     self.bar.instagram, self.bar.emergency_number, Constant.user, self.bar.id).serialize())
 
     @staticmethod
     def serialize_list(items: List[Any] = None, is_me: bool = False):

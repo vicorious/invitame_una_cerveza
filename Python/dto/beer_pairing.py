@@ -27,14 +27,14 @@ class BeerPairing():
         return hash((self.__class__.__name__))
     
     def serialize(self):
-        return dict(pairing=Pairing(self.pairing.id,self.pairing.name, self.pairing.image, self.pairing.beer_id, Constant.user).serialize(),
-                    beer=Beer(self.beer.id, self.beer.name, self.beer.pint_price, self.beer.cup330_price,
+        return dict(pairing=Pairing(self.pairing.name, self.pairing.image, self.pairing.beer_id, Constant.user, self.pairing.id).serialize(),
+                    beer=Beer(self.beer.name, self.beer.pint_price, self.beer.cup330_price,
                      self.beer.giraffe_price, self.beer.pitcher_price,
                      self.beer.bar_id, self.beer.beer_type_id, self.beer.avb,
                      self.beer.ibu, self.beer.srm,
                      self.beer.description, self.beer.image,
                      self.beer.pint, self.beer.cup330,
-                     self.beer.giraffe, self.beer.pitcher, Constant.user).serialize())
+                     self.beer.giraffe, self.beer.pitcher, Constant.user, self.beer.id).serialize())
 
     @staticmethod
     def serialize_list(items: List[Any] = None, is_me: bool = False):

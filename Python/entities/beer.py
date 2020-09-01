@@ -32,9 +32,9 @@ class Beer(Entity, Base):
     giraffe = Column(String, nullable=False)
     pitcher = Column(String, nullable=False)
 
-    def __init__(self, id=None, name, pint_price, cup330_price, giraffe_price, pitcher_price,
+    def __init__(self, name, pint_price, cup330_price, giraffe_price, pitcher_price,
                  bar_id, beer_type_id, avb, ibu, srm, description,
-                 image, pint, cup330, giraffe, pitcher, created_by):
+                 image, pint, cup330, giraffe, pitcher, created_by, id=None):
         """
         Constructor
         """

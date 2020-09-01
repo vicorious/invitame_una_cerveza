@@ -52,10 +52,10 @@ class BeerFacade:
             logging.debug('Beer not found %s"', no_result)       
         finally:
             self.cur.default_connection.get_beer_connection().session.close()
-    ############ beerId ####################################################
+    ############ beer_pairing ####################################################
     def beer_pairing(self, beer_id):
         """
-        Beer for id method
+        Beer and pairing method
         """
         try:
             results = self.cur.default_connection.get_beer_connection().session.query(Beer, Pairing).join(

@@ -28,9 +28,9 @@ class Bar(Entity, Base):
     instagram = Column(String)
     emergency_number = Column(String, nullable=False)
 
-    def __init__(self, id=None, name, open_date, opening_hour, close_hour, open_days,
+    def __init__(self, name, open_date, opening_hour, close_hour, open_days,
                  payment_product, description, image, address, points, facebook,
-                 twitter, instagram, emergency_number, created_by):
+                 twitter, instagram, emergency_number, created_by, id=None):
         """
         Constructor
         """

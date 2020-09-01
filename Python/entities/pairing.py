@@ -17,7 +17,7 @@ class Pairing(Entity, Base):
     name = Column(String, nullable=False)
     image = Column(String, nullable=False)
     beer_id = Column(Integer, ForeignKey(Beer.id), nullable=False)
-    def __init__(self, id=None, name, image, beer_id, created_by):
+    def __init__(self, name, image, beer_id, created_by, id=None):
         """
         Constructor
         """

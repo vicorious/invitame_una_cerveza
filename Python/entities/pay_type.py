@@ -25,8 +25,8 @@ class PayType(Entity, Base):
 
     def __hash__(self):
         return hash((self.name))
-    
-   def serialize(self, is_me: bool = False):
+
+    def serialize(self, is_me: bool = False):
         return dict(id=self.id, 
                     name=self.name)
 

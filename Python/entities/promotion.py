@@ -17,7 +17,7 @@ class Promotion(Entity, Base):
     duration = Column(Integer, nullable=False)
     beer_id = Column(Integer, ForeignKey(Beer.id), nullable=False)
 
-    def __init__(self, id=None, duration, beer_id, created_by):
+    def __init__(self, duration, beer_id, created_by, id=None):
         """
         Constructor
         """

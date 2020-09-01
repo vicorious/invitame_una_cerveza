@@ -27,7 +27,7 @@ class Climate:
                                  main=json_response["main"],
                                  wind=json_response["wind"],
                                  city=json_response["name"])
-        return climate_dto
+        return climate_dto.serialize()
 
     def __str__(self):
         return self.__class__.__name__
