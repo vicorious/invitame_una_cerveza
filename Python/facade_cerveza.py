@@ -5,6 +5,8 @@ import json
 import logging
 from sqlalchemy.orm.exc import MultipleResultsFound, NoResultFound
 from entities.beer import Beer
+from entities.pairing import Pairing
+from dto.beer_pairing import BeerPairing
 from cursor import Cursor
 
 class BeerFacade:
@@ -48,6 +50,19 @@ class BeerFacade:
             logging.debug('Multiple rows. Failed Integrity from database %s', multiple_results)
         except NoResultFound as no_result:
             logging.debug('Beer not found %s"', no_result)       
+        finally:
+            self.cur.default_connection.get_beer_connection().session.close()
+    ############ beerId ####################################################
+    def beer_pairing(self, beer_id):
+        """
+        Beer for id method
+        """
+        try:
+            results = self.cur.default_connection.get_beer_connection().session.query(Beer, Pairing).join(
+                Pairing, Beer.id==Pairing.beer_id).filter(Pairing.beer_id==beer_id).all()
+            return BeerPairing.serialize_list(results)
+        except Exception as _except:
+            logging.debug('beer_pairing not found %s"', _except)       
         finally:
             self.cur.default_connection.get_beer_connection().session.close()
     ########### insert_beer #################################################

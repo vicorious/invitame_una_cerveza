@@ -23,70 +23,35 @@
           </div>
       </div>
   </div>
-  <div><h3>Melas</h3><img class="littlecircleimg" src="../../assets/images/beer/melas/atomic_ipa.jpg"/></div>
-  <br />
-  <div id="products" class="row view-group">
-              <div class="item col-xs-4 col-lg-4">
+
+  <div id="products"  class="row view-group" >
+              <div *ngFor="let promotion of promotions" class="item col-xs-4 col-lg-4">
+                <div >
+                    <h3>{{promotion.bar.name}}</h3><img class="littlecircleimg" src="{{promotion.bar.image}}"/></div>
+                <br />
                   <div class="thumbnail card">
                       <div class="img-event">
-                          <img class="group list-group-image img-fluid" src="http://placehold.it/400x250/000/fff" alt="" />
+                          <img class="group list-group-image img-fluid" src="{{promotion.beer.image}}" alt="" />
                       </div>
                       <div class="caption card-body">
                           <h4 class="group card-title inner list-group-item-heading">
-                              Product title</h4>
+                            {{promotion.beer.name}}</h4>
                           <p class="group inner list-group-item-text">
-                              Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                              sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                            {{promotion.beer.description}}
                           <div class="row">
                               <div class="col-xs-12 col-md-6">
-                                  <p class="lead">
-                                      $21.000</p>
-                              </div>
-                              <div class="col-xs-12 col-md-6">
-                                  <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="item col-xs-4 col-lg-4">
-                  <div class="thumbnail card">
-                      <div class="img-event">
-                          <img class="group list-group-image img-fluid" src="http://placehold.it/400x250/000/fff" alt="" />
-                      </div>
-                      <div class="caption card-body">
-                          <h4 class="group card-title inner list-group-item-heading">
-                              Product title</h4>
-                          <p class="group inner list-group-item-text">
-                              Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                              sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                          <div class="row">
-                              <div class="col-xs-12 col-md-6">
-                                  <p class="lead">
-                                      $21.000</p>
-                              </div>
-                              <div class="col-xs-12 col-md-6">
-                                  <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="item col-xs-4 col-lg-4">
-                  <div class="thumbnail card">
-                      <div class="img-event">
-                          <img class="group list-group-image img-fluid" src="http://placehold.it/400x250/000/fff" alt="" />
-                      </div>
-                      <div class="caption card-body">
-                          <h4 class="group card-title inner list-group-item-heading">
-                              Product title</h4>
-                          <p class="group inner list-group-item-text">
-                              Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                              sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                          <div class="row">
-                              <div class="col-xs-12 col-md-6">
-                                  <p class="lead">
-                                      $21.000</p>
+                                  <p class="lead" *ngIf="promotion.beer.cup330 == 1">
+                                        Cup  {{promotion.beer.cup330_price}}
+                                  </p>
+                                  <p class="lead" *ngIf="promotion.beer.giraffe == 1">
+                                        Giraffe  {{promotion.beer.giraffe_price}}
+                                  </p>
+                                  <p class="lead" *ngIf="promotion.beer.pint == 1">
+                                    Pint  {{promotion.beer.pint_price}}
+                                 </p>
+                                 <p class="lead" *ngIf="promotion.beer.pitcher == 1">
+                                    Pitcher  {{promotion.beer.pitcher_price}}
+                                 </p>
                               </div>
                               <div class="col-xs-12 col-md-6">
                                   <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
@@ -96,80 +61,6 @@
                   </div>
               </div>
   </div>
-  <div><h3>Madriguera</h3><img class="littlecircleimg" src="../../assets/images/beer/madriguera/sirukata.jpg"/></div>
-  <br />
-  <div id="products" class="row view-group">
-              
-              <div class="item col-xs-4 col-lg-4">
-                  <div class="thumbnail card">
-                      <div class="img-event">
-                          <img class="group list-group-image img-fluid" src="http://placehold.it/400x250/000/fff" alt="" />
-                      </div>
-                      <div class="caption card-body">
-                          <h4 class="group card-title inner list-group-item-heading">
-                              Product title</h4>
-                          <p class="group inner list-group-item-text">
-                              Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                              sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                          <div class="row">
-                              <div class="col-xs-12 col-md-6">
-                                  <p class="lead">
-                                      $21.000</p>
-                              </div>
-                              <div class="col-xs-12 col-md-6">
-                                  <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="item col-xs-4 col-lg-4">
-                  <div class="thumbnail card">
-                      <div class="img-event">
-                          <img class="group list-group-image img-fluid" src="http://placehold.it/400x250/000/fff" alt="" />
-                      </div>
-                      <div class="caption card-body">
-                          <h4 class="group card-title inner list-group-item-heading">
-                              Product title</h4>
-                          <p class="group inner list-group-item-text">
-                              Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                              sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                          <div class="row">
-                              <div class="col-xs-12 col-md-6">
-                                  <p class="lead">
-                                      $21.000</p>
-                              </div>
-                              <div class="col-xs-12 col-md-6">
-                                  <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="item col-xs-4 col-lg-4">
-                  <div class="thumbnail card">
-                      <div class="img-event">
-                          <img class="group list-group-image img-fluid" src="http://placehold.it/400x250/000/fff" alt="" />
-                      </div>
-                      <div class="caption card-body">
-                          <h4 class="group card-title inner list-group-item-heading">
-                              Product title</h4>
-                          <p class="group inner list-group-item-text">
-                              Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                              sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                          <div class="row">
-                              <div class="col-xs-12 col-md-6">
-                                  <p class="lead">
-                                      $21.000</p>
-                              </div>
-                              <div class="col-xs-12 col-md-6">
-                                  <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
   </div>
 	
 </section>

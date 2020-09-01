@@ -4,7 +4,6 @@ Bar entity
 from sqlalchemy import Column, String, Integer, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from entities.entity import Entity
-from entities.beer import Beer
 Base = declarative_base()
 
 class Bar(Entity, Base):
@@ -29,13 +28,14 @@ class Bar(Entity, Base):
     instagram = Column(String)
     emergency_number = Column(String, nullable=False)
 
-    def __init__(self, name, open_date, opening_hour, close_hour, open_days,
+    def __init__(self, id=None, name, open_date, opening_hour, close_hour, open_days,
                  payment_product, description, image, address, points, facebook,
                  twitter, instagram, emergency_number, created_by):
         """
         Constructor
         """
         Entity.__init__(self, created_by)
+        self.id = id
         self.name = name
         self.open_date = open_date
         self.opening_hour = opening_hour
@@ -78,5 +78,22 @@ class Bar(Entity, Base):
                     facebook=self.facebook,
                     twitter=self.twitter,
                     instagram=self.instagram,
-                    emergency_number= self.emergency_number)                    
+                    emergency_number= self.emergency_number)    
+
+    def __iter__(self):
+        yield 'id', self.id
+        yield 'name', self.name
+        yield 'open_date', self.close_hour
+        yield 'close_hour', self.close_hour 
+        yield 'payment_product', self.payment_product 
+        yield 'description', self.description 
+        yield 'image', self.image 
+        yield 'address', self.address 
+        yield 'points', self.points 
+        yield 'facebook', self.facebook 
+        yield 'twitter', self.twitter 
+        yield 'instagram', self.instagram
+        yield 'emergency_number', self.emergency_number 
+
+
         

@@ -17,7 +17,7 @@ class Pairing(Entity, Base):
     name = Column(String, nullable=False)
     image = Column(String, nullable=False)
     beer_id = Column(Integer, ForeignKey(Beer.id), nullable=False)
-    def __init__(self, name, image, beer_id, created_by):
+    def __init__(self, id=None, name, image, beer_id, created_by):
         """
         Constructor
         """
@@ -31,3 +31,16 @@ class Pairing(Entity, Base):
 
     def __hash__(self):
         return hash((self.name, self.image, self.beer_id))
+
+    def serialize(self, is_me: bool = False):
+        return dict(id=self.id, 
+                    name=self.name,  
+                    image=self.image,                 
+                    beer_id=self.beer_id)
+
+    def __iter__(self):
+        yield 'id', self.id
+        yield 'name', self.name
+        yield 'image', self.image
+        yield 'beer_id', self.beer_id
+

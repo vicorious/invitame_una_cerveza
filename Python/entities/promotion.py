@@ -16,11 +16,13 @@ class Promotion(Entity, Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     duration = Column(Integer, nullable=False)
     beer_id = Column(Integer, ForeignKey(Beer.id), nullable=False)
-    def __init__(self, duration, beer_id, created_by):
+
+    def __init__(self, id=None, duration, beer_id, created_by):
         """
         Constructor
         """
         Entity.__init__(self, created_by)
+        self.id = id
         self.beer_id = beer_id
         self.duration = duration
 
@@ -34,3 +36,9 @@ class Promotion(Entity, Base):
         return dict(id=self.id, 
                     duration=self.duration,                   
                     beer_id=self.beer_id)
+
+    def __iter__(self):
+        yield 'id', self.id
+        yield 'duration', self.duration
+        yield 'beer_id', self.beer_id
+

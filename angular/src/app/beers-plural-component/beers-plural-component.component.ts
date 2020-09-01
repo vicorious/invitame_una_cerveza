@@ -8,6 +8,8 @@ import { ToastrService } from 'ngx-toastr';
 import { faUserTie } from '@fortawesome/free-solid-svg-icons';
 import { faBeer } from '@fortawesome/free-solid-svg-icons';
 import { faHands } from '@fortawesome/free-solid-svg-icons';
+import { BeerService } from '../services/beer.service';
+import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'app-beers-plural-component',
@@ -21,8 +23,12 @@ export class BeersPluralComponentComponent implements OnInit
 	faUserTie = faUserTie;
 	faBeer = faBeer;
 	faHands = faHands;
-	constructor(private _activate_route: ActivatedRoute, private _beers_service: BeersService, private router: Router,
-		private spinner: NgxSpinnerService, private toast: ToastrService) { }
+	constructor(private _activate_route: ActivatedRoute, 
+				private _beers_service: BeersService, 
+				private _beer_service: BeerService,
+				private router: Router,
+				private spinner: NgxSpinnerService, 
+				private toast: ToastrService) { }
 
 	ngOnInit() 
 	{
@@ -52,6 +58,8 @@ export class BeersPluralComponentComponent implements OnInit
 	**/
 	goBeersByBar(beer: Beer)
 	{
+		this._beer_service.beerClearMessage();
+		this._beer_service.beerMessage(beer);
 		this.router.navigate(['/detailbeer'], { queryParams: { beer : beer.name} });		
 	}
 

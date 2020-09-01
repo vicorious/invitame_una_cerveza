@@ -3,9 +3,12 @@ Promotion module
 """
 import json
 import logging
+logging.basicConfig()
+logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
 from sqlalchemy import join
 from sqlalchemy.sql import select
 from entities.promotion import Promotion
+from dto.promotion_beer_roe import PromotionBeerBar
 from entities.bar import Bar
 from entities.beer import Beer
 from cursor import Cursor
@@ -55,14 +58,17 @@ class PromotionFacade:
 
     ########### Beers #################################################
     def promotions_by_bar(self, _bar_id):
-        """ar
+        """
         get promotions methodby bar
         """
-        try:            
-            results = self.cursor.default_connection.get_beer_connection().session.query(Promotion).join(Beer).join(Promotion).filter(Bar.id == _bar_id).all()
-            return Promotion.serialize_many(results)
+        try:
+            if str(_bar_id) == "0":
+                results = self.cursor.default_connection.get_beer_connection().session.query(Promotion, Beer, Bar).join(Beer, Promotion.beer_id==Beer.id).join(Bar, Beer.bar_id==Bar.id).all()
+            else:
+                results = self.cursor.default_connection.get_beer_connection().session.query(Promotion, Beer, Bar).join(Beer, Promotion.beer_id==Beer.id).join(Bar, Beer.bar_id==Bar.id).filter(Bar.id == _bar_id).all()
+            return PromotionBeerBar.serialize_list(results)
         except Exception as _excep:
-            logging.debug('Exception when we try fetch Promotions: %s"', _excep)
+            logging.debug('Exception when we try fetch promotions_by_bar: %s"', _excep)
         finally:
             self.cursor.default_connection.get_beer_connection().session.close()
 

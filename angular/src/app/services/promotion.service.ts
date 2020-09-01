@@ -15,9 +15,9 @@ import { CatchError} from './catch-error';
 export class PromotionService 
 {
 	public HOST                  : string = "http://localhost:5000"
-	public URI_PROMOTIONS        : string = "/promotions";
-	public URI_PROMOTIONS_INSERT : string = "/promotion/INSERT";
-	public URI_PROMOTIONS_UPDATE : string = "/promotion/UPDATE";
+	public URI_PROMOTIONS        : string = "/promotions_by_bar/";
+	public URI_PROMOTIONS_INSERT : string = "/promotionS/INSERT";
+	public URI_PROMOTIONS_UPDATE : string = "/promotionS/UPDATE";
 	
 	// Http Headers
 	httpOptions = 
@@ -52,9 +52,9 @@ export class PromotionService
 	*
 	*
 	**/
-	getPromotions() : Observable<any>
+	getPromotions(bar_id: number) : Observable<any>
 	{
-		return this.http.get(this.HOST + this.URI_PROMOTIONS, this.httpOptions).
+		return this.http.get(this.HOST + this.URI_PROMOTIONS + bar_id, this.httpOptions).
 		pipe
 		(
 			retry(1),
@@ -68,7 +68,7 @@ export class PromotionService
 	*
 	*
 	**/
-	promotionInsert(data: string)
+	promotionInsert(data: string) : Observable<any>
 	{
 		return this.http.post(this.HOST + this.URI_PROMOTIONS_INSERT, JSON.stringify(data), this.httpOptions).
 		pipe

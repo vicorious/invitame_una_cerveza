@@ -14,6 +14,7 @@ from facade_cerveza import BeerFacade
 from facade_usuario_cerveza import UserBeerFacade
 from facade_promotion import PromotionFacade
 from facade_climate import Climate
+from facade_parameters import FacadeParameters
 
 app = Flask(__name__)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -221,6 +222,21 @@ def beers():
         logging.debug("Unexpected Error %s", _excep)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
+@app.route('/beers/pairing/<beer_id>', methods=['GET'])
+@cross_origin()
+def beers_pairing(beer_id):
+    """
+    get Beers method
+    """
+    try:
+        _beers = BeerFacade().beer_pairing(beer_id)
+        if len(_beers) > 0:
+            return jsonify(_beers)
+        return jsonify(_beers), status.HTTP_204_NO_CONTENT
+    except Exception as _excep:
+        logging.debug("Unexpected Error %s", _excep)
+    return jsonify(FAIL), status.HTTP_409_CONFLICT
+
 
 @app.route('/beer/INSERT', methods=['POST'])
 @cross_origin()
@@ -325,7 +341,7 @@ def insert_user_by_visit():
         logging.debug("Unexpected Error %s", _excep)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
-@app.route('/promotion', methods=['GET'])
+@app.route('/promotions', methods=['GET'])
 @cross_origin()
 def promotions():
     """
@@ -340,7 +356,7 @@ def promotions():
         logging.debug("Unexpected Error %s", _excep)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
-@app.route('/promotion_by_bar/<_bar_id>', methods=['GET'])
+@app.route('/promotions_by_bar/<_bar_id>', methods=['GET'])
 @cross_origin()
 def promotions_by_bar(_bar_id):
     """
@@ -356,7 +372,7 @@ def promotions_by_bar(_bar_id):
     return jsonify(FAIL), status.HTTP_409_CONFLICT    
 
 
-@app.route('/promotion/INSERT', methods=['POST'])
+@app.route('/promotions/INSERT', methods=['POST'])
 @cross_origin()
 def insert_promotion():
     """
@@ -370,7 +386,7 @@ def insert_promotion():
         logging.debug("Unexpected Error %s", _excep)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
-@app.route('/promotion/UPDATE', methods=['PUT'])
+@app.route('/promotions/UPDATE', methods=['PUT'])
 @cross_origin()
 def update_promotion():
     """
@@ -384,6 +400,19 @@ def update_promotion():
         logging.debug("Unexpected Error %s", _excep)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
+@app.route('/pay_type', methods=['GET'])
+@cross_origin()
+def pay_type():
+    """
+    Pay type's method
+    """
+    try:
+        pay_types = FacadeParameters().pay_type()
+        return jsonify(pay_types)
+    except Exception as _excep:
+        logging.debug("Unexpected Error %s", _excep)
+    return jsonify(FAIL), status.HTTP_409_CONFLICT
+
 @app.route('/climate/weather/<city>', methods=['GET'])
 @cross_origin()
 def weather(city):
@@ -392,7 +421,7 @@ def weather(city):
     """
     try:
         climate_dto = Climate().get_current_weather(city)
-        return jsonify(OK)
+        return jsonify(climate_dto)
     except Exception as _excep:
         logging.debug("Unexpected Error %s", _excep)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
@@ -411,30 +440,11 @@ def postgre():
         logging.debug("Unexpected Error %s", _excep)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
-@app.route('/create_data_base', methods=['GET'])
+@app.route('/create_database_and_dml', methods=['GET'])
 @cross_origin()
-def create_database():
+def create_database_and_dml():
     """
-    Create database method
-    """
-    try:
-        proxy = ProxyConfiguration()
-        if not proxy.exist_data_base():
-            logging.debug("DataBase no exists!")
-            proxy.create_database()
-            proxy.create_ddl()
-        else:
-            logging.debug("Database was already created!")
-        return jsonify(OK)
-    except Exception as _excep:
-        return jsonify(FAIL), status.HTTP_409_CONFLICT
-    return jsonify(FAIL), status.HTTP_409_CONFLICT
-
-@app.route('/create_database_dml', methods=['GET'])
-@cross_origin()
-def create_dml():
-    """
-    Create dml method
+    Create database_and_dml method
     """
     try:
         proxy = ProxyConfiguration()
@@ -448,7 +458,7 @@ def create_dml():
             proxy.create_dml()
         return jsonify(OK)
     except Exception as _excep:
-        return jsonify(FAIL), status.HTTP_409_CONFLICT
+        logging.debug("Unexpected Error %s", _excep)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
     
     

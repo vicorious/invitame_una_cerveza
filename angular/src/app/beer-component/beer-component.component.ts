@@ -9,6 +9,7 @@ import { faUserTie } from '@fortawesome/free-solid-svg-icons';
 import { faHands } from '@fortawesome/free-solid-svg-icons';
 import { faBeer } from '@fortawesome/free-solid-svg-icons';
 import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons';
+import { ParameterService } from '../services/parameter.service';
 
 
 //#endregion
@@ -29,20 +30,38 @@ export class BeerComponentComponent implements OnInit
 	beer_images: Array<string> = ["assets/images/fondo_perfil_pola.jpg", "assets/images/thepub850.jpg", "assets/images/tommahawk.jpg"]
 	beer_image: string;
 	beer_name: string;
-	beer : Beer;
+	beer_detail : any;
+	beer : any;
+	pay_types: any [];
 
 	faUserTie = faUserTie;
 	faHands = faHands;
 	faBeer = faBeer;
 	faSave = faLongArrowAltRight;
 	
-	constructor(private _activate_route: ActivatedRoute, private router: Router, private beer_service: BeerService,
-				private spinner: NgxSpinnerService, private toast: ToastrService) { }
+	constructor(private _activate_route: ActivatedRoute, 
+				private router: Router, 
+				private _beer_service: BeerService,
+				private _parameters_service: ParameterService,
+				private spinner: NgxSpinnerService, 
+				private toast: ToastrService) { }
 
 	ngOnInit() 
 	{
 		this.spinner.show();
 		setTimeout(() => {
+			this._beer_service.beerGetMessage().subscribe(beer => {
+				this.beer = beer;
+			});
+
+			this._beer_service.getBeerPairing(this.beer.beer.id).subscribe(beer_pairing =>{
+				this.beer_detail = beer_pairing;
+			});
+
+			this._parameters_service.getPayType().subscribe(payTypes =>{
+				this.pay_types = payTypes;
+			});
+
 			this.spinner.hide();
 		  }, 2000);		
 			

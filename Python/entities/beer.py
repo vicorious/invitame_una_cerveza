@@ -32,13 +32,14 @@ class Beer(Entity, Base):
     giraffe = Column(String, nullable=False)
     pitcher = Column(String, nullable=False)
 
-    def __init__(self, name, pint_price, cup330_price, giraffe_price, pitcher_price,
+    def __init__(self, id=None, name, pint_price, cup330_price, giraffe_price, pitcher_price,
                  bar_id, beer_type_id, avb, ibu, srm, description,
                  image, pint, cup330, giraffe, pitcher, created_by):
         """
         Constructor
         """
         Entity.__init__(self, created_by)
+        self.id = id
         self.name = name
         self.pint_price = pint_price
         self.cup330_price = cup330_price
@@ -85,4 +86,23 @@ class Beer(Entity, Base):
                     pint= self.pint,
                     cup330= self.cup330,
                     giraffe= self.giraffe,
-                    pitcher= self.pitcher)  
+                    pitcher= self.pitcher) 
+
+    def __iter__(self):
+        yield 'id', self.id
+        yield 'name', self.name
+        yield 'pint_price', self.pint_price
+        yield 'cup330_price', self.cup330_price 
+        yield 'giraffe_price', self.giraffe_price 
+        yield 'pitcher_price', self.pitcher_price 
+        yield 'bar_id', self.bar_id 
+        yield 'beer_type_id', self.beer_type_id 
+        yield 'avb', self.avb 
+        yield 'ibu', self.ibu 
+        yield 'srm', self.srm 
+        yield 'description', self.description
+        yield 'image', self.image
+        yield 'pint', self.pint
+        yield 'cup330', self.cup330
+        yield 'giraffe', self.giraffe
+        yield 'pitcher', self.pitcher
