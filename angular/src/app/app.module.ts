@@ -27,6 +27,7 @@ import { BarService } from './services/bar.service';
 import { environment } from '../environments/environment';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ClimateService } from './services/climate.service';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ToastrModule.forRoot(),
     FontAwesomeModule
   ],
-  providers: [BarService],
+  providers: [ClimateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

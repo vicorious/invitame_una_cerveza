@@ -1,5 +1,6 @@
 export class Beer
 {
+	id: number;
 	name: string;
 	image: string;
 	abv: string;

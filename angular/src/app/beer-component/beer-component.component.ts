@@ -10,6 +10,7 @@ import { faHands } from '@fortawesome/free-solid-svg-icons';
 import { faBeer } from '@fortawesome/free-solid-svg-icons';
 import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons';
 import { ParameterService } from '../services/parameter.service';
+import { Subject } from 'rxjs/internal/Subject';
 
 
 //#endregion
@@ -30,9 +31,11 @@ export class BeerComponentComponent implements OnInit
 	beer_images: Array<string> = ["assets/images/fondo_perfil_pola.jpg", "assets/images/thepub850.jpg", "assets/images/tommahawk.jpg"]
 	beer_image: string;
 	beer_name: string;
-	beer_detail : any;
+	beer_detail_n : any;
 	beer : any;
 	pay_types: any [];
+
+	beer_subject = new Subject<any>();
 
 	faUserTie = faUserTie;
 	faHands = faHands;
@@ -49,21 +52,24 @@ export class BeerComponentComponent implements OnInit
 	ngOnInit() 
 	{
 		this.spinner.show();
-		setTimeout(() => {
 			this._beer_service.beerGetMessage().subscribe(beer => {
-				this.beer = beer;
-			});
-
-			this._beer_service.getBeerPairing(this.beer.beer.id).subscribe(beer_pairing =>{
-				this.beer_detail = beer_pairing;
+				console.log('Beer from beers', beer);
+				if(beer)
+				{
+					this._beer_service.getBeerPairing(beer.id).subscribe(beer_pairing => {
+						this.beer_subject.next(beer_pairing);
+						console.log('Next');
+						console.log('beer_pairing', beer_pairing);
+						//this.beer_detail = beer_pairing;
+					});
+				}
 			});
 
 			this._parameters_service.getPayType().subscribe(payTypes =>{
 				this.pay_types = payTypes;
 			});
 
-			this.spinner.hide();
-		  }, 2000);		
+			this.spinner.hide();		
 			
 	}
 	

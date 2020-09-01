@@ -10,23 +10,29 @@ declare function formatDateTime() : any;
 	{
 		selector: 'app-weather-component',
 		templateUrl: './weather-component.component.html',
-		styleUrls: ['./weather-component.component.css']
+		styleUrls: ['./weather-component.component.css'],
+		providers:[ClimateService]
 	}
 )
 export class WeatherComponentComponent implements OnInit 
 {
+	climate : any = null;
 
 	constructor(private _climate: ClimateService) { }
 
 	ngOnInit() 
 	{
-		this._climate.getCurrentClimate().subscribe
-		(
-			climate => 
-			{
-				console.log(JSON.stringify(climate))
-			}
-		);		
+		if(this.climate == null)
+		{
+			this._climate.getCurrentClimate().subscribe
+			(
+				climate => 
+				{
+					this.climate = climate;
+					console.log(climate)
+				}
+			);	
+		}	
 	}
 
 }

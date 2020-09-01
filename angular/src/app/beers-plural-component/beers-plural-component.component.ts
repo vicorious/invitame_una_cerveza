@@ -9,7 +9,6 @@ import { faUserTie } from '@fortawesome/free-solid-svg-icons';
 import { faBeer } from '@fortawesome/free-solid-svg-icons';
 import { faHands } from '@fortawesome/free-solid-svg-icons';
 import { BeerService } from '../services/beer.service';
-import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'app-beers-plural-component',
@@ -51,19 +50,6 @@ export class BeersPluralComponentComponent implements OnInit
 		);	 
 	}
 	
-	  	/**
-	*
-	* Beers
-	*
-	**/
-	goBeersByBar(beer: Beer)
-	{
-		this._beer_service.beerClearMessage();
-		this._beer_service.beerMessage(beer);
-		this.router.navigate(['/detailbeer'], { queryParams: { beer : beer.name} });		
-	}
-
-  
   	/**
 	*
 	* Beers
@@ -71,11 +57,16 @@ export class BeersPluralComponentComponent implements OnInit
 	**/
 	goBeerDetail(beer: Beer)
 	{
+		this._beer_service.beerClearMessage();
 		this.spinner.show();
 		setTimeout(() => {
 			this.spinner.hide();
 		  }, 2000);
-		this.router.navigate(['/detailbeer'], { queryParams: { beer : beer.name} });		
+		
+		console.log('A enviar: ', beer)
+		this._beer_service.beerMessage(beer);
+		console.log('enviado: ', beer)
+		this.router.navigate(['/detailbeer'], { queryParams: { beer : beer.id} });		
 	}
 
 }
