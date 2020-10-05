@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { PromotionService } from '../services/promotion.service';
+import { BeerService } from '../services/beer.service';
 import { Beer } from '../dto/beer';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -24,6 +25,7 @@ export class PromocionComponentComponent implements OnInit
   
   constructor(private _activate_route: ActivatedRoute, 
               private _promotion_service: PromotionService, 
+              private _beer_service: BeerService,
               private router: Router,
               private spinner: NgxSpinnerService, 
               private toast: ToastrService) { }
@@ -44,7 +46,16 @@ export class PromocionComponentComponent implements OnInit
   
   setBeer(beer: Beer)
   {
-	  this.router.navigate(['/detailbeer'], { queryParams: { beer : beer.name} });
+    this._beer_service.beerClearMessage();
+		this.spinner.show();
+		setTimeout(() => {
+			this.spinner.hide();
+		  }, 2000);
+		
+		console.log('A enviar: ', beer)
+		this._beer_service.beerMessage(beer);
+		console.log('enviado: ', beer)
+		this.router.navigate(['/detailbeer'], { queryParams: { beer : beer.id} });		
   }
 
 }

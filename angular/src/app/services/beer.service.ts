@@ -55,12 +55,7 @@ export class BeerService
 
 	getBeerPairing(beer_id)
 	{
-		return this.http.get<Beer>(this.HOST + this.BEER_PAIRING_URI + beer_id, this.httpOptions).
-		pipe
-		(
-			retry(1),
-			catchError(CatchError.handleError)
-		);
+		return this.http.get<Beer>(this.HOST + this.BEER_PAIRING_URI + beer_id, this.httpOptions);
 
 	}
 

@@ -27,13 +27,7 @@ export class ParameterService
 
   getPayType()
 	{
-		return this.http.get<any>(this.HOST + this.PAY_TYPE_URI, this.httpOptions).
-		pipe
-		(
-			retry(1),
-			catchError(CatchError.handleError)
-		);
-
+		return this.http.get<any>(this.HOST + this.PAY_TYPE_URI, this.httpOptions);
 	}
 
 }

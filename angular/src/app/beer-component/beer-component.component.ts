@@ -56,6 +56,7 @@ export class BeerComponentComponent implements OnInit
 				console.log('Beer from beers', beer);
 				if(beer)
 				{
+					this.beer = beer;
 					this._beer_service.getBeerPairing(beer.id).subscribe(beer_pairing => {
 						this.beer_subject.next(beer_pairing);
 						console.log('Next');

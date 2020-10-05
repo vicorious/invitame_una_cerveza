@@ -74,12 +74,7 @@ export class BeersService
 	**/
 	getBeers() : Observable<any>
 	{
-		return this.http.get<Beer>(this.HOST + this.URI_BEERS, this.httpOptions).
-		pipe
-		(
-			retry(1),
-			catchError(CatchError.handleError)
-		);
+		return this.http.get<Beer>(this.HOST + this.URI_BEERS, this.httpOptions);
 	}
 	
 	/**
@@ -90,12 +85,7 @@ export class BeersService
 	**/
 	getBeersByBar(bar: string) : Observable<any>
 	{
-		return this.http.get<Beer>(this.HOST + this.URI_BEER_ID + bar, this.httpOptions).
-		pipe
-		(
-			retry(1),
-			catchError(CatchError.handleError)
-		);
+		return this.http.get<Beer>(this.HOST + this.URI_BEER_ID + bar, this.httpOptions);
 	}
 		
 	
@@ -106,12 +96,7 @@ export class BeersService
 	**/
 	getBeerForId(id: string) :  Observable<any>
 	{
-		return this.http.get<Beer>(this.HOST + this.URI_BEER_ID + id + this.GET, this.httpOptions).		
-		pipe
-		(
-			retry(1),
-			catchError(CatchError.handleError)
-		);
+		return this.http.get<Beer>(this.HOST + this.URI_BEER_ID + id + this.GET, this.httpOptions);
 	}
 	
 	/**
@@ -122,12 +107,7 @@ export class BeersService
 	**/
 	beerInsert(data: string)
 	{
-		return this.http.post(this.HOST + this.URI_BEER_INSERT, JSON.stringify(data), this.httpOptions).
-		pipe
-		(
-			retry(1),
-			catchError(CatchError.handleError)
-		);
+		return this.http.post(this.HOST + this.URI_BEER_INSERT, JSON.stringify(data), this.httpOptions);
 	}
 	
 		
@@ -138,11 +118,6 @@ export class BeersService
 	**/
 	beerUpdate(data: string) : Observable<any>
 	{
-		return this.http.put(this.HOST + this.URI_BEER_UPDATE, JSON.stringify(data), this.httpOptions).
-		pipe
-		(
-			retry(1),
-			catchError(CatchError.handleError)
-		);
+		return this.http.put(this.HOST + this.URI_BEER_UPDATE, JSON.stringify(data), this.httpOptions);
 	}
 }

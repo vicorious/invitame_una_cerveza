@@ -12,11 +12,11 @@
 					<div class="fb-profile-block-thumb cover-container"></div>
 					<div class="profile-img">
 						<a href="#">
-							<img src="{{beer_detail[0].beer.image}}" alt="" title="">        
+							<img src="{{beer.image}}" alt="" title="">        
 						</a>
 					</div>
 					<div class="profile-name">
-						<h2>{{beer_detail[0].beer.name}}</h2>
+						<h2>{{beer.name}}</h2>
 					</div>
 					
 					<!--div class="fb-profile-block-menu">
@@ -42,20 +42,22 @@
 				</div>
 				<h3>Descripcion</h3>
 				<hr />
-				<p>{{beer_detail[0].beer.description}}</p>
+				<p>{{beer.description}}</p>
 				<br />
 				<h3>Acompañala con</h3>
 				<hr />
-				<p>{{beer_detail[0].pairing.image}}</p>
-				<p>{{beer_detail[0].pairing.name}}</p>
-				<hr />
+				<div *ngFor="let pairing of beer_detail">
+					<p>{{pairing.image}}</p>
+					<p>{{pairing.name}}</p>
+					<hr />
+				</div>
 				<h3>¿Como quieres tu cerveza?</h3>
 				<br />
 				<select class="form-control form-control-sm">
-					<option *ngIf="beer_detail[0].beer.cup330" selected>Vaso</option>
-					<option *ngIf="beer_detail[0].beer.pint">Pinta</option>
-					<option *ngIf="beer_detail[0].beer.pitcher">Jarra</option>
-					<option *ngIf="beer_detail[0].beer.giraffe">Jirafa</option>
+					<option *ngIf="beer.cup330" selected>Vaso</option>
+					<option *ngIf="beer.pint">Pinta</option>
+					<option *ngIf="beer.pitcher">Jarra</option>
+					<option *ngIf="beer.giraffe">Jirafa</option>
 				</select>
 				<br />
 				<hr />
@@ -88,7 +90,7 @@
 		<app-footer-component></app-footer-component>
 		<!-- Footer component -->
 
-		<ng-template #loading let-user>Waiting... (beer_detail is {{beer_detail|json}})</ng-template>
+		<ng-template #loading let-user>Waiting...</ng-template>
 
 
 

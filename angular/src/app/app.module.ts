@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from "ngx-spinner";
@@ -28,6 +28,7 @@ import { environment } from '../environments/environment';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ClimateService } from './services/climate.service';
+import { HttpInterceptorInterceptor } from './http-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,14 @@ import { ClimateService } from './services/climate.service';
     ToastrModule.forRoot(),
     FontAwesomeModule
   ],
-  providers: [ClimateService],
+  providers: [
+    ClimateService,    
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

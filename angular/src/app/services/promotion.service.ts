@@ -70,12 +70,7 @@ export class PromotionService
 	**/
 	promotionInsert(data: string) : Observable<any>
 	{
-		return this.http.post(this.HOST + this.URI_PROMOTIONS_INSERT, JSON.stringify(data), this.httpOptions).
-		pipe
-		(
-			retry(1),
-			catchError(CatchError.handleError)
-		);
+		return this.http.post(this.HOST + this.URI_PROMOTIONS_INSERT, JSON.stringify(data), this.httpOptions);
 	}
 	
 		
@@ -86,12 +81,7 @@ export class PromotionService
 	**/
 	promotionUpdate(data: string) : Observable<any>
 	{
-		return this.http.put(this.HOST + this.URI_PROMOTIONS_UPDATE, JSON.stringify(data), this.httpOptions).
-		pipe
-		(
-			retry(1),
-			catchError(CatchError.handleError)
-		);
+		return this.http.put(this.HOST + this.URI_PROMOTIONS_UPDATE, JSON.stringify(data), this.httpOptions);
 	}
 		
 }

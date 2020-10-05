@@ -35,11 +35,7 @@ export class ClimateService
 	{
 		//TODO This feature going to BACKEND
 		//let params = new HttpParams().set('city', this.ciudad)
-		return this.http.get(this.host_service + "/" + this.ciudad).pipe
-		(
-			retry(1),
-			catchError(CatchError.handleError)		
-		)
+		return this.http.get(this.host_service + "/" + this.ciudad);
 		
 	}
 	
@@ -51,11 +47,7 @@ export class ClimateService
 	**/
 	saveClimate(climate : Climate): Observable<any>
 	{
-		return this.http.post(this.host_service, JSON.stringify(climate)).pipe
-		(
-			retry(1),
-			catchError(CatchError.handleError)		
-		)
+		return this.http.post(this.host_service, JSON.stringify(climate));
 	}
 	
 	/**
@@ -66,12 +58,7 @@ export class ClimateService
 	**/
 	calculateBestBeerFromClimateAndTaste(): Observable<any>
 	{
-		return this.http.get(this.host_service).pipe
-		(
-			retry(1),
-			catchError(CatchError.handleError)			
-		)
-		
+		return this.http.get(this.host_service);
 	}
 	
 	/**
@@ -83,12 +70,7 @@ export class ClimateService
 	**/
 	calculateBeerBeerFromTaste()
 	{
-		return this.http.get(this.host_service).pipe
-		(
-			retry(1),
-			catchError(CatchError.handleError)			
-		)
-		
+		return this.http.get(this.host_service);		
 	}	
 		
 }
