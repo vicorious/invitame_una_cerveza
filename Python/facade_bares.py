@@ -59,12 +59,16 @@ class BarFacade:
             pass
 
     ########### Bars #################################################
-    def bars(self):
+    def bars(self, dicti=None):
         """
         getBars Method
         """
         try:
-            results = self.cursor.default_connection._session.query(Bar).all()            
+            if dicti and dicti.get('name'):
+                results = self.cursor.default_connection._session.query(Bar).filter(
+                    Bar.name == dicti.get('name')).all()
+            else:
+                results = self.cursor.default_connection._session.query(Bar).all()       
             return Bar.serialize_many(results)
         except Exception as _excep:
             logging.debug('Exception when we try fetch Bars: %s"', _excep)
@@ -78,4 +82,4 @@ class BarFacade:
         """
         update_bares = "UPDATE BAR SET "
         where_update_bares = "WHERE ID = {}"
-        self.cursor.update_query(_json, update_bares, where_update_bares)
+        self.cursor.update_query(_json, update_bares, where_update_bares, Bar)

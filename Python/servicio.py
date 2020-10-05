@@ -114,7 +114,7 @@ def forgot_password():
         logging.debug("Unexpected Error %s", _excep)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
-@app.route('/bar/<_bar_id>/GET', methods=['GET'])
+@app.route('/bars/<_bar_id>/GET', methods=['GET'])
 @cross_origin()
 def bar_for_id(_bar_id):
     """
@@ -137,7 +137,8 @@ def bars():
     Get bars method
     """
     try:
-        _bars = BarFacade().bars()
+        queryStringDict = request.args
+        _bars = BarFacade().bars(queryStringDict)
         if len(_bars) > 0:
             return jsonify(_bars)    
         return jsonify(_bars), status.HTTP_204_NO_CONTENT
@@ -146,7 +147,7 @@ def bars():
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 
-@app.route('/bar/INSERT', methods=['POST'])
+@app.route('/bars/INSERT', methods=['POST'])
 @cross_origin()
 def insert_bar():
     """
@@ -161,7 +162,7 @@ def insert_bar():
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
 
-@app.route('/bar/UPDATE', methods=['PUT'])
+@app.route('/bars/UPDATE', methods=['PUT'])
 @cross_origin()
 def update_bar():
     """
@@ -175,7 +176,7 @@ def update_bar():
         logging.debug("Unexpected Error %s", _excep)
     return jsonify(FAIL), status.HTTP_409_CONFLICT
 
-@app.route('/beer/<_beer_id>/GET', methods=['GET'])
+@app.route('/beers/<_beer_id>/GET', methods=['GET'])
 @cross_origin()
 def beer_id(_beer_id):
     """
@@ -214,7 +215,8 @@ def beers():
     get Beers method
     """
     try:
-        _beers = BeerFacade().beers()
+        queryStringDict = request.args
+        _beers = BeerFacade().beers(queryStringDict)
         if len(_beers) > 0:
             return jsonify(_beers)
         return jsonify(_beers), status.HTTP_204_NO_CONTENT

@@ -19,7 +19,7 @@ class Cursor:
         self.proxy = ProxyConfiguration()
         self.default_connection = DefaultConnection(self.proxy.engine)
 
-    def update_query(self, _json, _update_table, _where):
+    def update_query(self, _json, _update_table, _where, _class):
         """
         Update any table
         """
@@ -35,7 +35,7 @@ class Cursor:
                     else:
                         update.join(attribute.upper()).join(" = '").join(value).join("' ")
             update = _update_table.join(update).join(_where.format(_json_entrada["id"]))
-            self.default_connection.beer_connection.session.query(Bar).from_statement(str(update))
+            self.default_connection.beer_connection.session.query(_class).from_statement(str(update))
             self.default_connection.beer_connection.session.commit()
             self.default_connection.beer_connection.session.close()
         except Exception as _excep:

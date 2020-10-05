@@ -58,9 +58,9 @@ class BeerFacade:
         Beer and pairing method
         """
         try:
-            results = self.cur.default_connection.get_beer_connection().session.query(Beer, Pairing).join(
-                Pairing, Beer.id==Pairing.beer_id).filter(Pairing.beer_id==beer_id).all()
-            return BeerPairing.serialize_list(results)
+            results = self.cur.default_connection.get_beer_connection().session.query(Pairing).join(
+               Beer).filter(Pairing.beer_id==beer_id).all()
+            return Pairing.serialize_many(results)
         except Exception as _except:
             logging.debug('beer_pairing not found %s"', _except)       
         finally:
@@ -89,12 +89,16 @@ class BeerFacade:
             self.cur.beer_connection.session.close()
 
     ########### Beers #################################################
-    def beers(self):
+    def beers(self, dicti=None):
         """
         get beers method
         """
         try:
-            results = self.cur.default_connection.get_beer_connection().session.query(Beer).all()
+            if dicti and dicti.get('name'):
+                results = self.cur.default_connection.get_beer_connection().session.query(Beer).filter(
+                    Beer.name == dicti.get('name')).all()
+            else:
+                results = self.cur.default_connection.get_beer_connection().session.query(Beer).all()
             return Beer.serialize_many(results)
         except Exception as _excep:
             logging.debug('Exception when we try fetch Beers: %s"', _excep)
@@ -108,4 +112,4 @@ class BeerFacade:
         """
         update_beers = "UPDATE BEER SET "
         where_update_beers = "WHERE ID = {}"
-        self.cursor.update_query(_json, update_beers, where_update_beers)
+        self.cursor.update_query(_json, update_beers, where_update_beers, Beer)
